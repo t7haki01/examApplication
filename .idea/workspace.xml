@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="99c297cc-7de6-4ebf-9816-4dcfa86c1402" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/symfonyApp/composer.json</pharConfigPath>
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-741005880">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="3" />
+          <entry key="project.open.time.18" value="1" />
+          <entry key="project.open.time.50" value="1" />
+          <entry key="project.open.time.86" value="1" />
+          <entry key="project.opened" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="env" value="1" />
+          <entry key="js" value="3" />
+          <entry key="php" value="7" />
+          <entry key="twig" value="4" />
+          <entry key="yaml" value="5" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JavaScript" value="3" />
+          <entry key="PHP" value="7" />
+          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="Twig" value="4" />
+          <entry key="YAML" value="5" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="dummy" value="10" />
+          <entry key="env" value="4" />
+          <entry key="js" value="427" />
+          <entry key="php" value="2948" />
+          <entry key="twig" value="932" />
+          <entry key="yaml" value="117" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JavaScript" value="427" />
+          <entry key="PHP" value="2948" />
+          <entry key="PLAIN_TEXT" value="14" />
+          <entry key="Twig" value="932" />
+          <entry key="YAML" value="117" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.php.new.class">
+        <counts>
+          <entry key="PHP Class.type" value="2" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/symfonyApp/src/Controller/TeacherController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="572">
+              <caret line="59" selection-start-line="59" selection-end-line="59" />
+              <folding>
+                <element signature="e#117#141#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/symfonyApp/src/Form/QuestionType.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="453">
+              <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+              <folding>
+                <element signature="e#28#52#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/symfonyApp/templates/teacher/make_question.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/symfonyApp/assets/js/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="17" selection-start-line="17" selection-end-line="17" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/symfonyApp/config/packages/framework.yaml" />
+        <option value="$PROJECT_DIR$/symfonyApp/.env" />
+        <option value="$PROJECT_DIR$/symfonyApp/src/Entity/Question.php" />
+        <option value="$PROJECT_DIR$/symfonyApp/src/DataFixtures/examAppFixtures.php" />
+        <option value="$PROJECT_DIR$/symfonyApp/src/Controller/Teacher.php" />
+        <option value="$PROJECT_DIR$/symfonyApp/config/routes.yaml" />
+        <option value="$PROJECT_DIR$/symfonyApp/src/Repository/QuestionRepository.php" />
+        <option value="$PROJECT_DIR$/symfonyApp/src/Form/QuestionType.php" />
+        <option value="$PROJECT_DIR$/symfonyApp/templates/header.html.twig" />
+        <option value="$PROJECT_DIR$/symfonyApp/templates/base.html.twig" />
+        <option value="$PROJECT_DIR$/symfonyApp/assets/js/app.js" />
+        <option value="$PROJECT_DIR$/symfonyApp/templates/teacher/make_question.html.twig" />
+        <option value="$PROJECT_DIR$/symfonyApp/src/Controller/TeacherController.php" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/symfonyApp/node_modules" />
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/symfonyApp/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/doctrine/reflection" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/doctrine/cache" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/doctrine/doctrine-cache-bundle" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/zendframework/zend-eventmanager" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/zendframework/zend-code" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/http-foundation" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/config" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/flex" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/twig/twig" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/dotenv" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/routing" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/maker-bundle" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/twig-bridge" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/orm-pack" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/http-kernel" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/twig-bundle" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/doctrine-bridge" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/dependency-injection" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/debug" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/framework-bundle" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/cache" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/composer" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/doctrine/persistence" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/doctrine/doctrine-migrations-bundle" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/ocramius/proxy-manager" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/ocramius/package-versions" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/doctrine/migrations" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/doctrine/collections" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/doctrine/common" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/doctrine/doctrine-bundle" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/doctrine/orm" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/doctrine/annotations" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/jdorn/sql-formatter" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/property-access" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/templating" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/webpack-encore-pack" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/intl" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/polyfill-intl-icu" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/asset" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/options-resolver" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/inflector" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/form" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/doctrine/doctrine-fixtures-bundle" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/doctrine/data-fixtures" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/profiler-pack" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/polyfill-php72" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/web-profiler-bundle" />
+      <path value="$PROJECT_DIR$/symfonyApp/vendor/symfony/stopwatch" />
+    </include_path>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-10" />
+    <option name="width" value="980" />
+    <option name="height" value="1090" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="examApplication" type="b2602c69:ProjectViewProjectNode" />
+              <item name="examApplication" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="examApplication" type="b2602c69:ProjectViewProjectNode" />
+              <item name="examApplication" type="462c0819:PsiDirectoryNode" />
+              <item name="symfonyApp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="examApplication" type="b2602c69:ProjectViewProjectNode" />
+              <item name="examApplication" type="462c0819:PsiDirectoryNode" />
+              <item name="symfonyApp" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="examApplication" type="b2602c69:ProjectViewProjectNode" />
+              <item name="examApplication" type="462c0819:PsiDirectoryNode" />
+              <item name="symfonyApp" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="examApplication" type="b2602c69:ProjectViewProjectNode" />
+              <item name="examApplication" type="462c0819:PsiDirectoryNode" />
+              <item name="symfonyApp" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="examApplication" type="b2602c69:ProjectViewProjectNode" />
+              <item name="examApplication" type="462c0819:PsiDirectoryNode" />
+              <item name="symfonyApp" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="examApplication" type="b2602c69:ProjectViewProjectNode" />
+              <item name="examApplication" type="462c0819:PsiDirectoryNode" />
+              <item name="symfonyApp" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="packages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="examApplication" type="b2602c69:ProjectViewProjectNode" />
+              <item name="examApplication" type="462c0819:PsiDirectoryNode" />
+              <item name="symfonyApp" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="examApplication" type="b2602c69:ProjectViewProjectNode" />
+              <item name="examApplication" type="462c0819:PsiDirectoryNode" />
+              <item name="symfonyApp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="examApplication" type="b2602c69:ProjectViewProjectNode" />
+              <item name="examApplication" type="462c0819:PsiDirectoryNode" />
+              <item name="symfonyApp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="examApplication" type="b2602c69:ProjectViewProjectNode" />
+              <item name="examApplication" type="462c0819:PsiDirectoryNode" />
+              <item name="symfonyApp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="DataFixtures" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="examApplication" type="b2602c69:ProjectViewProjectNode" />
+              <item name="examApplication" type="462c0819:PsiDirectoryNode" />
+              <item name="symfonyApp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="examApplication" type="b2602c69:ProjectViewProjectNode" />
+              <item name="examApplication" type="462c0819:PsiDirectoryNode" />
+              <item name="symfonyApp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Form" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="examApplication" type="b2602c69:ProjectViewProjectNode" />
+              <item name="examApplication" type="462c0819:PsiDirectoryNode" />
+              <item name="symfonyApp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Migrations" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="examApplication" type="b2602c69:ProjectViewProjectNode" />
+              <item name="examApplication" type="462c0819:PsiDirectoryNode" />
+              <item name="symfonyApp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Repository" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="examApplication" type="b2602c69:ProjectViewProjectNode" />
+              <item name="examApplication" type="462c0819:PsiDirectoryNode" />
+              <item name="symfonyApp" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="examApplication" type="b2602c69:ProjectViewProjectNode" />
+              <item name="examApplication" type="462c0819:PsiDirectoryNode" />
+              <item name="symfonyApp" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="teacher" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="99c297cc-7de6-4ebf-9816-4dcfa86c1402" name="Default Changelist" comment="" />
+      <created>1537806359174</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1537806359174</updated>
+      <workItem from="1537806371202" duration="7109000" />
+      <workItem from="1537853018061" duration="14137000" />
+      <workItem from="1537873424447" duration="3134000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="24380000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="0" width="784" height="872" extended-state="0" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26243094" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32882273" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/symfonyApp/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="33" lean-forward="true" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/symfonyApp/config/routes.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/symfonyApp/src/Repository/QuestionRepository.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/symfonyApp/src/Entity/Question.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="84" column="34" selection-start-line="84" selection-start-column="34" selection-end-line="84" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/symfonyApp/src/DataFixtures/examAppFixtures.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="31" column="44" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
+          <folding>
+            <element signature="e#118#161#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/symfonyApp/templates/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/symfonyApp/config/bundles.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/symfonyApp/config/packages/twig.yaml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/symfonyApp/config/packages/routing.yaml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/symfonyApp/public/build/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/symfonyApp/templates/header.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/symfonyApp/config/packages/framework.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/symfonyApp/assets/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/symfonyApp/templates/teacher/make_question.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/symfonyApp/src/Form/QuestionType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="453">
+          <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+          <folding>
+            <element signature="e#28#52#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/symfonyApp/src/Controller/TeacherController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
+          <folding>
+            <element signature="e#117#141#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

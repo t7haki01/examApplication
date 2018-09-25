@@ -1,0 +1,42 @@
+
+{#here would come header extends#}
+{#<script src="{{ asset('build/app.js') }}"></script>#}
+<h1>Here is page for making questions</h1>
+
+<div>
+    {{ form_start(addNewQuestionForm) }}
+    {{ form_widget(addNewQuestionForm) }}
+    {{ form_end(addNewQuestionForm) }}
+</div>
+
+
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>Question</th>
+            <th>Category</th>
+            <th>Examples</th>
+            <th>Answers</th>
+            <th>Date</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for question in test %}
+            <tr>
+                <td>{{ question.question }}</td>
+                <td>{{ question.category }}</td>
+                <td>{% for examples in question.examples  %}
+                        {{ examples }}
+                    {% endfor %}
+                </td>
+                <td>{% for answers in question.answers %}
+                        {{ answers }}
+                    {% endfor %}
+                </td>
+                <td>{{ question.date | date('d.m.y') }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

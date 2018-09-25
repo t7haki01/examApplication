@@ -1,0 +1,7 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+teacher_make_question:
+    path: /teacher/make_question
+    controller: App\Controller\TeacherController::makeQuestion
