@@ -15,16 +15,24 @@ import axios from 'axios';
 
 console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
 
-let submitButton = document.getElementById('form_save');
-submitButton.forEach(button => button.addEventListener('click', examplesNumber));
+// let submitButton = document.getElementById('form_save');
+// submitButton.forEach(button => button.addEventListener('click', examplesNumber));
+//
+// function examplesNumber(event){
+//     let exampleValue = document.getElementsByName('form[examples]').value;
+//     let exampleArray = exampleValue.split(",");
+//     document.getElementsByName('form[examples]').value = exampleArray;
+//
+//     let answerValue = document.getElementsByName('form[answers]').value;
+//     let answerArray = answerValue.split(",");
+//     document.getElementsByName('form[answers]').value = answerArray;
+// }
 
-function examplesNumber(event){
-    let exampleValue = document.getElementsByName('form[examples]').value;
-    let exampleArray = exampleValue.split(",");
-    document.getElementsByName('form[examples]').value = exampleArray;
-
-    let answerValue = document.getElementsByName('form[answers]').value;
-    let answerArray = answerValue.split(",");
-    document.getElementsByName('form[answers]').value = answerArray;
+function deleteQuestion(event){
+    const questionId = event.target.getAttribute('data-id');
+    axios.delete('/teacher/delete_question/' + questionId)
+        .then(response => location.reload());
 }
 
+let deleteButtons = document.querySelectorAll('#deleteButton');
+deleteButtons.forEach(button => button.addEventListener('click', deleteQuestion));

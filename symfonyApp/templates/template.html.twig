@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        {% block css %}{% endblock %}
+        <link href="{{ asset('build/app.css') }}" rel="stylesheet"/>
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascript %}{% endblock %}
+        <script src="{{ asset('build/app.js') }}"></script>
+    </body>
+</html>

@@ -1,42 +1,60 @@
-
-{#here would come header extends#}
-{#<script src="{{ asset('build/app.js') }}"></script>#}
+{% extends 'template.html.twig' %}
+{% block css %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+{% endblock %}
+{% block body %}
 <h1>Here is page for making questions</h1>
 
-<div>
+<div class="form-group">
     {{ form_start(addNewQuestionForm) }}
     {{ form_widget(addNewQuestionForm) }}
     {{ form_end(addNewQuestionForm) }}
 </div>
 
 
-<div>
-    <table>
-        <thead>
-        <tr>
-            <th>Question</th>
-            <th>Category</th>
-            <th>Examples</th>
-            <th>Answers</th>
-            <th>Date</th>
-        </tr>
-        </thead>
-        <tbody>
-            {% for question in test %}
-            <tr>
-                <td>{{ question.question }}</td>
-                <td>{{ question.category }}</td>
-                <td>{% for examples in question.examples  %}
-                        {{ examples }}
-                    {% endfor %}
-                </td>
-                <td>{% for answers in question.answers %}
-                        {{ answers }}
-                    {% endfor %}
-                </td>
-                <td>{{ question.date | date('d.m.y') }}</td>
-            </tr>
+<div class="container">
+    <table class="table">
+        {% for questions in question %}
+            <tr><td>
+                <table class="table table-striped">
+                    <tr>
+                        <td class="text-right"><b>Category: </b></td>
+                        <td>{{ questions.category }}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-right"><b>Question: </b></td>
+                        <td>{{ questions.question }}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-right"><b>Examples: </b></td>
+                        <td>
+                            {#in here still need to figure out when example has only one 25.9#}
+
+                            {%   set exampleArray = questions.examples|split(',') %}
+                            {% for i in exampleArray %}
+                                {% if i|length == 0%} There is no example so it could be response question
+                                {% else %}
+                                    <input type="radio" value="{{ i }}"> {{ i }}
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-right"><b>Answers: </b></td>
+                        <td>
+                            {%   set answerArray = questions.answers|split(',') %}
+                            {% for i in answerArray %}
+                                {{ i }},
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-right"><a href="{{ path('teacher_edit_question', {'questionId': questions.id}) }}"><button class="btn btn-info">Edit</button></a></td>
+                        <td><button class="btn btn-danger" id="deleteButton" data-id="{{ questions.id }}">Delete</button></td>
+                    </tr>
+                </table>
+            </td></tr>
         {% endfor %}
-        </tbody>
     </table>
 </div>
+{% endblock %}

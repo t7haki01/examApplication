@@ -5,3 +5,12 @@
 teacher_make_question:
     path: /teacher/make_question
     controller: App\Controller\TeacherController::makeQuestion
+
+teacher_edit_question:
+    path: /teacher/make_question/{questionId}
+    controller: App\Controller\TeacherController::editQuestion
+
+teacher_delete_question:
+    path: /teacher/delete_question/{questionId}
+    controller: App\Controller\TeacherController::deleteQuestion
+    methods: [DELETE]

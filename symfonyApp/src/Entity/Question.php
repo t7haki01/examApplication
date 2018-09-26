@@ -27,17 +27,17 @@ class Question
     private $category;
 
     /**
-     * @ORM\Column(type="array", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $examples = [];
+    private $examples;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="string", length=255)
      */
-    private $answers = [];
+    private $answers;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime")
      */
     private $date;
 
@@ -70,24 +70,24 @@ class Question
         return $this;
     }
 
-    public function getExamples(): ?array
+    public function getExamples(): ?string
     {
         return $this->examples;
     }
 
-    public function setExamples(array $examples): self
+    public function setExamples(?string $examples): self
     {
         $this->examples = $examples;
 
         return $this;
     }
 
-    public function getAnswers(): ?array
+    public function getAnswers(): ?string
     {
         return $this->answers;
     }
 
-    public function setAnswers(array $answers): self
+    public function setAnswers(string $answers): self
     {
         $this->answers = $answers;
 
@@ -99,7 +99,7 @@ class Question
         return $this->date;
     }
 
-    public function setDate(?\DateTimeInterface $date): self
+    public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
 

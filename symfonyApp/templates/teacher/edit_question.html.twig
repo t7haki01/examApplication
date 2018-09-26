@@ -1,0 +1,16 @@
+
+
+<div>
+    <a href="{{ path('teacher_make_question') }}">back</a>
+</div>
+
+<h1>Here comes the edit question</h1>
+<p>Question: {{ question.question }}</p>
+<p>Question: {{ question.examples }}</p>
+<p>Question: {{ question.answers }}</p>
+
+<div>
+    {{ form_start(editForm) }}
+    {{ form_widget(editForm) }}
+    {{ form_end(editForm) }}
+</div>
