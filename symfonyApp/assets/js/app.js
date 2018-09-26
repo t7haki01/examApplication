@@ -29,9 +29,11 @@ console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
 // }
 
 function deleteQuestion(event){
+    if(confirm("Are you sure delete question?")){
     const questionId = event.target.getAttribute('data-id');
     axios.delete('/teacher/delete_question/' + questionId)
         .then(response => location.reload());
+    }
 }
 
 let deleteButtons = document.querySelectorAll('#deleteButton');

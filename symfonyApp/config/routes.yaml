@@ -3,14 +3,26 @@
 #    controller: App\Controller\DefaultController::index
 
 teacher_make_question:
-    path: /teacher/make_question
+    path: /teacher/make_question/{teacherId}
     controller: App\Controller\TeacherController::makeQuestion
 
 teacher_edit_question:
-    path: /teacher/make_question/{questionId}
+    path: /teacher/edit_question/{teacherId}/{questionId}
     controller: App\Controller\TeacherController::editQuestion
 
 teacher_delete_question:
     path: /teacher/delete_question/{questionId}
     controller: App\Controller\TeacherController::deleteQuestion
     methods: [DELETE]
+
+teacher_main:
+    path: /teacher/main/{teacherId}
+    controller: App\Controller\TeacherController::teacherMain
+
+teacher_make_exam:
+    path: /teacher/make_exam/{teacherId}
+    controller: App\Controller\TeacherController::makeExam
+
+make_exam_selected:
+    path: /teacher/make_exam/{teacherId}/make_exam_selected
+    controller: App\Controller\TeacherController::makeExamSelected

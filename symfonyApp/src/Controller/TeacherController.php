@@ -10,6 +10,7 @@ namespace App\Controller;
 
 
 use App\Entity\Question;
+use App\Entity\Teacher;
 use App\Form\QuestionType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -19,7 +20,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 class TeacherController extends AbstractController
 {
-    public function makeQuestion(Request $request){
+    public function teacherMain($teacherId){
+        return  $this->render('teacher/teacher_main.html.twig', array('teacherId' => $teacherId));
+    }
+
+    public function makeQuestion(Request $request, $teacherId){
 //        $newQuestion = new Question();
 //        $form = $this->createFormBuilder($newQuestion)
 //            ->add('question', TextType::class)
@@ -58,23 +63,26 @@ class TeacherController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted()){
+            //here for test so dummy teacher id 1
+            $teacherData = $this-> getDoctrine()->getRepository(Teacher::class)->find($teacherId);
             $newQuestion = $form->getData();
             $newQuestion-> setDate(new \DateTime());
+            $newQuestion-> setTeacher($teacherData);
             $em = $this -> getDoctrine() -> getManager();
 
             $em->persist($newQuestion);
             $em->flush();
-            $this->redirectToRoute('teacher_make_question');
+            $this->redirectToRoute('teacher_make_question',array('teacherId'=>$teacherId));
         }
 
-        $questionData = $this->getDoctrine()->getRepository(Question::class)->findAll();
+        $questionData = $this->getDoctrine()->getRepository(Question::class)->findBy(array('teacher'=>$teacherId));
 
         return $this->render('teacher/make_question.html.twig', array('question' => $questionData,
-            'addNewQuestionForm' => $form->createView())
+            'teacherId' => $teacherId, 'addNewQuestionForm' => $form->createView())
         );
     }
 
-    public function editQuestion(Request $request, $questionId){
+    public function editQuestion(Request $request, $teacherId,$questionId){
         $questionData = $this-> getDoctrine()->getRepository(Question::class)->find($questionId);
         $form = $this->createFormBuilder($questionData)
             ->add('question', TextType::class)
@@ -94,6 +102,7 @@ class TeacherController extends AbstractController
         }
 
         return $this->render('teacher/edit_question.html.twig',array('question' => $questionData,
+                                                                'teacherId' => $teacherId,
                                                                 'editForm'=> $form->createView()));
     }
 
@@ -103,6 +112,22 @@ class TeacherController extends AbstractController
         $em->remove($questionData);
         $em->flush();
         return new Response();
+    }
+
+    public function makeExam($teacherId){
+        $questions = $this-> getDoctrine()->getRepository(Question::class)->
+            findBy(array('teacher' => $teacherId));
+
+        return $this->render('teacher/make_exam.html.twig', array("questions" =>$questions, "teacherId" => $teacherId));
+    }
+
+    public function makeExamSelected($teacherId){
+        $test_array =array();
+        foreach ($_POST['question'] as $value){
+            array_push($test_array, $value);
+        }
+        return $this->render('test.html.twig', array("test" => $test_array,
+                                                            "id" => $teacherId));
     }
 
 }

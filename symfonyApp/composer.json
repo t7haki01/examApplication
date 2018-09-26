@@ -10,6 +10,7 @@
         "symfony/form": "*",
         "symfony/framework-bundle": "*",
         "symfony/orm-pack": "^1.0",
+        "symfony/security-bundle": "*",
         "symfony/templating": "*",
         "symfony/twig-bundle": "*",
         "symfony/webpack-encore-pack": "^1.0",

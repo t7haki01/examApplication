@@ -1,0 +1,15 @@
+{% extends 'template.html.twig' %}
+
+{% block css %}
+{% endblock %}
+
+{% block body %}
+<h1>Here comes teacher main </h1>
+    <div>back menu</div>
+    <div>teacher information</div>
+    <div>here is for the make question</div>
+    <P>
+        <a href="{{ path("teacher_make_question", {'teacherId': teacherId}) }}"><button>Make Question</button></a>
+    </P>
+    <p>here could come for making exam</p>
+{% endblock %}

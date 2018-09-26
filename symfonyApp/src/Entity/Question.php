@@ -41,6 +41,12 @@ class Question
      */
     private $date;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Teacher", inversedBy="questions")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $teacher;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -102,6 +108,18 @@ class Question
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getTeacher(): ?Teacher
+    {
+        return $this->teacher;
+    }
+
+    public function setTeacher(?Teacher $teacher): self
+    {
+        $this->teacher = $teacher;
 
         return $this;
     }

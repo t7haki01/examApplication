@@ -1,0 +1,10 @@
+{% extends 'template.html.twig' %}
+{% block css %}
+{% endblock %}
+
+{% block body %}
+<h1>Test Page</h1>
+    {% for i in test %}
+    {{ i }},
+    {% endfor %}
+{% endblock %}

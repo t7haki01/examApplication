@@ -1,0 +1,60 @@
+{% extends 'template.html.twig' %}
+
+{% block css %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+{% endblock %}
+
+{% block body %}
+<h1>Here is for the making exam</h1>
+    <a href="{{ path('teacher_main', {'teacherId': teacherId}) }}"><button>Back</button></a>
+    <form action="{{ path( 'make_exam_selected', {'teacherId':teacherId}) }}" method="post">
+    <div class="container">
+        <div>
+            <button type="submit">Click Here to Make Exam</button>
+        </div>
+        <table class="table">
+            {% for question in questions %}
+                <tr><td>
+                        <table class="table table-striped">
+                            <tr><td colspan="2">
+                                    <input type="checkbox" name="question[]" value="{{ question.id }}">
+                                </td></tr>
+                            <tr>
+                                <td class="text-right"><b>Category: </b></td>
+                                <td>{{ question.category }}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right"><b>Question: </b></td>
+                                <td>{{ question.question }}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right"><b>Examples: </b></td>
+                                <td>
+                                    {#in here still need to figure out when example has only one 26.9#}
+
+                                    {%   set exampleArray = question.examples|split(',') %}
+                                    {% for i in exampleArray %}
+                                        {% if i|length == 0%} There is no example so it could be response question
+                                        {% else %}
+                                            <input type="radio" value="{{ i }}"> {{ i }}
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right"><b>Answers: </b></td>
+                                <td>
+                                    {%   set answerArray = question.answers|split(',') %}
+                                    {% for i in answerArray %}
+                                        {{ i }},
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                        </table>
+                    </td></tr>
+            {% endfor %}
+        </table>
+    </div>
+    </form>
+
+{% endblock %}
