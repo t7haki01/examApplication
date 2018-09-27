@@ -15,26 +15,31 @@ import axios from 'axios';
 
 console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
 
-// let submitButton = document.getElementById('form_save');
-// submitButton.forEach(button => button.addEventListener('click', examplesNumber));
-//
-// function examplesNumber(event){
-//     let exampleValue = document.getElementsByName('form[examples]').value;
-//     let exampleArray = exampleValue.split(",");
-//     document.getElementsByName('form[examples]').value = exampleArray;
-//
-//     let answerValue = document.getElementsByName('form[answers]').value;
-//     let answerArray = answerValue.split(",");
-//     document.getElementsByName('form[answers]').value = answerArray;
-// }
-
 function deleteQuestion(event){
     if(confirm("Are you sure delete question?")){
     const questionId = event.target.getAttribute('data-id');
     axios.delete('/teacher/delete_question/' + questionId)
         .then(response => location.reload());
     }
+    else{
+        return ;
+    }
+}
+
+function makeExam(event){
+        var questionIds = " ";
+        var checkBox = document.querySelectorAll('input[type=checkbox]:checked');
+
+        for(var i=0; i<checkBox.length; i++){
+            questionIds += checkBox[i].value + ', ';
+        }
+        const teacherId = event.target.getAttribute('data-id');
+        axios.post('/teacher/make_exam/' + teacherId + '/make_exam_selected/' + questionIds)
+        .then(response => location.reload());
 }
 
 let deleteButtons = document.querySelectorAll('#deleteButton');
 deleteButtons.forEach(button => button.addEventListener('click', deleteQuestion));
+
+let makeExamButton = document.querySelectorAll('#makeExamButton');
+makeExamButton.forEach(button => button.addEventListener('click', makeExam));

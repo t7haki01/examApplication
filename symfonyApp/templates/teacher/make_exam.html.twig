@@ -7,10 +7,10 @@
 {% block body %}
 <h1>Here is for the making exam</h1>
     <a href="{{ path('teacher_main', {'teacherId': teacherId}) }}"><button>Back</button></a>
-    <form action="{{ path( 'make_exam_selected', {'teacherId':teacherId}) }}" method="post">
+    <form {#action="{{ path( 'make_exam_selected', {'teacherId':teacherId}) }}" method="post"#}>
     <div class="container">
         <div>
-            <button type="submit">Click Here to Make Exam</button>
+            <button type="submit" id="makeExamButton" data-id="{{ teacherId }}">Click Here to Make Exam</button>
         </div>
         <table class="table">
             {% for question in questions %}

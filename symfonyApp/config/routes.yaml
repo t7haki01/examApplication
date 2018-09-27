@@ -24,5 +24,6 @@ teacher_make_exam:
     controller: App\Controller\TeacherController::makeExam
 
 make_exam_selected:
-    path: /teacher/make_exam/{teacherId}/make_exam_selected
+    path: /teacher/make_exam/{teacherId}/make_exam_selected/{questionIds}
     controller: App\Controller\TeacherController::makeExamSelected
+    methods: [POST]
