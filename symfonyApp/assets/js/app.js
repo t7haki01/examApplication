@@ -27,14 +27,16 @@ function deleteQuestion(event){
 }
 
 function makeExam(event){
+        var examTitle = " ";
         var questionIds = " ";
         var checkBox = document.querySelectorAll('input[type=checkbox]:checked');
 
         for(var i=0; i<checkBox.length; i++){
             questionIds += checkBox[i].value + ', ';
         }
+        examTitle = document.getElementsByName("examTitle").value;
         const teacherId = event.target.getAttribute('data-id');
-        axios.post('/teacher/make_exam/' + teacherId + '/make_exam_selected/' + questionIds)
+        axios.post('/teacher/make_exam/' + teacherId + '/make_exam_selected/' + questionIds + '/' + examTitle )
         .then(response => location.reload());
 }
 

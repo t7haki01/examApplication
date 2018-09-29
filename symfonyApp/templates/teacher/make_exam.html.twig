@@ -12,6 +12,9 @@
         <div>
             <button type="submit" id="makeExamButton" data-id="{{ teacherId }}">Click Here to Make Exam</button>
         </div>
+        <div>
+            <input type="text" name="examTitle" id="examTitle">
+        </div>
         <table class="table">
             {% for question in questions %}
                 <tr><td>

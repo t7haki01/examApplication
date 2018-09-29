@@ -42,6 +42,11 @@ class Exam
      */
     private $teacher;
 
+    /**
+     * @ORM\Column(type="string", length=150)
+     */
+    private $examTitle;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +108,18 @@ class Exam
     public function setTeacher(?Teacher $teacher): self
     {
         $this->teacher = $teacher;
+
+        return $this;
+    }
+
+    public function getExamTitle(): ?string
+    {
+        return $this->examTitle;
+    }
+
+    public function setExamTitle(string $examTitle): self
+    {
+        $this->examTitle = $examTitle;
 
         return $this;
     }

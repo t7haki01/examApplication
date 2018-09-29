@@ -11,8 +11,13 @@
     <P>
         <a href="{{ path("teacher_make_question", {'teacherId': teacherId}) }}"><button>Make Question</button></a>
     </P>
-    <p>here could come for making exam</p>
+    <p>here could come for making exam with select</p>
     <p>
         <a href="{{ path("teacher_make_exam", {'teacherId': teacherId}) }}"><button>Make Exam</button></a>
     </p>
+    <p>here could come for making exam with random</p>
+    <p>
+        <a href="{{ path("teacher_make_exam_random", {'teacherId': teacherId}) }}"><button>Make Exam</button></a>
+    </p>
+
 {% endblock %}

@@ -93,16 +93,6 @@ class TeacherController extends AbstractController
 
     public function makeExamSelected($teacherId, $questionIds){
 
-//        $questionIds = "";
-//        foreach ($_POST['question'] as $value){
-//            $questionIds = $questionIds.  $value. ', ';
-//        }
-
-//        $questionIdsText = "";
-//        foreach ($questionIds as $value){
-//            $questionIdsText = $questionIdsText.  $value. ', ';
-//        }
-
         $em = $this->getDoctrine()->getManager();
         $teacherData =  $this->getDoctrine()->getRepository(Teacher::class)
             ->find($teacherId);
@@ -113,7 +103,7 @@ class TeacherController extends AbstractController
         $newExam->setDate(new \DateTime());
         $newExam->setQuestionIds($questionIds);
         $newExam->setIsPublished(false);
-        $newExam->setTeacher($teacherData);
+        $newExam->setTeacher($teacherId);
 
         $em->persist($newExam);
         $em->flush();
@@ -121,4 +111,31 @@ class TeacherController extends AbstractController
         return new Response();
     }
 
-}
+    public function makeExamRandom($teacherId, Request $request){
+
+        $exam = $this-> getDoctrine()->getRepository(Exam::class)->find($teacherId);
+
+        $form = $this->createFormBuilder($exam)
+            ->add('question', TextType::class)
+            ->add('category', TextType::class)
+            ->add('examples', TextType::class)
+            ->add('answers', TextType::class)
+            ->add('save', SubmitType::class, array('label'=> 'Save'))
+            ->getForm();
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $questionData = $form->getData();
+            $questionData-> setDate(new \DateTime());
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($questionData);
+            $em->flush();
+        }
+
+        return $this->render('teacher/edit_question.html.twig',array('question' => $questionData,
+            'teacherId' => $teacherId,
+            'editForm'=> $form->createView()));
+    }
+
+
+}///this is end of class closing curly bracket
