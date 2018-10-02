@@ -26,10 +26,15 @@
         {{ exam.examTitle }}
         {#{{ exam.questionIds }}#}
         {{ exam.date | date('d.m.Y') }}
+
+        <button class="publishButton" data-id="{{ exam.id }}">
         {% if exam.ispublished == false %}
-        <button>publish</button>
-        {% else %}<button>Close</button>
+            publish
+        {% else %}
+            Make Exam hide
         {% endif %}
+        </button>
+
         <br>
     {% endfor %}
 

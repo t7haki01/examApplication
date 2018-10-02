@@ -31,3 +31,17 @@ make_exam_selected:
 teacher_make_exam_random:
     path: /teacher/make_exam/random/{teacherId}
     controller: App\Controller\TeacherController::makeExamRandom
+
+teacher_make_exam_random_selected:
+    path: /teacher/make_exam/random/{teacherId}/{examTitle}/{numbers}/{category}
+    controller: App\Controller\TeacherController::makeExamRandomSelected
+    methods: [POST]
+
+teacher_exam_publish_set:
+    path: /teacher/exam/publish/{examId}/set
+    controller: App\Controller\TeacherController::makeExamPublish
+    methods: [POST]
+
+exam_show:
+    path: /exam/{examId}
+    controller: App\Controller\Exam::examShow

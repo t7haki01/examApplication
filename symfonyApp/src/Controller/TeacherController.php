@@ -119,5 +119,47 @@ class TeacherController extends AbstractController
             array('teacherId' => $teacherId, 'question'=>$questions));
     }
 
+    public function  makeExamRandomSelected($teacherId, $examTitle, $numbers, $category){
+        $em = $this->getDoctrine()->getManager();
+        $teacherData =  $this->getDoctrine()->getRepository(Teacher::class)
+            ->find($teacherId);
+
+        $questions = $this->getDoctrine()->getRepository(Question::class)->findBy(array('teacher' => $teacherId));
+        $testArray = [];
+        $category_array = $questions->getCategory();
+
+
+        $result_array = array_merge($testArray, $category_array);
+
+        return $this->render('test.html.twig',
+            array('test'=>$category_array));
+
+
+
+//        $newExam = new Exam();
+//
+//        $newExam->setDate(new \DateTime());
+//
+//        $newExam->setQuestionIds('1,2,3,4');
+//        $newExam->setIsPublished(false);
+//        $newExam->setTeacher($teacherData);
+//        $newExam->setExamTitle($examTitle);
+//
+//        $em->persist($newExam);
+//        $em->flush();
+//
+//        return new Response();
+    }
+    
+    public function makeExamPublish($examId){
+        $examData = $this->getDoctrine()->getRepository(Exam::class)->find($examId);
+        $examData->setIspublished(!$examData->getIspublished());
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($examData);
+        $entityManager->flush();
+
+        return new Response();
+    }
+
 
 }///this is end of class closing curly bracket

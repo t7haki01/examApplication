@@ -13,7 +13,7 @@ require('../css/app.css');
 import axios from 'axios';
 
 
-console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
+console.log('If this message in seen in the console then it means i extends javascript part in this page');
 
 function deleteQuestion(event){
     if(confirm("Are you sure delete question?")){
@@ -35,8 +35,24 @@ function makeExam(event){
             questionIds += checkBox[i].value + ', ';
         }
         const teacherId = event.target.getAttribute('data-id');
-        debugger
+
         axios.post('/teacher/make_exam/' + teacherId + '/make_exam_selected/' + questionIds + '/' + examTitle )
+        .then(response => location.reload());
+}
+
+function makeExamRandom(event){
+    var examTitle = document.getElementById('examTitle').value;
+    var category = document.getElementById('category').value;
+    var numbers = document.getElementById('numberOfQuestions').value;
+    const teacherId = event.target.getAttribute('data-id');
+
+    axios.post('/teacher/make_exam/random/' + teacherId + '/' + examTitle + '/' + numbers + '/' + category )
+        .then(response => location.reload());
+}
+
+function publishExam(event){
+    const examId = event.target.getAttribute('data-id');
+    axios.post('/teacher/exam/publish/' + examId + '/set')
         .then(response => location.reload());
 }
 
@@ -45,3 +61,9 @@ deleteButtons.forEach(button => button.addEventListener('click', deleteQuestion)
 
 let makeExamButton = document.querySelectorAll('#makeExamButton');
 makeExamButton.forEach(button => button.addEventListener('click', makeExam));
+
+let makeExamRandomButton = document.querySelectorAll('#makeExamRandomButton');
+makeExamRandomButton.forEach(button => button.addEventListener('click', makeExamRandom));
+
+let publishButton = document.querySelectorAll('.publishButton');
+publishButton.forEach(button => button.addEventListener('click', publishExam));
