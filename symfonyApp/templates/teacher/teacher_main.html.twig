@@ -13,11 +13,24 @@
     </P>
     <p>here could come for making exam with select</p>
     <p>
-        <a href="{{ path("teacher_make_exam", {'teacherId': teacherId}) }}"><button>Make Exam</button></a>
+        <a href="{{ path("teacher_make_exam", {'teacherId': teacherId}) }}"><button>Make Exam with selection</button></a>
     </p>
     <p>here could come for making exam with random</p>
     <p>
-        <a href="{{ path("teacher_make_exam_random", {'teacherId': teacherId}) }}"><button>Make Exam</button></a>
+        <a href="{{ path("teacher_make_exam_random", {'teacherId': teacherId}) }}"><button>Make Exam randomly</button></a>
     </p>
+
+
+    <P>Here could come some exams and publishing</P>
+    {% for exam in exams %}
+        {{ exam.examTitle }}
+        {#{{ exam.questionIds }}#}
+        {{ exam.date | date('d.m.Y') }}
+        {% if exam.ispublished == false %}
+        <button>publish</button>
+        {% else %}<button>Close</button>
+        {% endif %}
+        <br>
+    {% endfor %}
 
 {% endblock %}

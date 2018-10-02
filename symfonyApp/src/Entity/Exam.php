@@ -17,11 +17,6 @@ class Exam
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=50)
-     */
-    private $author;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $date;
@@ -50,18 +45,6 @@ class Exam
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getAuthor(): ?string
-    {
-        return $this->authauthor;
-    }
-
-    public function setAuthor(string $author): self
-    {
-        $this->author = $author;
-
-        return $this;
     }
 
     public function getDate(): ?\DateTimeInterface

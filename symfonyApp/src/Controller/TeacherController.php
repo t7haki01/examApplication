@@ -22,8 +22,10 @@ use Symfony\Component\HttpFoundation\Response;
 class TeacherController extends AbstractController
 {
     public function teacherMain($teacherId){
+        $exams = $this-> getDoctrine()->getRepository(Exam::class)->
+        findBy(array('teacher' => $teacherId));
 
-        return  $this->render('teacher/teacher_main.html.twig', array('teacherId' => $teacherId));
+        return  $this->render('teacher/teacher_main.html.twig', array('teacherId' => $teacherId, 'exams' =>$exams));
     }
 
     public function makeQuestion(Request $request, $teacherId){
@@ -91,19 +93,18 @@ class TeacherController extends AbstractController
         return $this->render('teacher/make_exam.html.twig', array("questions" =>$questions, "teacherId" => $teacherId));
     }
 
-    public function makeExamSelected($teacherId, $questionIds){
+    public function makeExamSelected($teacherId, $questionIds, $examTitle){
 
         $em = $this->getDoctrine()->getManager();
         $teacherData =  $this->getDoctrine()->getRepository(Teacher::class)
             ->find($teacherId);
-        $teacherName = $teacherData->getFirstname().' '.$teacherData->getLastname();
         $newExam = new Exam();
 
-        $newExam->setAuthor($teacherName);
         $newExam->setDate(new \DateTime());
         $newExam->setQuestionIds($questionIds);
         $newExam->setIsPublished(false);
-        $newExam->setTeacher($teacherId);
+        $newExam->setTeacher($teacherData);
+        $newExam->setExamTitle($examTitle);
 
         $em->persist($newExam);
         $em->flush();
@@ -111,30 +112,11 @@ class TeacherController extends AbstractController
         return new Response();
     }
 
-    public function makeExamRandom($teacherId, Request $request){
+    public function makeExamRandom($teacherId){
+        $questions = $this->getDoctrine()->getRepository(Question::class)->findBy(array('teacher' => $teacherId));
 
-        $exam = $this-> getDoctrine()->getRepository(Exam::class)->find($teacherId);
-
-        $form = $this->createFormBuilder($exam)
-            ->add('question', TextType::class)
-            ->add('category', TextType::class)
-            ->add('examples', TextType::class)
-            ->add('answers', TextType::class)
-            ->add('save', SubmitType::class, array('label'=> 'Save'))
-            ->getForm();
-        $form->handleRequest($request);
-
-        if($form->isSubmitted() && $form->isValid()){
-            $questionData = $form->getData();
-            $questionData-> setDate(new \DateTime());
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($questionData);
-            $em->flush();
-        }
-
-        return $this->render('teacher/edit_question.html.twig',array('question' => $questionData,
-            'teacherId' => $teacherId,
-            'editForm'=> $form->createView()));
+        return $this->render('teacher/make_exam_random_option.html.twig',
+            array('teacherId' => $teacherId, 'question'=>$questions));
     }
 
 

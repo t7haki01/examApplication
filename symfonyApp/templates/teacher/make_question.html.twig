@@ -33,7 +33,7 @@
                             {%   set exampleArray = questions.examples|split(',') %}
                             {% for i in exampleArray %}
                                 {% if i|length == 0%} There is no example so it could be response question
-                                {% else %}
+                                {% else %}d
                                     <input type="radio" value="{{ i }}"> {{ i }}
                                 {% endif %}
                             {% endfor %}

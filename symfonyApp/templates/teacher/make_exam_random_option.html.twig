@@ -1,0 +1,38 @@
+{% extends 'template.html.twig' %}
+{% block css %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+{% endblock %}
+{% block body %}
+<h1>Here comes for making exam randomly</h1>
+    <a href="{{ path('teacher_main', {'teacherId': teacherId}) }}"><button>Back</button></a>
+<table>
+    <tr>
+        <td><label>Exam Title:</label></td>
+        <td><input type="text"></td>
+    </tr>
+    <tr>
+        <td>Number of Questions:</td>
+        <td>
+            <input type="number">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Range of Category:
+        </td>
+        <td>
+            <select>
+            <option value="all" selected>all the category
+                {% set categoryArray = [] %}
+            {% for questions in question %}
+                {% if questions.category not in categoryArray %}
+                    <option value="{{ questions.category }}">{{ questions.category }}</option>
+                {% set categoryArray =categoryArray|merge([questions.category]) %}
+                {% endif %}
+            {% endfor %}
+            </select>
+        </td>
+    </tr>
+</table>
+
+{% endblock %}
