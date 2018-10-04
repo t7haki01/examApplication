@@ -1,0 +1,21 @@
+{% extends 'template.html.twig' %}
+
+{% block css %}
+{% endblock %}
+
+{% block body %}
+    <h1>Here comes exam main </h1>
+    <div>back menu</div>
+
+    <P>Here could come some exams which is published</P>
+    {% for exam in exams %}
+        {% if exam.ispublished == true %}
+        {{ exam.examTitle }}
+        {#{{ exam.questionIds }}#}
+        {{ exam.date | date('d.m.Y') }}
+        <a href="{{ path('exam_show', {'examId': exam.id, 'studentId':studentId}) }}">
+            <button>Take Exam</button></a>
+        {% endif %}
+    {% endfor %}
+
+{% endblock %}

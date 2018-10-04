@@ -40,6 +40,24 @@ function makeExam(event){
         .then(response => location.reload());
 }
 
+// function submitAnswer(event){
+//     var studentAnswers = {
+//         answer1:1,
+//         answer2:2
+//     };
+//
+//     const studentId = event.target.getAttribute('data-id');
+//     const examId = event.target.getAttribute('name');
+//     const questionIds = event.target.getAttribute('class');
+//
+//     axios.post('/student/exam/' + studentId + '/examResult/' + examId + '/' + questionIds + '/' + studentAnswers )
+//         .then(response => location.reload());
+// }
+
+// let submitAnswerButton = document.querySelectorAll('#submitAnswer');
+// submitAnswerButton.forEach(button => button.addEventListener('click', submitAnswer));
+
+
 function makeExamRandom(event){
     var examTitle = document.getElementById('examTitle').value;
     var category = document.getElementById('category').value;
@@ -67,3 +85,4 @@ makeExamRandomButton.forEach(button => button.addEventListener('click', makeExam
 
 let publishButton = document.querySelectorAll('.publishButton');
 publishButton.forEach(button => button.addEventListener('click', publishExam));
+

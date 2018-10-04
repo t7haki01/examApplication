@@ -4,8 +4,8 @@
 {% endblock %}
 {% block body %}
     <h1>Here is page for exam</h1>
-    <button>Back</button></a>
-
+    <a href="{{ path('exam_main', {'studentId':studentId}) }}"><button>Back</button></a>
+<form action="{{ path('exam_result', {'studentId' : studentId, 'questionIds' : examData.questionIds, 'examId' : examData.id}) }}" method="POST">
 <h2>{{ examData.examTitle }}</h2>
     {% if examData.isPublished == 1 %}
     {% set questionIdArray = examData.questionIds|split(',') %}
@@ -22,19 +22,18 @@
                             </tr>
                             <tr>
                                 <td class="text-right"><b>Question: </b></td>
-                                <td>{{ questions.question }}</td>
+                                <td id="{{ questions.id }}">{{ questions.question }}</td>
                             </tr>
                             <tr>
-                                <td class="text-right"><b>Choices: </b></td>
+                                <td class="text-right"><b>Answer: </b></td>
                                 <td>
                                     {#in here still need to figure out when example has only one 25.9#}
-
                                     {%   set exampleArray = questions.examples|split(',') %}
                                     {% for i in exampleArray %}
                                         {% if i|length == 0%}
-                                            <input type="text">
+                                            <input type="text" id="answer{{ questions.id }}" name="answer{{ questions.id }}">
                                         {% else %}
-                                            <input type="radio" value="{{ i }}"> {{ i }}
+                                            <input type="radio" id="answer{{ questions.id }}" name="answer{{ questions.id }}" value="{{ i }}"> {{ i }}
                                         {% endif %}
                                     {% endfor %}
                                 </td>
@@ -43,10 +42,14 @@
                     </td></tr>
                 {% endif %}
             {% endfor %}
-        </table>
-    </div>
     {% endfor %}
+        <tr><td>
+                <button type="submit">submit</button>
+            </td></tr>
+        </table>
+    </div></form>
         {% else %}
         Sorry, This exam has not published yet.
     {% endif %}
+
 {% endblock %}

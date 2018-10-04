@@ -4,5 +4,14 @@
 
 {% block body %}
 <h1>Test Page</h1>
-{{ test }}
+    <P>Student ID</P>
+{{ studentId }}
+    <p>examId</p>
+    {{ examId }}
+    <p>Question Ids</p>
+    {{ questionIds }}
+    <p>student Answers</p>
+    {% for i in studentAnswers %}
+    {{ i }}
+    {% endfor %}
 {% endblock %}

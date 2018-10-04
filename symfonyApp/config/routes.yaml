@@ -43,5 +43,17 @@ teacher_exam_publish_set:
     methods: [POST]
 
 exam_show:
-    path: /exam/{examId}
+    path: /exam/{examId}/student/{studentId}
     controller: App\Controller\Exam::examShow
+
+exam_main:
+    path: /student/exam/{studentId}
+    controller: App\Controller\Exam::examMain
+
+exam_result:
+    path: /student/exam/{studentId}/examResult/{examId}/{questionIds}
+    controller: App\Controller\Exam::examResult
+
+test:
+    path: /test
+    controller: App\Controller\Test::dummyStudentMaker
