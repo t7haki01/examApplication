@@ -12,6 +12,7 @@ namespace App\Controller;
 use App\Entity\Question;
 use App\Entity\Result;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class Exam extends AbstractController
@@ -35,45 +36,45 @@ class Exam extends AbstractController
             array('studentId' => $studentId, 'exams' =>$exams));
     }
 
-    public function examResult($studentId, $examId, $questionIds){
+    public function examResult($studentId, $examId, $questionIds, Request $request){
 
             $questionIdsArray = explode(",", $questionIds);
-            foreach($questionIdsArray as $questionId ){
+            foreach($questionIdsArray as $index => $questionId ){
+                if($questionId != " "){
                 $newResult = new Result();
                 $em=$this->getDoctrine()->getManager();
                 $questionData = $this->getDoctrine()->getRepository(Question::class)
-                    ->findOneBy(array('id'=>$questionId));
+                    ->find($questionId);
 
                 $newResult->setDate(new \DateTime());
 
-                $question = $questionData->getQuestion();
+                $newResult->setQuestion($questionData);
 
-                echo $question;
+                $answerIndex = "answer" . (int)$questionIdsArray[$index] ;
 
-                $newResult->setQuestion($question);
-                $newResult->setCorrectAnswer($questionData->getAnswers());
+                $studentAnswer = $request->request->get($answerIndex);
 
-                $answers=[];
+                $studentAnswerString = implode(',', $studentAnswer);
 
-                foreach (array_keys($_POST) as $answer)
-                {
-                    array_push($answers, $_POST[$answer]) ;
-                }
-
-                foreach($answers as $i){
-                    $newResult->setStudentAnswer($i);
-                }
+                $newResult -> setStudentAnswer($studentAnswerString);
 
                 $newResult->setIsCorrect(false);
+//                if($student == $correct){
+//                    $newResult->setIsCorrect(true);
+//                }
+//                else{
+//                    $newResult->setIsCorrect(false);
+//                }
+
                 $em->persist($newResult);
+
+                }
             }
             $em->flush();
 
 
-
             return $this->render('test.html.twig',
             array('studentId' => $studentId, 'examId' => $examId,
-                'questionIds' => $questionIds, 'studentAnswers' => $answers));
+                'questionIds' => $questionIds, 'test'=>$studentAnswerString));
     }
-
 }

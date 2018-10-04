@@ -24,11 +24,6 @@ class Result
     private $studentAnswer;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $correctAnswer;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $date;
@@ -39,15 +34,10 @@ class Result
     private $isCorrect;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Question")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Question")
      */
     private $question;
-
-    public function __construct()
-    {
-        $this->question = new ArrayCollection();
-    }
-
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -61,18 +51,6 @@ class Result
     public function setStudentAnswer(?string $studentAnswer): self
     {
         $this->studentAnswer = $studentAnswer;
-
-        return $this;
-    }
-
-    public function getCorrectAnswer(): ?string
-    {
-        return $this->correctAnswer;
-    }
-
-    public function setCorrectAnswer(string $correctAnswer): self
-    {
-        $this->correctAnswer = $correctAnswer;
 
         return $this;
     }
@@ -101,28 +79,14 @@ class Result
         return $this;
     }
 
-    /**
-     * @return Collection|Question[]
-     */
-    public function getQuestion(): Collection
+    public function getQuestion(): ?Question
     {
         return $this->question;
     }
 
-    public function addQuestion(Question $question): self
+    public function setQuestion(?Question $question): self
     {
-        if (!$this->question->contains($question)) {
-            $this->question[] = $question;
-        }
-
-        return $this;
-    }
-
-    public function removeQuestion(Question $question): self
-    {
-        if ($this->question->contains($question)) {
-            $this->question->removeElement($question);
-        }
+        $this->question = $question;
 
         return $this;
     }

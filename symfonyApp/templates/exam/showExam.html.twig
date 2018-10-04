@@ -31,9 +31,9 @@
                                     {%   set exampleArray = questions.examples|split(',') %}
                                     {% for i in exampleArray %}
                                         {% if i|length == 0%}
-                                            <input type="text" id="answer{{ questions.id }}" name="answer{{ questions.id }}">
+                                            <input type="text" id="answer{{ questions.id }}[]" name="answer{{ questions.id }}[]">
                                         {% else %}
-                                            <input type="radio" id="answer{{ questions.id }}" name="answer{{ questions.id }}" value="{{ i }}"> {{ i }}
+                                            <input type="checkbox" id="answer{{ questions.id }}[]" name="answer{{ questions.id }}[]" value="{{ i }}"> {{ i }}
                                         {% endif %}
                                     {% endfor %}
                                 </td>
