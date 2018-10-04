@@ -9,24 +9,23 @@
 namespace App\Controller;
 
 
+use App\Entity\Result;
 use App\Entity\Student;
 use App\Entity\Teacher;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class Test extends AbstractController
 {
-    public function dummyStudentMaker(){
-        $teacher1 = new Teacher();
-        $em = $this-> getDoctrine()-> getManager();
-
-        $teacher1->setFirstname('teacher');
-        $teacher1->setLastname('test2');
-        $teacher1->setUsername('teacherTest');
-        $teacher1->setPassword('test');
-        $teacher1->setEmail('teacher2@test.com');
-
-        $em -> persist($teacher1);
+    public function test(){
+        for($i=0;$i<30;$i++){
+        $result = $this->getDoctrine()->getRepository(Result::class)
+            ->find($i);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($result);
         $em->flush();
+        }
+
+
         return ;
     }
 }

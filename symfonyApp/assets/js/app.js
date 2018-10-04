@@ -32,7 +32,7 @@ function makeExam(event){
         var checkBox = document.querySelectorAll('input[type=checkbox]:checked');
 
         for(var i=0; i<checkBox.length; i++){
-            questionIds += checkBox[i].value + ', ';
+            questionIds += checkBox[i].value + ',';
         }
         const teacherId = event.target.getAttribute('data-id');
 

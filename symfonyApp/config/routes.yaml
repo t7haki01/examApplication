@@ -56,4 +56,4 @@ exam_result:
 
 test:
     path: /test
-    controller: App\Controller\Test::dummyStudentMaker
+    controller: App\Controller\Test::test

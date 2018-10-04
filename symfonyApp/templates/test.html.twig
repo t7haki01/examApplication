@@ -11,5 +11,16 @@
     <p>Question Ids</p>
     {{ questionIds }}
     <p>student Answers</p>
-    {{ test }}
+    {% for i in studentAnswer %}
+
+            {% for j in i %}
+                {{ j }}
+            {% endfor %}
+    {% endfor %}
+    <p>real Answers</p>
+    {% for i in correctAnswer %}
+        {% for j in i %}
+            {{ j }}
+        {% endfor %}
+    {% endfor %}
 {% endblock %}
