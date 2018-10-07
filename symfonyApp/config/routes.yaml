@@ -42,6 +42,11 @@ teacher_exam_publish_set:
     controller: App\Controller\TeacherController::makeExamPublish
     methods: [POST]
 
+teacher_exam_delete:
+    path: /teacher/exam/delete/{examId}
+    controller: App\Controller\TeacherController::examDelete
+    methods: [DELETE]
+
 exam_show:
     path: /exam/{examId}/student/{studentId}
     controller: App\Controller\Exam::examShow
@@ -53,6 +58,10 @@ exam_main:
 exam_result:
     path: /student/exam/{studentId}/examResult/{examId}/{questionIds}
     controller: App\Controller\Exam::examResult
+
+student_check_result:
+    path: /student/exam/{examId}/result/{studentId}
+    controller: App\Controller\Student::showResult
 
 test:
     path: /test

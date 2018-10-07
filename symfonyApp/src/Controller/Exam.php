@@ -10,6 +10,7 @@ namespace App\Controller;
 
 use App\Controller\debug\ChromePhp;
 
+use App\Entity\ExamResult;
 use App\Entity\Question;
 use App\Entity\Result;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,7 +27,6 @@ class Exam extends AbstractController
             array('examData' => $examData,
                 'questions' => $questions,
                 'studentId' => $studentId));
-
     }
 
     public function examMain($studentId){
@@ -38,11 +38,24 @@ class Exam extends AbstractController
     }
 
     public function examResult($studentId, $examId, $questionIds, Request $request){
+        //This is for test
         $correctAnswerArraytest = [];
         $studentAnswertest = [];
+
+
+            $examResult = new ExamResult();
+            $student = $this->getDoctrine()->getRepository(\App\Entity\Student::class)
+                ->find($studentId);
+            $examResult->setStudent($student);
+
             $questionIdsArray = explode(",", $questionIds);
             $examData = $this->getDoctrine()->getRepository(\App\Entity\Exam::class)
                 ->find($examId);
+
+            $examResult->setExam($examData);
+            $score=0;
+            $totalQuestion=0;
+
             foreach($questionIdsArray as $index => $questionId ){
                 if($questionId != " " && $questionId!=null){
                 $newResult = new Result();
@@ -51,6 +64,7 @@ class Exam extends AbstractController
                     ->find($questionId);
 
                 $newResult->setDate(new \DateTime());
+                $newResult->setStudent($student);
 
                 $newResult->setQuestion($questionData);
 
@@ -68,7 +82,6 @@ class Exam extends AbstractController
                         else{
                             $studentAnswer =str_replace(' ','',$studentAnswer);
                             $studentAnswerString = implode(',', $studentAnswer);
-                            ChromePhp::log($studentAnswer);
                         }
                     }
                     else{
@@ -92,20 +105,27 @@ class Exam extends AbstractController
 
                 if(count($studentAnswer) != count($correctAnswerArray)){
                     $newResult->setIsCorrect(false);
+                    $totalQuestion++;
                 }
                 else if(count($correctAnswerArray) === 1){
                     if(str_replace(' ','',strtoupper($correctAnswerArray[0]))
                         ==
                         str_replace(' ','',strtoupper($studentAnswer[0]))){
                         $newResult->setIsCorrect(true);
+                        $totalQuestion++;
+                        $score++;
                     }
                     else{
                         $newResult->setIsCorrect(false);
+                        $totalQuestion++;
+                        $score++;
                     }
                 }
                 else{
                     $answerCheck = true;
+
                    $refinedAnswer = array_map('strtoupper',$correctAnswerArray);
+
                    foreach($studentAnswer as $i){
                        if(in_array(strtoupper($i),$refinedAnswer)){
                            break;
@@ -116,14 +136,19 @@ class Exam extends AbstractController
                    }
                    if($answerCheck == true){
                        $newResult->setIsCorrect(true);
+                       $totalQuestion++;
+                       $score++;
                    }
                    else{
                        $newResult->setIsCorrect(false);
+                       $totalQuestion++;
                    }
                 }
                 $em->persist($newResult);
                 }
             }
+            $examResult->setScore($score.'point out of '.$totalQuestion);
+            $em->persist($examResult);
             $em->flush();
 
 

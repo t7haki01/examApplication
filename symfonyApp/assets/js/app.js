@@ -74,6 +74,12 @@ function publishExam(event){
         .then(response => location.reload());
 }
 
+function deleteExam(event){
+    const examId = event.target.getAttribute('data-id');
+    axios.delete('/teacher/exam/delete/' + examId )
+        .then(response => location.reload());
+}
+
 let deleteButtons = document.querySelectorAll('#deleteButton');
 deleteButtons.forEach(button => button.addEventListener('click', deleteQuestion));
 
@@ -85,4 +91,7 @@ makeExamRandomButton.forEach(button => button.addEventListener('click', makeExam
 
 let publishButton = document.querySelectorAll('.publishButton');
 publishButton.forEach(button => button.addEventListener('click', publishExam));
+
+let deleteExamButton = document.querySelectorAll('.deleteExam');
+deleteExamButton.forEach(button => button.addEventListener('click', deleteExam));
 

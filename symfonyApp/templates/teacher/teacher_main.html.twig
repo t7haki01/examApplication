@@ -24,7 +24,6 @@
     <P>Here could come some exams and publishing</P>
     {% for exam in exams %}
         {{ exam.examTitle }}
-        {#{{ exam.questionIds }}#}
         {{ exam.date | date('d.m.Y') }}
 
         <button class="publishButton" data-id="{{ exam.id }}">
@@ -33,8 +32,8 @@
         {% else %}
             Make Exam hide
         {% endif %}
+        <button class="deleteExam" data-id="{{ exam.id }}">Delete Exam</button>
         </button>
-
         <br>
     {% endfor %}
 

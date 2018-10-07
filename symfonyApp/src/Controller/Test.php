@@ -13,19 +13,21 @@ use App\Entity\Result;
 use App\Entity\Student;
 use App\Entity\Teacher;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 
 class Test extends AbstractController
 {
     public function test(){
-        for($i=0;$i<30;$i++){
-        $result = $this->getDoctrine()->getRepository(Result::class)
-            ->find($i);
+        $newTeacher= new Teacher();
+        $newTeacher->setFirstname('test');
+        $newTeacher->setLastname('teacher1');
+        $newTeacher->setUsername('teacher1');
+        $newTeacher->setEmail('teacher1@test.com');
+        $newTeacher->setPassword('test1');
         $em = $this->getDoctrine()->getManager();
-        $em->remove($result);
+        $em->persist($newTeacher);
         $em->flush();
-        }
 
-
-        return ;
+        return new Response("test ok");
     }
 }

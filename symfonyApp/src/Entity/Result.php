@@ -44,6 +44,12 @@ class Result
      * @ORM\JoinColumn(nullable=false)
      */
     private $exam;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Student", inversedBy="results")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $student;
     
     public function getId(): ?int
     {
@@ -106,6 +112,18 @@ class Result
     public function setExam(?Exam $exam): self
     {
         $this->exam = $exam;
+
+        return $this;
+    }
+
+    public function getStudent(): ?Student
+    {
+        return $this->student;
+    }
+
+    public function setStudent(?Student $student): self
+    {
+        $this->student = $student;
 
         return $this;
     }

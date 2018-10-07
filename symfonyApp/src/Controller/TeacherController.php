@@ -161,5 +161,13 @@ class TeacherController extends AbstractController
         return new Response();
     }
 
+    public function examDelete($examId){
+        $examData = $this->getDoctrine()->getRepository(Exam::class)->find($examId);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($examData);
+        $entityManager->flush();
+        return new Response();
+    }
+
 
 }///this is end of class closing curly bracket

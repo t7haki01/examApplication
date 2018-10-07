@@ -1,0 +1,51 @@
+{% extends 'template.html.twig' %}
+{% block css %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+{% endblock %}
+{% block body %}
+    <h1>Here is page for exam result</h1>
+    <a href=""><button>Back</button></a>
+    <h2>{{ examData.examTitle }}</h2>
+
+    <table class="table"><tr>
+        <td><table>
+            <tr>
+                <td>
+                    Question:
+                </td>
+            </tr>
+            {% for question in questionData %}
+                <tr><td>
+                {{ question }}
+                    </td></tr>
+            {% endfor %}
+        </table></td>
+            <td><table>
+                    <tr><td>
+                            Answer:
+                        </td></tr>
+                    {% for answer in answerData %}
+                        <tr><td>
+                                {{ answer }}
+                            </td></tr>
+                    {% endfor %}
+                </table></td>
+            <td><table>
+                    <tr><td>
+                            Student Answer:
+                        </td></tr>
+                    {% for student in studentAnswer %}
+                        <tr><td>
+                                {{ student }}
+                            </td></tr>
+                    {% endfor %}
+                </table></td>
+        </tr></table>
+
+
+    <p>And here could come score</p>
+    {% for i in score %}
+        {{ i.score }}
+    {% endfor %}
+
+{% endblock %}
