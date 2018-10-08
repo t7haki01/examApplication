@@ -4,23 +4,10 @@
 
 {% block body %}
 <h1>Test Page</h1>
-    <P>Student ID</P>
-{{ studentId }}
-    <p>examId</p>
-    {{ examId }}
-    <p>Question Ids</p>
-    {{ questionIds }}
-    <p>student Answers</p>
-    {% for i in studentAnswer %}
-
-            {% for j in i %}
-                {{ j }}
-            {% endfor %}
-    {% endfor %}
-    <p>real Answers</p>
-    {% for i in correctAnswer %}
-        {% for j in i %}
-            {{ j }}
-        {% endfor %}
-    {% endfor %}
+    <p>Here category</p>
+    {{ category }}
+    <p>Here come numbers</p>
+    {{ number }}
+    <P>Title</P>
+    {{ examTitle }}
 {% endblock %}

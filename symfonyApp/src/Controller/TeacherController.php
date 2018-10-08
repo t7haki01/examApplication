@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 
+use App\Controller\debug\ChromePhp;
 use App\Entity\Exam;
 use App\Entity\Question;
 use App\Entity\Teacher;
@@ -119,36 +120,53 @@ class TeacherController extends AbstractController
             array('teacherId' => $teacherId, 'question'=>$questions));
     }
 
-    public function  makeExamRandomSelected($teacherId, $examTitle, $numbers, $category){
+    public function  makeExamRandomSelected($teacherId, Request $request){
+        $category = $request->request->get('category');
+        $numberOfQuestion = $request->request->get('numberOfQuestions');
+        $examTitle = $request->request->get('examTitle');
+
         $em = $this->getDoctrine()->getManager();
         $teacherData =  $this->getDoctrine()->getRepository(Teacher::class)
             ->find($teacherId);
 
-        $questions = $this->getDoctrine()->getRepository(Question::class)->findBy(array('teacher' => $teacherId));
-        $testArray = [];
-        $category_array = $questions->getCategory();
+        $exam = new Exam();
+        $exam->setDate(new \DateTime());
+        $exam->setExamTitle($examTitle);
+        $exam->setTeacher($teacherData);
+        $exam->setIsPublished(false);
+//From here for the question Ids
+        if($category == 'all'){
+        $questionData = $this->getDoctrine()->getRepository(Question::class)
+            ->findAll();
+        }
+        else{
+            $questionData = $this->getDoctrine()->getRepository(Question::class)
+                ->findBy(array('category'=>$category));
+        }
+        $questionIds = [];
+        $i=1;
+
+        foreach ($questionData as $question){
+            ChromePhp::log($questionIds);
+            array_push($questionIds,$question[$i]->getId());
+            $i++;
+        }
+        $numberCheck =[];
+        $finalQuestion = [];
+        while(count($numberCheck)==$numberOfQuestion) {
+            $ranNum = rand(1, count($questionIds));
+            if(!in_array($ranNum, $finalQuestion)){
+                array_push($finalQuestion, $ranNum);
+            }
+        }
+
+        $exam->setQuestionIds(implode(",",$finalQuestion));
 
 
-        $result_array = array_merge($testArray, $category_array);
 
-        return $this->render('test.html.twig',
-            array('test'=>$category_array));
+        ChromePhp::log(implode(",",$finalQuestion));
 
-
-
-//        $newExam = new Exam();
-//
-//        $newExam->setDate(new \DateTime());
-//
-//        $newExam->setQuestionIds('1,2,3,4');
-//        $newExam->setIsPublished(false);
-//        $newExam->setTeacher($teacherData);
-//        $newExam->setExamTitle($examTitle);
-//
-//        $em->persist($newExam);
-//        $em->flush();
-//
-//        return new Response();
+        return new Response();
     }
     
     public function makeExamPublish($examId){

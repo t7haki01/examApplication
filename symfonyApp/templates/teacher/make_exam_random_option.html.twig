@@ -5,6 +5,7 @@
 {% block body %}
 <h1>Here comes for making exam randomly</h1>
     <a href="{{ path('teacher_main', {'teacherId': teacherId}) }}"><button>Back</button></a>
+<form method="post" action="{{ path('teacher_make_exam_random_selected', {'teacherId':teacherId}) }}">
 <table>
     <tr>
         <td><label>Exam Title:</label></td>
@@ -21,7 +22,7 @@
             Range of Category:
         </td>
         <td>
-            <select id="category">
+            <select id="category" name="category">
             <option value="all" selected>all the category
                 {% set categoryArray = [] %}
             {% for questions in question %}
@@ -36,9 +37,9 @@
     <tr>
         <td></td>
         <td>
-            <button id="makeExamRandomButton" data-id="{{ teacherId }}" type="submit">Make Exam</button>
+            <button id="makeExamRandomButton" data-id="{{ teacherId }}" type="">Make Exam</button>
         </td>
     </tr>
 </table>
-
+</form>
 {% endblock %}

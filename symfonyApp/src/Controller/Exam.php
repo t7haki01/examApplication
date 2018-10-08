@@ -32,9 +32,14 @@ class Exam extends AbstractController
     public function examMain($studentId){
         $exams = $this-> getDoctrine()->getRepository(\App\Entity\Exam::class)->
         findAll();
+        $studentData = $this->getDoctrine()->getRepository(\App\Entity\Student::class)
+            ->find($studentId);
+        $result = $this->getDoctrine()->getRepository(ExamResult::class)
+            ->findby(array('student'=>$studentData));
 
         return  $this->render('exam/exam_main.html.twig',
-            array('studentId' => $studentId, 'exams' =>$exams));
+            array('studentId' => $studentId, 'exams' =>$exams,
+                'result'=>$result));
     }
 
     public function examResult($studentId, $examId, $questionIds, Request $request){
@@ -147,14 +152,10 @@ class Exam extends AbstractController
                 $em->persist($newResult);
                 }
             }
-            $examResult->setScore($score.'point out of '.$totalQuestion);
+            $examResult->setScore($score.' correct from '.$totalQuestion.' questions');
             $em->persist($examResult);
             $em->flush();
 
-
-            return $this->render('test.html.twig',
-            array('studentId' => $studentId, 'examId' => $examId,
-                'questionIds' => $questionIds, 'studentAnswer'=>$studentAnswertest,
-                'correctAnswer' => $correctAnswerArraytest));
+            return $this->redirectToRoute('student_main',array('studentId'=>$studentId));
     }
 }

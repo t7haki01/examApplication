@@ -18,15 +18,6 @@ use Symfony\Component\HttpFoundation\Response;
 class Test extends AbstractController
 {
     public function test(){
-        $newTeacher= new Teacher();
-        $newTeacher->setFirstname('test');
-        $newTeacher->setLastname('teacher1');
-        $newTeacher->setUsername('teacher1');
-        $newTeacher->setEmail('teacher1@test.com');
-        $newTeacher->setPassword('test1');
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($newTeacher);
-        $em->flush();
 
         return new Response("test ok");
     }

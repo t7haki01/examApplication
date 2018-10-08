@@ -58,15 +58,11 @@ function makeExam(event){
 // submitAnswerButton.forEach(button => button.addEventListener('click', submitAnswer));
 
 
-function makeExamRandom(event){
-    var examTitle = document.getElementById('examTitle').value;
-    var category = document.getElementById('category').value;
-    var numbers = document.getElementById('numberOfQuestions').value;
-    const teacherId = event.target.getAttribute('data-id');
-
-    axios.post('/teacher/make_exam/random/' + teacherId + '/' + examTitle + '/' + numbers + '/' + category )
-        .then(response => location.reload());
-}
+// function makeExamRandom(event){
+//     const teacherId = event.target.getAttribute('data-id');
+//     axios.post('/teacher/make_exam/randomSelected/' + teacherId)
+//     .then(response => location.reload());
+// }
 
 function publishExam(event){
     const examId = event.target.getAttribute('data-id');
@@ -86,8 +82,8 @@ deleteButtons.forEach(button => button.addEventListener('click', deleteQuestion)
 let makeExamButton = document.querySelectorAll('#makeExamButton');
 makeExamButton.forEach(button => button.addEventListener('click', makeExam));
 
-let makeExamRandomButton = document.querySelectorAll('#makeExamRandomButton');
-makeExamRandomButton.forEach(button => button.addEventListener('click', makeExamRandom));
+// let makeExamRandomButton = document.querySelectorAll('#makeExamRandomButton');
+// makeExamRandomButton.forEach(button => button.addEventListener('click', makeExamRandom));
 
 let publishButton = document.querySelectorAll('.publishButton');
 publishButton.forEach(button => button.addEventListener('click', publishExam));

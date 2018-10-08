@@ -16,6 +16,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class Student extends AbstractController
 {
+    public function studentMain($studentId){
+        $studentData = $this->getDoctrine()->getRepository(\App\Entity\Student::class)
+            ->find($studentId);
+
+        $examResult = $this->getDoctrine()->getRepository(ExamResult::class)
+            ->findBy(array('student'=>$studentData));
+
+        return  $this->render('student/student_main.html.twig',
+            array('studentId' => $studentId, 'examResult'=>$examResult
+            ));
+    }
+
+
     public function showResult($studentId, $examId){
     $examData = $this->getDoctrine()->getRepository(\App\Entity\Exam::class)
             ->find($examId);
@@ -60,7 +73,7 @@ class Student extends AbstractController
      return $this->render('student/exam_result.html.twig',
          array('studentAnswer' => $studentAnswer, 'examData' => $examData,
                 'questionData' => $questions, 'score' => $score,
-             'answerData' => $answers
+             'answerData' => $answers, 'studentId'=> $studentId
              ));
     }
 

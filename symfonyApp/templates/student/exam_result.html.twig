@@ -4,26 +4,28 @@
 {% endblock %}
 {% block body %}
     <h1>Here is page for exam result</h1>
-    <a href=""><button>Back</button></a>
+    <a href="{{ path('student_main', {'studentId':studentId}) }}"><button>Back</button></a>
     <h2>{{ examData.examTitle }}</h2>
 
     <table class="table"><tr>
         <td><table class="table">
             <tr>
-                <td>
-                    Question:
-                </td>
-            </tr>
+                <th>
+                    Question
+                </th>
+            </tr>{% set i = 0 %}
             {% for question in questionData %}
                 <tr><td>
+                        {% set i = i + 1 %}
+                        Q{{ i }}
                 {{ question }}
                     </td></tr>
             {% endfor %}
         </table></td>
             <td><table class="table">
-                    <tr><td>
-                            Answer:
-                        </td></tr>
+                    <tr><th>
+                            Answer
+                        </th></tr>
                     {% for answer in answerData %}
                         <tr><td>
                                 {{ answer }}
@@ -31,9 +33,9 @@
                     {% endfor %}
                 </table></td>
             <td><table class="table">
-                    <tr><td>
-                            Student Answer:
-                        </td></tr>
+                    <tr><th>
+                            Student Answer
+                        </th></tr>
                     {% for student in studentAnswer %}
                         <tr><td>
                                 {{ student }}
