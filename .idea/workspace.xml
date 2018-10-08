@@ -3,15 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="99c297cc-7de6-4ebf-9816-4dcfa86c1402" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfonyApp/assets/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/symfonyApp/assets/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfonyApp/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/symfonyApp/config/routes.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfonyApp/src/Controller/Exam.php" beforeDir="false" afterPath="$PROJECT_DIR$/symfonyApp/src/Controller/Exam.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfonyApp/src/Controller/TeacherController.php" beforeDir="false" afterPath="$PROJECT_DIR$/symfonyApp/src/Controller/TeacherController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfonyApp/src/Controller/Test.php" beforeDir="false" afterPath="$PROJECT_DIR$/symfonyApp/src/Controller/Test.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfonyApp/src/Entity/Exam.php" beforeDir="false" afterPath="$PROJECT_DIR$/symfonyApp/src/Entity/Exam.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfonyApp/src/Entity/Result.php" beforeDir="false" afterPath="$PROJECT_DIR$/symfonyApp/src/Entity/Result.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfonyApp/src/Entity/Student.php" beforeDir="false" afterPath="$PROJECT_DIR$/symfonyApp/src/Entity/Student.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfonyApp/templates/teacher/teacher_main.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/symfonyApp/templates/teacher/teacher_main.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfonyApp/src/Controller/Student.php" beforeDir="false" afterPath="$PROJECT_DIR$/symfonyApp/src/Controller/Student.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfonyApp/templates/student/exam_result.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/symfonyApp/templates/student/exam_result.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,7 +19,7 @@
     <session id="-741005880">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="21" />
+          <entry key="project.closed" value="22" />
           <entry key="project.open.time.107" value="1" />
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.30" value="2" />
@@ -36,6 +29,7 @@
           <entry key="project.open.time.35" value="1" />
           <entry key="project.open.time.37" value="1" />
           <entry key="project.open.time.38" value="1" />
+          <entry key="project.open.time.39" value="1" />
           <entry key="project.open.time.47" value="1" />
           <entry key="project.open.time.48" value="1" />
           <entry key="project.open.time.50" value="2" />
@@ -45,7 +39,7 @@
           <entry key="project.open.time.86" value="1" />
           <entry key="project.open.time.91" value="1" />
           <entry key="project.open.time.93" value="1" />
-          <entry key="project.opened" value="21" />
+          <entry key="project.opened" value="22" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -74,17 +68,17 @@
           <entry key="dummy" value="10" />
           <entry key="env" value="4" />
           <entry key="js" value="2255" />
-          <entry key="php" value="13360" />
-          <entry key="twig" value="9142" />
+          <entry key="php" value="13619" />
+          <entry key="twig" value="9288" />
           <entry key="yaml" value="1704" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JavaScript" value="2255" />
-          <entry key="PHP" value="13360" />
+          <entry key="PHP" value="13619" />
           <entry key="PLAIN_TEXT" value="14" />
-          <entry key="Twig" value="9142" />
+          <entry key="Twig" value="9288" />
           <entry key="YAML" value="1704" />
         </counts>
       </usages-collector>
@@ -102,8 +96,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/symfonyApp/src/Controller/Student.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="204">
-                  <caret line="31" column="19" lean-forward="true" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
+                <state relative-caret-position="255">
+                  <caret line="38" selection-start-line="38" selection-end-line="38" />
                   <folding>
                     <element signature="e#116#151#0#PHP" expanded="true" />
                   </folding>
@@ -114,7 +108,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/symfonyApp/templates/exam/showExam.html.twig">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="431">
+                <state relative-caret-position="510">
                   <caret line="30" column="17" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
                 </state>
               </provider>
@@ -132,7 +126,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/symfonyApp/src/Controller/Test.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="323">
+                <state relative-caret-position="255">
                   <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
                   <folding>
                     <element signature="e#117#139#0#PHP" expanded="true" />
@@ -144,7 +138,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/symfonyApp/src/Controller/TeacherController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="136">
+                <state relative-caret-position="204">
                   <caret line="25" column="27" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
                   <folding>
                     <element signature="e#117#137#0#PHP" expanded="true" />
@@ -165,7 +159,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/symfonyApp/src/Entity/Result.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="391">
+                <state relative-caret-position="1598">
                   <caret line="96" column="6" selection-start-line="96" selection-start-column="6" selection-end-line="96" selection-end-column="6" />
                   <folding>
                     <element signature="e#30#78#0#PHP" expanded="true" />
@@ -206,34 +200,10 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/symfonyApp/src/Controller/Exam.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="272">
-                  <caret line="136" column="9" selection-start-line="136" selection-start-column="9" selection-end-line="136" selection-end-column="9" />
-                  <folding>
-                    <element signature="e#116#151#0#PHP" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/symfonyApp/src/Entity/Exam.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="275">
-                  <caret line="156" column="5" selection-start-line="156" selection-start-column="5" selection-end-line="156" selection-end-column="5" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/symfonyApp/src/Controller/TeacherController.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="289">
-                  <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
-                  <folding>
-                    <element signature="e#117#137#0#PHP" expanded="true" />
-                  </folding>
+                <state relative-caret-position="238">
+                  <caret line="129" column="7" selection-start-line="129" selection-start-column="7" selection-end-line="129" selection-end-column="7" />
                 </state>
               </provider>
             </entry>
@@ -241,8 +211,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/symfonyApp/templates/student/exam_result.html.twig">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="544">
-                  <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
+                <state relative-caret-position="391">
+                  <caret line="36" column="47" selection-start-line="36" selection-start-column="47" selection-end-line="36" selection-end-column="47" />
                 </state>
               </provider>
             </entry>
@@ -250,7 +220,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/symfonyApp/src/Entity/Question.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="663">
+                <state relative-caret-position="1700">
                   <caret line="100" column="5" selection-start-line="100" selection-start-column="5" selection-end-line="100" selection-end-column="5" />
                 </state>
               </provider>
@@ -259,8 +229,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/symfonyApp/src/Entity/Result.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="663">
-                  <caret line="90" selection-start-line="90" selection-end-line="90" />
+                <state relative-caret-position="-460">
+                  <caret line="27" column="7" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
                   <folding>
                     <element signature="e#30#78#0#PHP" expanded="true" />
                   </folding>
@@ -272,7 +242,7 @@
             <entry file="file://$PROJECT_DIR$/symfonyApp/src/Entity/ExamResult.php">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="391">
-                  <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+                  <caret line="23" selection-start-line="23" selection-end-line="23" />
                 </state>
               </provider>
             </entry>
@@ -462,6 +432,14 @@
               <item name="examApplication" type="462c0819:PsiDirectoryNode" />
               <item name="symfonyApp" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
+              <item name="debug" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="examApplication" type="b2602c69:ProjectViewProjectNode" />
+              <item name="examApplication" type="462c0819:PsiDirectoryNode" />
+              <item name="symfonyApp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="DataFixtures" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -570,11 +548,12 @@
       <workItem from="1538727627652" duration="1282000" />
       <workItem from="1538820248401" duration="11225000" />
       <workItem from="1538899667827" duration="8701000" />
+      <workItem from="1538994581387" duration="5600000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="149743000" />
+    <option name="totallyTimeSpent" value="155343000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -588,7 +567,7 @@
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11610738" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11744966" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -724,30 +703,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/symfonyApp/templates/teacher/make_exam.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="935">
-          <caret line="55" column="18" selection-start-line="55" selection-start-column="18" selection-end-line="55" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/symfonyApp/config/routes.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/symfonyApp/src/Controller/Test.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-          <folding>
-            <element signature="e#117#139#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/symfonyApp/src/DataFixtures/examAppFixtures.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -755,16 +710,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/symfonyApp/src/Entity/Exam.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="935">
-          <caret line="57" column="5" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/symfonyApp/templates/exam/showExam.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
+        <state relative-caret-position="510">
           <caret line="30" column="17" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
         </state>
       </provider>
@@ -776,6 +724,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/symfonyApp/src/Controller/Test.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+          <folding>
+            <element signature="e#117#139#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/symfonyApp/templates/teacher/make_exam.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="935">
+          <caret line="55" column="18" selection-start-line="55" selection-start-column="18" selection-end-line="55" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/symfonyApp/templates/teacher/make_exam_random_option.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -783,19 +748,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/symfonyApp/src/Controller/TeacherController.php">
+    <entry file="file://$PROJECT_DIR$/symfonyApp/config/routes.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="25" column="27" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
-          <folding>
-            <element signature="e#117#137#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="238">
+          <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/symfonyApp/src/Controller/Exam.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
+        <state relative-caret-position="2108">
           <caret line="136" column="9" selection-start-line="136" selection-start-column="9" selection-end-line="136" selection-end-column="9" />
           <folding>
             <element signature="e#116#151#0#PHP" expanded="true" />
@@ -803,44 +765,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/symfonyApp/src/Entity/Question.php">
+    <entry file="file://$PROJECT_DIR$/symfonyApp/src/Controller/TeacherController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="100" column="5" selection-start-line="100" selection-start-column="5" selection-end-line="100" selection-end-column="5" />
+        <state relative-caret-position="204">
+          <caret line="25" column="27" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
+          <folding>
+            <element signature="e#117#137#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/symfonyApp/src/Entity/Result.php">
+    <entry file="file://$PROJECT_DIR$/symfonyApp/src/Entity/Question.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="96" column="6" selection-start-line="96" selection-start-column="6" selection-end-line="96" selection-end-column="6" />
-          <folding>
-            <element signature="e#30#78#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="1700">
+          <caret line="100" column="5" selection-start-line="100" selection-start-column="5" selection-end-line="100" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/symfonyApp/src/Entity/ExamResult.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/symfonyApp/templates/student/exam_result.html.twig">
+    <entry file="file://$PROJECT_DIR$/symfonyApp/src/Entity/Exam.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
+        <state relative-caret-position="238">
+          <caret line="129" column="7" selection-start-line="129" selection-start-column="7" selection-end-line="129" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/symfonyApp/src/Entity/Result.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-460">
+          <caret line="27" column="7" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
+          <folding>
+            <element signature="e#30#78#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/symfonyApp/src/Controller/Student.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="31" column="19" lean-forward="true" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
+        <state relative-caret-position="255">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
           <folding>
             <element signature="e#116#151#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/symfonyApp/templates/student/exam_result.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="36" column="47" selection-start-line="36" selection-start-column="47" selection-end-line="36" selection-end-column="47" />
         </state>
       </provider>
     </entry>

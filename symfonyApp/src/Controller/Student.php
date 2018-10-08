@@ -31,7 +31,13 @@ class Student extends AbstractController
                     'student' => $student));
     $questions =[];
     $answers =[];
-    $studentAnswer = $examResult ->getStudentAnswers();
+    $studentAnswer =[];
+    foreach($examResult as $index => $result){
+        array_push($studentAnswer,
+            $examResult[$index]->getStudentAnswer());
+    }
+
+    ChromePhp::log($studentAnswer);
 
     foreach ($questionIdsArray as $id){
         if($id != " " && $id != null){
