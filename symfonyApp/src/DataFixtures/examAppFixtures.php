@@ -22,7 +22,7 @@ class examAppFixtures extends Fixture
         $dummyUser1->setFirstname('John');
         $dummyUser1->setLastname('Doe');
         $dummyUser1->setUsername('test1');
-        $dummyUser1->setPassword('test1');
+        $dummyUser1->setPassword(password_hash('test1',PASSWORD_BCRYPT));
         $dummyUser1->setEmail('test1@test.com');
         $manager->persist($dummyUser1);
 
@@ -30,7 +30,7 @@ class examAppFixtures extends Fixture
         $dummyUser2->setFirstname('Teacher');
         $dummyUser2->setLastname('test');
         $dummyUser2->setUsername('test2');
-        $dummyUser2->setPassword('test2');
+        $dummyUser2->setPassword(password_hash('test2',PASSWORD_BCRYPT));
         $dummyUser2->setEmail('test2@test.com');
         $manager->persist($dummyUser2);
 
@@ -38,14 +38,14 @@ class examAppFixtures extends Fixture
         $dummyStudent1->setFirstname('student');
         $dummyStudent1->setLastname('test1');
         $dummyStudent1->setUsername('student1');
-        $dummyStudent1->setPassword('test1');
+        $dummyStudent1->setPassword(password_hash('test1', PASSWORD_BCRYPT));
         $manager->persist($dummyStudent1);
 
         $dummyStudent2 = new Student();
         $dummyStudent2->setFirstname('student');
         $dummyStudent2->setLastname('test2');
         $dummyStudent2->setUsername('student2');
-        $dummyStudent2->setPassword('test2');
+        $dummyStudent2->setPassword(password_hash('test2', PASSWORD_BCRYPT));
         $manager->persist($dummyStudent2);
 
         $dummyData1 = new Question();

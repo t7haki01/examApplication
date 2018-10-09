@@ -2,6 +2,16 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
+index:
+    path: /
+    controller: App\Controller\MainController::index
+
+login:
+    path: /login
+
+logout:
+    path: /logout
+
 teacher_make_question:
     path: /teacher/make_question/{teacherId}
     controller: App\Controller\TeacherController::makeQuestion
@@ -16,7 +26,7 @@ teacher_delete_question:
     methods: [DELETE]
 
 teacher_main:
-    path: /teacher/main/{teacherId}
+    path: /teacher/main
     controller: App\Controller\TeacherController::teacherMain
 
 teacher_make_exam:
@@ -67,5 +77,5 @@ student_main:
   controller: App\Controller\Student::studentMain
 
 test:
-    path: /test/{teacherId}
-    controller: App\Controller\TeacherController::makeExamRandomSelected
+    path: /test
+    controller: App\Controller\Test::test

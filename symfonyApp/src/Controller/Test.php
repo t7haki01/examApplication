@@ -18,7 +18,6 @@ use Symfony\Component\HttpFoundation\Response;
 class Test extends AbstractController
 {
     public function test(){
-
-        return new Response("test ok");
+        return new Response("login failure");
     }
 }

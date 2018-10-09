@@ -22,7 +22,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class TeacherController extends AbstractController
 {
-    public function teacherMain($teacherId){
+    public function teacherMain(){
+        $teacherId=$this->getUser()->getId();
         $exams = $this-> getDoctrine()->getRepository(Exam::class)->
         findBy(array('teacher' => $teacherId));
 
@@ -121,6 +122,7 @@ class TeacherController extends AbstractController
     }
 
     public function  makeExamRandomSelected($teacherId, Request $request){
+        //Here is used for advice 'request' get methods
         $category = $request->request->get('category');
         $numberOfQuestion = $request->request->get('numberOfQuestions');
         $examTitle = $request->request->get('examTitle');
@@ -137,36 +139,45 @@ class TeacherController extends AbstractController
 //From here for the question Ids
         if($category == 'all'){
         $questionData = $this->getDoctrine()->getRepository(Question::class)
-            ->findAll();
+            ->findBy(array('teacher' => $teacherData));
         }
         else{
             $questionData = $this->getDoctrine()->getRepository(Question::class)
-                ->findBy(array('category'=>$category));
+                ->findBy(array('category'=>$category,
+                    'teacher' => $teacherData));
         }
+
         $questionIds = [];
-        $i=1;
 
         foreach ($questionData as $question){
-            ChromePhp::log($questionIds);
-            array_push($questionIds,$question[$i]->getId());
-            $i++;
+            array_push($questionIds,$question->getId());
         }
-        $numberCheck =[];
+
         $finalQuestion = [];
-        while(count($numberCheck)==$numberOfQuestion) {
-            $ranNum = rand(1, count($questionIds));
-            if(!in_array($ranNum, $finalQuestion)){
-                array_push($finalQuestion, $ranNum);
+
+        shuffle($questionIds);
+
+
+        if($numberOfQuestion>count($questionIds))
+        {
+            $msg = "You set number of question 
+            more than questions already exist";
+        }
+        else
+        {
+            for($i=0; $i<$numberOfQuestion; $i++){
+                array_push($finalQuestion, $questionIds[$i]);
             }
+
+            $exam->setQuestionIds(implode(",",$finalQuestion));
+
+            $em->persist($exam);
+            $em->flush();
+            $msg ="Exam created successfully";
         }
 
-        $exam->setQuestionIds(implode(",",$finalQuestion));
 
-
-
-        ChromePhp::log(implode(",",$finalQuestion));
-
-        return new Response();
+        return new Response($msg);
     }
     
     public function makeExamPublish($examId){
