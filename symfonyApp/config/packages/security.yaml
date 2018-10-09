@@ -1,12 +1,15 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        my_db_user_provider:
-            entity:
-                {class: App\Entity\Teacher,
-                property: username},
-                {class: APP\Entity\Student,
-                property: username}
+        teacher:
+            entity: { class: App\Entity\Teacher, property: username }
+        student:
+            entity: { class: App\Entity\Student, property: username }
+#        my_db_user_provider:
+#            entity:
+#                class: App\Entity\Teacher
+#                property: username
+
     encoders:
         App\Entity\Teacher:
             algorithm: bcrypt
@@ -16,24 +19,50 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        main:
-            anonymous: ~
-            provider: my_db_user_provider
+#        main:
+#            anonymous: ~
+#            provider: my_db_user_provider
 
             # activate different ways to authenticate
 
             # http_basic: true
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
 
+        teacher:
+            provider: teacher
+            pattern: ^/teacher/
+            anonymous: true
             form_login:
-                login_path: /
-                check_path: /login
+                login_path: /teacher/login
+                check_path: /teacher/login/check
                 default_target_path: teacher_main
-                failure_path: test
-
             logout:
-                path: /logout
+                path: /teacher/logout
                 target: index
+        student:
+            provider: student
+            pattern: ^/student/
+            anonymous: true
+            security: true
+            form_login:
+                login_path: /student/login
+                check_path: /student/login/check
+                failure_path: /test
+                default_target_path: student_main
+            logout:
+                path: /student/logout
+                target: index
+#            logout:
+#                path: /
+#                target: index
+#
+#            form_login:
+#                login_path: /
+#                check_path: /login
+#                default_target_path: teacher_main
+#                failure_path: test
+
+
             # https://symfony.com/doc/current/security/form_login_setup.html
 
     # Easy way to control access for large sections of your site
@@ -41,5 +70,8 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
 #         - { path: ^/profile, roles: ROLE_USER }
-        - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/teacher/main, role: ROLE_USER }
+        - { path: ^/teacher/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/teacher/main/^, role: ROLE_USER }
+
+        - { path: ^/student/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/student/main/^, role: ROLE_USER }

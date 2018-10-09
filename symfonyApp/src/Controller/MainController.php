@@ -16,4 +16,12 @@ class MainController extends AbstractController
     public function index(){
         return $this->render('main/index.html.twig');
     }
+
+    public function teacherLogin(){
+        return $this->render('main/teacher_login.html.twig');
+    }
+
+    public function studentLogin(){
+        return $this->render('main/student_login.html.twig');
+    }
 }

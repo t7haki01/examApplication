@@ -6,11 +6,27 @@ index:
     path: /
     controller: App\Controller\MainController::index
 
-login:
-    path: /login
+teacher_logout:
+    path: /teacher/logout
 
-logout:
-    path: /logout
+student_logout:
+    path: /student/logout
+
+teacher_login_check:
+    path: /teacher/login/check
+
+teacher_login:
+    path: /teacher/login
+    controller: App\Controller\MainController::teacherLogin
+
+student_login_check:
+    path: /student/login/check
+
+student_login:
+    path: /student/login
+    controller: App\Controller\MainController::studentLogin
+
+
 
 teacher_make_question:
     path: /teacher/make_question/{teacherId}
@@ -73,7 +89,7 @@ student_check_result:
     controller: App\Controller\Student::showResult
 
 student_main:
-  path: /student/main/{studentId}
+  path: /student/main
   controller: App\Controller\Student::studentMain
 
 test:

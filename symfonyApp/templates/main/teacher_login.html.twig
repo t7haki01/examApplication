@@ -1,0 +1,16 @@
+{% extends 'template.html.twig' %}
+{% block css %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+{% endblock %}
+{% block body %}
+    <div>
+        <form action="{{ path('teacher_login_check') }}" method="post" class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="_username" class="form-control">
+            <label for="password">Password:</label>
+            <input type="text" id="password" name="_password" class="form-control">
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+    <a href="{{ path('index') }}">back</a>
+{% endblock %}

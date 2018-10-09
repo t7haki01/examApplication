@@ -3,13 +3,18 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 {% endblock %}
 {% block body %}
+    <p>Choose Login option</p>
 <div>
-    <form action="{{ path('login') }}" method="post" class="form-group">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="_username" class="form-control">
-        <label for="password">Password:</label>
-        <input type="text" id="password" name="_password" class="form-control">
-        <button type="submit" class="btn btn-primary">Login</button>
-    </form>
+    <a href="{{ path('teacher_login') }}">
+        <button type="submit" class="btn btn-primary">Login as teacher</button>
+    </a>
+</div>
+
+<div>
+    <a href="{{ path('student_login') }}">
+        <button type="submit" class="btn btn-primary">Login as student</button>
+    </a>
 </div>
 {% endblock %}
+
+
