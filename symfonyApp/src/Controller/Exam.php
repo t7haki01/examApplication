@@ -127,16 +127,18 @@ class Exam extends AbstractController
                     }
                 }
                 else{
-                    $answerCheck = true;
+                    $answerCheck = false;
 
                    $refinedAnswer = array_map('strtoupper',$correctAnswerArray);
 
                    foreach($studentAnswer as $i){
                        if(in_array(strtoupper($i),$refinedAnswer)){
-                           break;
+                           $answerCheck = true;
+                           continue;
                        }
                        else{
                            $answerCheck = false;
+                           continue;
                        }
                    }
                    if($answerCheck == true){

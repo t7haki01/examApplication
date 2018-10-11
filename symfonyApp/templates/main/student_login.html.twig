@@ -1,16 +1,46 @@
 {% extends 'template.html.twig' %}
 {% block css %}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 {% endblock %}
 {% block body %}
-    <div>
-        <form action="{{ path('student_login_check') }}" method="post" class="form-group">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="_username" class="form-control">
-            <label for="password">Password:</label>
-            <input type="text" id="password" name="_password" class="form-control">
-            <button type="submit" class="btn btn-primary">Login</button>
-        </form>
+    <div id="outer">
+        <div id="container">
+            <div class="row">
+                <div class="col-md-6"></div>
+                <div class="col-md-6">
+                    <a href="{{ path('index') }}">
+                        <button class="btn">Back</button>
+                    </a>
+                </div>
+            </div>
+            <form action="{{ path('student_login_check') }}" method="post" class="form-group">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <label for="username">Username:</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2">
+                        <input type="text" id="username" name="_username" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2">
+                        <label for="password">Password:</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2">
+                        <input type="text" id="password" name="_password" class="form-control">
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-xs-2">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-    <a href="{{ path('index') }}">back</a>
+
 {% endblock %}

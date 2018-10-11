@@ -1,7 +1,6 @@
-{% extends 'template.html.twig' %}
-{% block css %}
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-{% endblock %}
+{% extends 'teacher/teacher_template.html.twig' %}
+
+{% block css %}{% endblock %}
 {% block body %}
 <h1>Here is page for making questions</h1>
 <a href="{{ path('teacher_main', {'teacherId': teacherId}) }}"><button>Back</button></a>
@@ -13,9 +12,70 @@
 
 
 <div class="container">
+    <label>Filter option for category</label>
+        <input id="filter" name="filter[]" type="checkbox" checked value="All">All
+    {% set categoryArray =[] %}
+    {% for questions in question %}
+    {% if questions.category not in categoryArray %}
+        <input id="filter" name="filter[]" type="checkbox" value="{{ questions.category }}">
+    {{ questions.category }}
+    {% set categoryArray = categoryArray|merge([questions.category]) %}
+    {% endif %}
+    {% endfor %}
+    <button class="filterButton" onclick="filterCategory()">Filter</button>
+
+    <script>
+        function filterCategory(){
+            var categoryArraySelected = [];
+            var categoryArrayAll = [];
+            var checkboxChekced = document.querySelectorAll('input[id="filter"]:checked');
+            var checkboxAll = document.querySelectorAll('input[id="filter"]');
+            for (var i = 0; i < checkboxChekced.length; i++) {
+                categoryArraySelected.push(checkboxChekced[i].value);
+            }
+            for (var i = 0; i < checkboxAll.length; i++) {
+                categoryArrayAll.push(checkboxAll[i].value);
+            }
+
+
+            if(!categoryArraySelected.includes("All")){
+                for(k=0; k<categoryArrayAll.length; k++){
+                    if(!categoryArraySelected.includes(categoryArrayAll[k])){
+                        var categoryDiv = document.getElementsByName(categoryArrayAll[k]);
+                        for(j=0;j<categoryDiv.length;j++){
+                            categoryDiv[j].style.display = "none";
+                        }
+                    }
+                    else{
+                        var categoryDiv = document.getElementsByName(categoryArrayAll[k]);
+                        for(j=0;j<categoryDiv.length;j++){
+                            categoryDiv[j].style.display = "block";
+                        }
+                    }
+                }
+            }
+            else if(categoryArraySelected.length === 0){
+                for(i=0;i<categoryArrayAll.length;i++){
+                    var categoryDiv = document.getElementsByName(categoryArrayAll[i]);
+                    for(j=0;j<categoryDiv.length;j++){
+                        categoryDiv[j].style.display = "none";
+                    }
+                }
+            }
+            else{
+                for(i=0;i<categoryArrayAll.length;i++){
+                    var categoryDiv = document.getElementsByName(categoryArrayAll[i]);
+                    for(j=0;j<categoryDiv.length;j++){
+                        categoryDiv[j].style.display = "block";
+                    }
+                }
+            }
+        }
+    </script>
+
     <table class="table">
         {% for questions in question %}
-            <tr><td>
+            <tr><td><div name="{{ questions.category }}">
                 <table class="table table-striped">
                     <tr>
                         <td class="text-right"><b>Category: </b></td>
@@ -52,7 +112,7 @@
                         <td class="text-right"><a href="{{ path('teacher_edit_question', {'teacherId': teacherId, 'questionId': questions.id} ) }}"><button class="btn btn-info">Edit</button></a></td>
                         <td><button class="btn btn-danger" id="deleteButton" data-id="{{ questions.id }}">Delete</button></td>
                     </tr>
-                </table>
+                </table></div>
             </td></tr>
         {% endfor %}
     </table>

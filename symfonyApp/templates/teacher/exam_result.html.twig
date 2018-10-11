@@ -1,0 +1,19 @@
+{% extends 'teacher/teacher_template.html.twig' %}
+
+{% block css %}{% endblock %}
+
+{% block body %}
+    <h1>Here comes exam result </h1>
+    <div>
+        <a href="{{ path('teacher_main') }}">back</a>
+    </div>
+    {% for result in resultData %}
+       student: {{ result.student.firstname }} {{ result.student.lastname }}<br>
+         score: {{ result.score }}<br>
+        <a href="{{ path('teacher_check_result', {'examId': result.exam.id, 'studentId':result.student.id}) }}">
+            <button>Check Details</button>
+        </a><br>
+    {% endfor %}
+
+
+{% endblock %}

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    {% block css %}{% endblock %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+{% block body %}{% endblock %}
+<a href="{{ path('teacher_logout') }}">
+    <button>Logout</button>
+</a>
+{% block javascript %}{% endblock %}
+<script src="{{ asset('build/app.js') }}"></script>
+</body>
+</html>

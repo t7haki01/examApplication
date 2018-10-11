@@ -31,6 +31,7 @@ security:
         teacher:
             provider: teacher
             pattern: ^/teacher/
+            security: true
             anonymous: true
             form_login:
                 login_path: /teacher/login
@@ -72,6 +73,10 @@ security:
 #         - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/teacher/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/teacher/main/^, role: ROLE_USER }
+        - { path: ^/teacher/make_exam/^, role: ROLE_USER }
+        - { path: ^/teacher/exam/^, role: ROLE_USER }
 
         - { path: ^/student/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/student/main/^, role: ROLE_USER }
+        - { path: ^/student/exam/^, role: ROLE_USER }
+        - { path: ^/exam/^, role: ROLE_USER }

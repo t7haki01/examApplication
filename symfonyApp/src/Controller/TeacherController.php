@@ -11,7 +11,9 @@ namespace App\Controller;
 
 use App\Controller\debug\ChromePhp;
 use App\Entity\Exam;
+use App\Entity\ExamResult;
 use App\Entity\Question;
+use App\Entity\Result;
 use App\Entity\Teacher;
 use App\Form\QuestionType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -190,6 +192,31 @@ class TeacherController extends AbstractController
         return new Response();
     }
 
+//    public function editExam(Request $request, $teacherId, $examId){
+//        $examData = $this-> getDoctrine()->getRepository(Exam::class)->find($examId);
+//
+//        $form = $this->createFormBuilder($examData)
+//            ->add('question', TextType::class)
+//            ->add('category', TextType::class)
+//            ->add('examples', TextType::class)
+//            ->add('answers', TextType::class)
+//            ->add('save', SubmitType::class, array('label'=> 'Save'))
+//            ->getForm();
+//        $form->handleRequest($request);
+//
+//        if($form->isSubmitted() && $form->isValid()){
+//            $questionData = $form->getData();
+//            $questionData-> setDate(new \DateTime());
+//            $em = $this->getDoctrine()->getManager();
+//            $em->persist($questionData);
+//            $em->flush();
+//        }
+//
+//        return $this->render('teacher/edit_question.html.twig',array('question' => $questionData,
+//            'teacherId' => $teacherId,
+//            'editForm'=> $form->createView()));
+//    }
+
     public function examDelete($examId){
         $examData = $this->getDoctrine()->getRepository(Exam::class)->find($examId);
         $entityManager = $this->getDoctrine()->getManager();
@@ -198,5 +225,61 @@ class TeacherController extends AbstractController
         return new Response();
     }
 
+    public function showExamResult($examId){
+        $examData = $this->getDoctrine()->getRepository(Exam::class)
+            ->find($examId)->getResults();
+        $resultData = $this->getDoctrine()->getRepository(Exam::class)
+            ->find($examId)->getExamResults();
+        return $this->render('teacher/exam_result.html.twig'
+        ,array('examData' => $examData,
+                'resultData' => $resultData
+        ));
+    }
+
+    public function checkExamResult($examId, $studentId){
+        $examData = $this->getDoctrine()->getRepository(\App\Entity\Exam::class)
+            ->find($examId);
+
+        $questionIds = $examData->getQuestionIds();
+        $questionIdsArray = explode(',', $questionIds);
+
+        $student = $this->getDoctrine()->getRepository(\App\Entity\Student::class)
+            ->find($studentId);
+
+        $examResult = $this->getDoctrine()->getRepository(Result::class)
+            ->findBy(array('exam'=>$examData,
+                'student' => $student));
+        $questions =[];
+        $answers =[];
+        $studentAnswer =[];
+        foreach($examResult as $index => $result){
+            array_push($studentAnswer,
+                $examResult[$index]->getStudentAnswer());
+        }
+
+        foreach ($questionIdsArray as $id){
+            if($id != " " && $id != null){
+                str_replace(" ", "", $id);
+                $questionById = $this->getDoctrine()->getRepository(Question::class)
+                    ->find($id);
+                $questionData = $questionById->getQuestion();
+                $questionAnswers = $questionById->getAnswers();
+                array_push($questions, $questionData);
+                array_push($answers, $questionAnswers);
+            }
+        }
+
+        $score = $this->getDoctrine()->getRepository(ExamResult::class)
+            ->findBy(array('exam'=>$examData,
+                'student'=>$student
+            ));
+
+
+        return $this->render('teacher/exam_result_detail.html.twig',
+            array('studentAnswer' => $studentAnswer, 'examData' => $examData,
+                'questionData' => $questions, 'score' => $score,
+                'answerData' => $answers, 'studentId'=> $studentId
+            ));
+    }
 
 }///this is end of class closing curly bracket

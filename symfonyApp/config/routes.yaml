@@ -45,6 +45,14 @@ teacher_main:
     path: /teacher/main
     controller: App\Controller\TeacherController::teacherMain
 
+teacher_exam_result:
+    path: /teacher/exam_result/{examId}
+    controller: App\Controller\TeacherController::showExamResult
+
+teacher_check_result:
+    path: /teacher/exam/{examId}/result/{studentId}
+    controller: App\Controller\TeacherController::checkExamResult
+
 teacher_make_exam:
     path: /teacher/make_exam/{teacherId}
     controller: App\Controller\TeacherController::makeExam

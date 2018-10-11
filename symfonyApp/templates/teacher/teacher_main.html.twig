@@ -1,10 +1,9 @@
-{% extends 'template.html.twig' %}
+{% extends 'teacher/teacher_template.html.twig' %}
 
-{% block css %}
-{% endblock %}
+{% block css %}{% endblock %}
 
 {% block body %}
-<h1>Here comes teacher main </h1>
+    <h1>Here comes teacher main </h1>
     <div>back menu</div>
     <div>teacher information</div>
     <div>here is for the make question</div>
@@ -27,13 +26,16 @@
         {{ exam.date | date('d.m.Y') }}
 
         <button class="publishButton" data-id="{{ exam.id }}">
-        {% if exam.ispublished == false %}
-            publish
-        {% else %}
-            Make Exam hide
-        {% endif %}
-        <button class="deleteExam" data-id="{{ exam.id }}">Delete Exam</button>
+            {% if exam.ispublished == false %}
+                publish
+            {% else %}
+                Make Exam hide
+            {% endif %}
+            <button class="deleteExam" data-id="{{ exam.id }}">Delete Exam</button>
         </button>
+        <a href="{{ path('teacher_exam_result', {'examId':exam.id}) }}">
+                <button>Check results</button>
+        </a>
         <br>
     {% endfor %}
 

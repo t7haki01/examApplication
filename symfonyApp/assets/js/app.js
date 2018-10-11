@@ -26,6 +26,11 @@ function deleteQuestion(event){
     }
 }
 
+function filterCategory(event){
+    var categories = document.querySelector('#filter').checked.value;
+    console.log(categories[0]);
+}
+
 function makeExam(event){
         var examTitle = document.getElementById('examTitle').value;
         var questionIds = " ";
@@ -91,3 +96,5 @@ publishButton.forEach(button => button.addEventListener('click', publishExam));
 let deleteExamButton = document.querySelectorAll('.deleteExam');
 deleteExamButton.forEach(button => button.addEventListener('click', deleteExam));
 
+// let filterButton = document.querySelectorAll('.filterButton');
+// filterButton.forEach(button => button.addEventListener('click', filterCategory));

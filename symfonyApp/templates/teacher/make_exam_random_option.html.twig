@@ -1,7 +1,7 @@
-{% extends 'template.html.twig' %}
-{% block css %}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-{% endblock %}
+{% extends 'teacher/teacher_template.html.twig' %}
+
+{% block css %}{% endblock %}
+
 {% block body %}
 <h1>Here comes for making exam randomly</h1>
     <a href="{{ path('teacher_main', {'teacherId': teacherId}) }}"><button>Back</button></a>

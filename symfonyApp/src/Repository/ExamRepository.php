@@ -22,8 +22,8 @@ class ExamRepository extends ServiceEntityRepository
 //    /**
 //     * @return Exam[] Returns an array of Exam objects
 //     */
-    /*
-    public function findByExampleField($value)
+
+/*    public function findByExampleField($value)
     {
         return $this->createQueryBuilder('e')
             ->andWhere('e.exampleField = :val')
@@ -33,8 +33,8 @@ class ExamRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
         ;
-    }
-    */
+    }*/
+
 
     /*
     public function findOneBySomeField($value): ?Exam

@@ -1,19 +1,30 @@
 {% extends 'template.html.twig' %}
 {% block css %}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 {% endblock %}
 {% block body %}
-    <p>Choose Login option</p>
-<div>
-    <a href="{{ path('teacher_login') }}">
-        <button type="submit" class="btn btn-primary">Login as teacher</button>
-    </a>
-</div>
-
-<div>
-    <a href="{{ path('student_login') }}">
-        <button type="submit" class="btn btn-primary">Login as student</button>
-    </a>
+<div id="outer">
+    <div id="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-5">
+                Choose Login option
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5 col-md-offset-5">
+                <a href="{{ path('teacher_login') }}">
+                    <button type="submit" class="btn btn-primary">Login as teacher</button>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5 col-md-offset-5">
+                <a href="{{ path('student_login') }}">
+                    <button type="submit" class="btn btn-primary">Login as student</button>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
 

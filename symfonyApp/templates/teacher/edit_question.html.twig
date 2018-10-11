@@ -1,5 +1,8 @@
+{% extends 'teacher/teacher_template.html.twig' %}
 
+{% block css %}{% endblock %}
 
+{% block body %}
 <div>
     <a href="{{ path('teacher_make_question', {'teacherId': teacherId}) }}">back</a>
 </div>
@@ -13,3 +16,4 @@
     {{ form_start(editForm) }}
     {{ form_widget(editForm) }}
     {{ form_end(editForm) }}
+{% endblock %}
