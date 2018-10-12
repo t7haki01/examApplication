@@ -3,13 +3,18 @@
 {% block css %}{% endblock %}
 
 {% block body %}
-    <h1>Here comes teacher main </h1>
-    <div>back menu</div>
-    <div>teacher information</div>
-    <div>here is for the make question</div>
-    <P>
-        <a href="{{ path("teacher_make_question", {'teacherId': teacherId}) }}"><button>Make Question</button></a>
-    </P>
+    <h1>Teacher Main Page</h1>
+    <div class="row">
+        <div class="row">
+            <div class="col-md-2 col-md-offset-2">
+                <a href="{{ path("teacher_make_question", {'teacherId': teacherId}) }}">
+                    <button>Make Question</button></a>
+            </div>
+            <div class="col-md-2 col-md-offset-2">
+                Making questions for the exam
+            </div>
+        </div>
+    </div>
     <p>here could come for making exam with select</p>
     <p>
         <a href="{{ path("teacher_make_exam", {'teacherId': teacherId}) }}"><button>Make Exam with selection</button></a>
@@ -19,24 +24,33 @@
         <a href="{{ path("teacher_make_exam_random", {'teacherId': teacherId}) }}"><button>Make Exam randomly</button></a>
     </p>
 
-
-    <P>Here could come some exams and publishing</P>
+<table class="table">
+    <tr><th>Exams</th></tr>
+    <tr>
     {% for exam in exams %}
-        {{ exam.examTitle }}
-        {{ exam.date | date('d.m.Y') }}
-
-        <button class="publishButton" data-id="{{ exam.id }}">
-            {% if exam.ispublished == false %}
-                publish
-            {% else %}
-                Make Exam hide
-            {% endif %}
-            <button class="deleteExam" data-id="{{ exam.id }}">Delete Exam</button>
-        </button>
-        <a href="{{ path('teacher_exam_result', {'examId':exam.id}) }}">
-                <button>Check results</button>
-        </a>
-        <br>
+        <td><table class="table table-condensed"><tr><th>
+                {{ exam.examTitle }}
+                    </th></tr>
+                <tr><td>
+                        Created at: {{ exam.date | date('d.m.Y') }}
+                    </td></tr>
+                <tr><td>
+                        <button class="publishButton" data-id="{{ exam.id }}">
+                            {% if exam.ispublished == false %}
+                            publish</button>
+                            {% else %}
+                            Unpublish</button>
+                            {% endif %}
+                    </td></tr>
+                <tr><td>
+                        <button class="deleteExam" data-id="{{ exam.id }}">Delete Exam</button>
+                    </td></tr>
+                <tr><td>
+                        <a href="{{ path('teacher_exam_result', {'examId':exam.id}) }}">
+                            <button>Check results</button>
+                        </a>
+                    </td></tr>
+        </table></td>
     {% endfor %}
-
+        </tr></table>
 {% endblock %}

@@ -24,6 +24,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class TeacherController extends AbstractController
 {
+
     public function teacherMain(){
         $teacherId=$this->getUser()->getId();
         $exams = $this-> getDoctrine()->getRepository(Exam::class)->

@@ -2,29 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="99c297cc-7de6-4ebf-9816-4dcfa86c1402" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/symfonyApp/templates/student/student_template.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/symfonyApp/templates/teacher/exam_result.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/symfonyApp/templates/teacher/exam_result_detail.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/symfonyApp/templates/teacher/teacher_template.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfonyApp/assets/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/symfonyApp/assets/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfonyApp/assets/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/symfonyApp/assets/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfonyApp/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/symfonyApp/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfonyApp/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/symfonyApp/config/routes.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfonyApp/src/Controller/Exam.php" beforeDir="false" afterPath="$PROJECT_DIR$/symfonyApp/src/Controller/Exam.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/symfonyApp/src/Controller/TeacherController.php" beforeDir="false" afterPath="$PROJECT_DIR$/symfonyApp/src/Controller/TeacherController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfonyApp/src/Repository/ExamRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/symfonyApp/src/Repository/ExamRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfonyApp/templates/main/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/symfonyApp/templates/main/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfonyApp/templates/main/student_login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/symfonyApp/templates/main/student_login.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfonyApp/templates/main/teacher_login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/symfonyApp/templates/main/teacher_login.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfonyApp/templates/student/exam_result.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/symfonyApp/templates/student/exam_result.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfonyApp/templates/student/student_main.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/symfonyApp/templates/student/student_main.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfonyApp/templates/teacher/edit_question.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/symfonyApp/templates/teacher/edit_question.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfonyApp/templates/teacher/make_exam.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/symfonyApp/templates/teacher/make_exam.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfonyApp/templates/teacher/make_exam_random_option.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/symfonyApp/templates/teacher/make_exam_random_option.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfonyApp/templates/teacher/make_question.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/symfonyApp/templates/teacher/make_question.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/symfonyApp/templates/teacher/teacher_main.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/symfonyApp/templates/teacher/teacher_main.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfonyApp/templates/template.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/symfonyApp/templates/template.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,7 +31,7 @@
           <entry key="project.open.time.38" value="1" />
           <entry key="project.open.time.39" value="2" />
           <entry key="project.open.time.47" value="1" />
-          <entry key="project.open.time.48" value="1" />
+          <entry key="project.open.time.48" value="2" />
           <entry key="project.open.time.49" value="1" />
           <entry key="project.open.time.50" value="2" />
           <entry key="project.open.time.51" value="1" />
@@ -63,7 +42,7 @@
           <entry key="project.open.time.91" value="1" />
           <entry key="project.open.time.93" value="1" />
           <entry key="project.open.time.95" value="1" />
-          <entry key="project.opened" value="28" />
+          <entry key="project.opened" value="29" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -72,9 +51,9 @@
           <entry key="env" value="1" />
           <entry key="gitignore" value="1" />
           <entry key="js" value="12" />
-          <entry key="php" value="108" />
+          <entry key="php" value="109" />
           <entry key="rnc" value="1" />
-          <entry key="twig" value="101" />
+          <entry key="twig" value="102" />
           <entry key="yaml" value="13" />
         </counts>
       </usages-collector>
@@ -82,10 +61,10 @@
         <counts>
           <entry key="CSS" value="5" />
           <entry key="JavaScript" value="12" />
-          <entry key="PHP" value="108" />
+          <entry key="PHP" value="109" />
           <entry key="PLAIN_TEXT" value="2" />
           <entry key="RNG Compact" value="1" />
-          <entry key="Twig" value="101" />
+          <entry key="Twig" value="102" />
           <entry key="YAML" value="13" />
         </counts>
       </usages-collector>
@@ -95,8 +74,8 @@
           <entry key="dummy" value="10" />
           <entry key="env" value="4" />
           <entry key="js" value="2579" />
-          <entry key="php" value="16782" />
-          <entry key="twig" value="15845" />
+          <entry key="php" value="16915" />
+          <entry key="twig" value="16271" />
           <entry key="yaml" value="4371" />
         </counts>
       </usages-collector>
@@ -104,9 +83,9 @@
         <counts>
           <entry key="CSS" value="142" />
           <entry key="JavaScript" value="2579" />
-          <entry key="PHP" value="16782" />
+          <entry key="PHP" value="16915" />
           <entry key="PLAIN_TEXT" value="14" />
-          <entry key="Twig" value="15845" />
+          <entry key="Twig" value="16271" />
           <entry key="YAML" value="4371" />
         </counts>
       </usages-collector>
@@ -124,38 +103,17 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/symfonyApp/config/packages/security.yaml">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="374">
-                  <caret line="45" column="8" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="8" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/symfonyApp/templates/teacher/make_question.html.twig">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="340">
-                  <caret line="52" column="24" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="24" />
+                <state relative-caret-position="442">
+                  <caret line="49" column="18" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/symfonyApp/templates/main/teacher_login.html.twig">
+            <entry file="file://$PROJECT_DIR$/symfonyApp/templates/teacher/teacher_main.html.twig">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="238">
-                  <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/symfonyApp/src/Controller/TeacherController.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="408">
-                  <caret line="65" column="39" selection-start-line="65" selection-start-column="39" selection-end-line="65" selection-end-column="39" />
-                  <folding>
-                    <element signature="e#117#152#0#PHP" expanded="true" />
-                  </folding>
+                <state relative-caret-position="425">
+                  <caret line="41" column="37" selection-start-line="41" selection-start-column="37" selection-end-line="41" selection-end-column="37" />
                 </state>
               </provider>
             </entry>
@@ -167,17 +125,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/symfonyApp/config/routes.yaml">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="405">
+                <state relative-caret-position="714">
                   <caret line="42" selection-start-line="42" selection-end-line="42" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/symfonyApp/templates/teacher/make_exam_random_option.html.twig">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="204">
-                  <caret line="12" column="9" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
                 </state>
               </provider>
             </entry>
@@ -187,15 +136,6 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="255">
                   <caret line="15" column="14" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/symfonyApp/templates/main/student_login.html.twig">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="85">
-                  <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="14" selection-end-column="18" />
                 </state>
               </provider>
             </entry>
@@ -212,8 +152,20 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/symfonyApp/assets/js/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="629">
+                <state relative-caret-position="1564">
                   <caret line="97" selection-start-line="97" selection-end-line="97" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/symfonyApp/src/Controller/TeacherController.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="306">
+                  <caret line="27" selection-start-line="27" selection-end-line="27" />
+                  <folding>
+                    <element signature="e#117#152#0#PHP" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -266,9 +218,7 @@
         <option value="$PROJECT_DIR$/symfonyApp/templates/student/student_template.html.twig" />
         <option value="$PROJECT_DIR$/symfonyApp/templates/student/student_main.html.twig" />
         <option value="$PROJECT_DIR$/symfonyApp/templates/student/exam_result.html.twig" />
-        <option value="$PROJECT_DIR$/symfonyApp/templates/teacher/teacher_main.html.twig" />
         <option value="$PROJECT_DIR$/symfonyApp/config/routes.yaml" />
-        <option value="$PROJECT_DIR$/symfonyApp/src/Controller/TeacherController.php" />
         <option value="$PROJECT_DIR$/symfonyApp/templates/teacher/exam_result_detail.html.twig" />
         <option value="$PROJECT_DIR$/symfonyApp/templates/teacher/exam_result.html.twig" />
         <option value="$PROJECT_DIR$/symfonyApp/src/Controller/Exam.php" />
@@ -281,6 +231,8 @@
         <option value="$PROJECT_DIR$/symfonyApp/templates/teacher/make_question.html.twig" />
         <option value="$PROJECT_DIR$/symfonyApp/templates/main/student_login.html.twig" />
         <option value="$PROJECT_DIR$/symfonyApp/templates/main/teacher_login.html.twig" />
+        <option value="$PROJECT_DIR$/symfonyApp/src/Controller/TeacherController.php" />
+        <option value="$PROJECT_DIR$/symfonyApp/templates/teacher/teacher_main.html.twig" />
       </list>
     </option>
   </component>
@@ -573,11 +525,12 @@
       <workItem from="1539113241604" duration="4281000" />
       <workItem from="1539239352164" duration="15436000" />
       <workItem from="1539266967569" duration="10958000" />
+      <workItem from="1539382017662" duration="2365000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="218614000" />
+    <option name="totallyTimeSpent" value="220979000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -590,8 +543,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12550336" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12684564" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -812,13 +766,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/symfonyApp/templates/teacher/teacher_main.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="8" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/symfonyApp/templates/teacher/exam_result.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -868,40 +815,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/symfonyApp/templates/template.html.twig">
+    <entry file="file://$PROJECT_DIR$/symfonyApp/templates/main/teacher_login.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/symfonyApp/assets/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="97" selection-start-line="97" selection-end-line="97" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/symfonyApp/src/Controller/TeacherController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="65" column="39" selection-start-line="65" selection-start-column="39" selection-end-line="65" selection-end-column="39" />
-          <folding>
-            <element signature="e#117#152#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/symfonyApp/config/packages/security.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="45" column="8" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="8" />
+        <state relative-caret-position="238">
+          <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/symfonyApp/config/routes.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
+        <state relative-caret-position="714">
           <caret line="42" selection-start-line="42" selection-end-line="42" />
         </state>
       </provider>
@@ -913,10 +836,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/symfonyApp/templates/template.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/symfonyApp/assets/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1564">
+          <caret line="97" selection-start-line="97" selection-end-line="97" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/symfonyApp/templates/teacher/make_question.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="52" column="24" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/symfonyApp/templates/main/student_login.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="8" column="44" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
         </state>
       </provider>
     </entry>
@@ -927,17 +871,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/symfonyApp/templates/main/student_login.html.twig">
+    <entry file="file://$PROJECT_DIR$/symfonyApp/config/packages/security.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="14" selection-end-column="18" />
+        <state relative-caret-position="442">
+          <caret line="49" column="18" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/symfonyApp/templates/main/teacher_login.html.twig">
+    <entry file="file://$PROJECT_DIR$/symfonyApp/src/Controller/TeacherController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+        <state relative-caret-position="306">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+          <folding>
+            <element signature="e#117#152#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/symfonyApp/templates/teacher/teacher_main.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="41" column="37" selection-start-line="41" selection-start-column="37" selection-end-line="41" selection-end-column="37" />
         </state>
       </provider>
     </entry>
