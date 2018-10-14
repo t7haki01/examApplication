@@ -4,33 +4,57 @@
 
 {% block body %}
 <h1>Here is for the making exam</h1>
-    <a href="{{ path('teacher_main', {'teacherId': teacherId}) }}"><button>Back</button></a>
-    <form {#action="{{ path( 'make_exam_selected', {'teacherId':teacherId}) }}" method="post"#}>
+    <a href="{{ path('teacher_main') }}"><button>Back</button></a>
     <div class="container">
-        <div>
-            <button type="submit" id="makeExamButton" data-id="{{ teacherId }}">Click Here to Make Exam</button>
-        </div>
-        <div>
-            <label for="examTitle">Exam Title</label>
-            <input type="text" name="examTitle" id="examTitle">
-        </div>
-        <table class="table">
+        {% if app.session.flashBag.has('success')%}
+            <div class="alert alert-success">
+                {% for msg in app.session.flashBag.get('success') %}
+                    {{ msg }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+    <label>Filter option for category</label>
+    <input id="filter" name="filter[]" type="checkbox" checked value="All">All
+    {% set categoryArray =[] %}
+    {% for question in questions %}
+        {% if question.category not in categoryArray %}
+            <input id="filter" name="filter[]" type="checkbox" value="{{ question.category }}">
+            {{ question.category }}
+            {% set categoryArray = categoryArray|merge([question.category]) %}
+        {% endif %}
+    {% endfor %}
+    <button class="filterButton">Filter</button>
+
+    <form {#action="{{ path( 'make_exam_selected', {'teacherId':teacherId}) }}" method="post"#}>
+
+            <div class="row justify-content-md-center">
+                <div class="col-md-1">
+                <label for="examTitle"><span class="badge badge-pill badge-primary">
+                        Exam Title
+                    </span></label></div>
+                <div class="col-md-6">
+                    <input required class="form-control" type="text" name="examTitle" id="examTitle">
+                </div>
+            </div>
+<br>
+        <div class="row">
             {% for question in questions %}
-                <tr><td>
+                <div class="col-md-6" name="{{ question.category }}">
                         <table class="table table-striped">
-                            <tr><td colspan="2">
+                            <tr><td style="" colspan="2">
                                     <input type="checkbox" name="question[]" value="{{ question.id }}"> Check here for selecting question as exam
                                 </td></tr>
                             <tr>
-                                <td class="text-right"><b>Category: </b></td>
-                                <td>{{ question.category }}</td>
+                                <td style="width: 30%" class="text-right"><b>Category: </b></td>
+                                <td style="width: 70%">{{ question.category }}</td>
                             </tr>
                             <tr>
                                 <td class="text-right"><b>Question: </b></td>
                                 <td>{{ question.question }}</td>
                             </tr>
                             <tr>
-                                <td class="text-right"><b>Examples: </b></td>
+                                <td class="text-right"><b>Choices: </b></td>
                                 <td>
                                     {#in here still need to figure out when example has only one 26.9#}
 
@@ -53,10 +77,14 @@
                                 </td>
                             </tr>
                         </table>
-                    </td></tr>
+                </div>
             {% endfor %}
-        </table>
-    </div>
-    </form>
+        </div>
 
+        <div>
+            <button class="btn btn-success" type="submit" id="makeExamButton" data-id="{{ teacherId }}">Click Here to Make Exam</button>
+        </div>
+
+    </form>
+    </div>
 {% endblock %}

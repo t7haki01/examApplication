@@ -1,16 +1,18 @@
 {% extends 'template.html.twig' %}
 
 {% block css %}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 {% endblock %}
 
 {% block body %}
-    <h1>Here comes exam main </h1>
-    <div><a href="{{ path('student_main', {'studentId':studentId}) }}"><button>
-                back menu
-            </button></a></div>
 
-    <P>Here could come some exams which is published</P>
+<div class="container">
+
+    <div><a href="{{ path('student_main') }}"><button class="btn btn-info">
+                back
+            </button></a></div>
+    <br>
+
 {#for checking that does student already applied exam or not,#}
     {#push exam id from examResult entity filtered by student #}
     {% set checkArray = [] %}
@@ -20,21 +22,23 @@
     <table>
     {% for exam in exams %}
         {% if exam.ispublished == true %}
-            <tr><td><table class="table">
+            <tr><td><table class="table table-bordered table-striped">
                         <tr>
-                            <th colspan="2">{{ exam.examTitle }}</th>
+                            <th colspan="2" class="text-center">{{ exam.examTitle }}</th>
                         </tr>
                         <tr>
-                            <td>Created Date</td>
+                            <th>Created Date</th>
                             <td>{{ exam.date | date('d.m.Y') }}</td>
                         </tr>
                         <tr>
-                            <td colspan="2">
+                            <td colspan="2" class="text-center">
                                     {% if exam.id in checkArray %}
-                                        You already applied
+                                        <span class="badge badge-pill badge-danger">
+                                            You already applied
+                                        </span>
                                     {% else %}
                                         <a href="{{ path('exam_show', {'examId': exam.id, 'studentId':studentId}) }}">
-                                            <button>Take Exam</button></a>
+                                            <button class="btn btn-success">Take Exam</button></a>
                                     {% endif %}
                             </td>
                         </tr>
@@ -42,4 +46,5 @@
         {% endif %}
     {% endfor %}
     </table>
+</div>
 {% endblock %}

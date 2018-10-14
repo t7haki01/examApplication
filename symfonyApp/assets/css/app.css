@@ -27,3 +27,7 @@ html, body{
     left: 50%;
     top: 50%;
 }
+
+table #result_table tr{
+    height: 80px;
+}

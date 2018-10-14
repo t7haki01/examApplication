@@ -3,26 +3,43 @@
 {% block css %}{% endblock %}
 
 {% block body %}
-<h1>Here comes for making exam randomly</h1>
-    <a href="{{ path('teacher_main', {'teacherId': teacherId}) }}"><button>Back</button></a>
+    <div class="container">
+<h1>Make Exam with Random options</h1>
+    <a href="{{ path('teacher_main') }}"><button>Back</button></a>
+
+        {% if app.session.flashBag.has('msg')%}
+            <div class="alert alert-success">
+                {% for msg in app.session.flashBag.get('msg') %}
+                    {{ msg }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+    <br><br>
 <form method="post" action="{{ path('teacher_make_exam_random_selected', {'teacherId':teacherId}) }}">
 <table>
     <tr>
-        <td><label>Exam Title:</label></td>
-        <td><input id="examTitle" name="examTitle" type="text"></td>
+        <td class="text-right"><label for="examTitle"><span class="badge badge-pill badge-success">Exam Title:</span></label></td>
+        <td><input class="form-control" id="examTitle" name="examTitle" type="text"></td>
     </tr>
     <tr>
-        <td>Number of Questions:</td>
+        <td class="text-right"><label for="numberOfQuestions">
+                <span class="badge badge-pill badge-primary">
+                    Number of Questions:</span></label></td>
         <td>
-            <input name="numberOfQuestions" id="numberOfQuestions" type="number">
+            <input class="form-control" name="numberOfQuestions" id="numberOfQuestions" type="number">
         </td>
     </tr>
     <tr>
-        <td>
-            Range of Category:
+        <td class="text-right">
+            <label for="category">
+                <span class="badge badge-pill badge-info">
+                    Range of Category:
+                </span>
+            </label>
         </td>
         <td>
-            <select id="category" name="category">
+            <select class="form-control" id="category" name="category">
             <option value="all" selected>all the category
                 {% set categoryArray = [] %}
             {% for questions in question %}
@@ -37,9 +54,10 @@
     <tr>
         <td></td>
         <td>
-            <button id="makeExamRandomButton" data-id="{{ teacherId }}" type="">Make Exam</button>
+            <button class="btn btn-success" id="makeExamRandomButton" data-id="{{ teacherId }}" type="">Make Exam</button>
         </td>
     </tr>
 </table>
 </form>
+    </div>
 {% endblock %}

@@ -34,7 +34,7 @@ function filterCategory(event){
 function makeExam(event){
         var examTitle = document.getElementById('examTitle').value;
         var questionIds = " ";
-        var checkBox = document.querySelectorAll('input[type=checkbox]:checked');
+        var checkBox = document.querySelectorAll('input[name="question[]"]:checked');
 
         for(var i=0; i<checkBox.length; i++){
             questionIds += checkBox[i].value + ',';
@@ -81,6 +81,53 @@ function deleteExam(event){
         .then(response => location.reload());
 }
 
+function filterCategory(){
+    var categoryArraySelected = [];
+    var categoryArrayAll = [];
+    var checkboxChekced = document.querySelectorAll('input[id="filter"]:checked');
+    var checkboxAll = document.querySelectorAll('input[id="filter"]');
+    for (var i = 0; i < checkboxChekced.length; i++) {
+        categoryArraySelected.push(checkboxChekced[i].value);
+    }
+    for (var i = 0; i < checkboxAll.length; i++) {
+        categoryArrayAll.push(checkboxAll[i].value);
+    }
+
+
+    if(!categoryArraySelected.includes("All")){
+        for(var k=0; k<categoryArrayAll.length; k++){
+            if(!categoryArraySelected.includes(categoryArrayAll[k])){
+                var categoryDiv = document.getElementsByName(categoryArrayAll[k]);
+                for(var j=0;j<categoryDiv.length;j++){
+                    categoryDiv[j].style.display = "none";
+                }
+            }
+            else{
+                var categoryDiv = document.getElementsByName(categoryArrayAll[k]);
+                for(var j=0;j<categoryDiv.length;j++){
+                    categoryDiv[j].style.display = "block";
+                }
+            }
+        }
+    }
+    else if(categoryArraySelected.length === 0){
+        for(var i=0;i<categoryArrayAll.length;i++){
+            var categoryDiv = document.getElementsByName(categoryArrayAll[i]);
+            for(var j=0;j<categoryDiv.length;j++){
+                categoryDiv[j].style.display = "none";
+            }
+        }
+    }
+    else{
+        for(var i=0;i<categoryArrayAll.length;i++){
+            var categoryDiv = document.getElementsByName(categoryArrayAll[i]);
+            for(var j=0;j<categoryDiv.length;j++){
+                categoryDiv[j].style.display = "block";
+            }
+        }
+    }
+}
+
 let deleteButtons = document.querySelectorAll('#deleteButton');
 deleteButtons.forEach(button => button.addEventListener('click', deleteQuestion));
 
@@ -90,11 +137,11 @@ makeExamButton.forEach(button => button.addEventListener('click', makeExam));
 // let makeExamRandomButton = document.querySelectorAll('#makeExamRandomButton');
 // makeExamRandomButton.forEach(button => button.addEventListener('click', makeExamRandom));
 
-let publishButton = document.querySelectorAll('.publishButton');
+let publishButton = document.querySelectorAll('#publishButton');
 publishButton.forEach(button => button.addEventListener('click', publishExam));
 
-let deleteExamButton = document.querySelectorAll('.deleteExam');
+let deleteExamButton = document.querySelectorAll('#deleteExam');
 deleteExamButton.forEach(button => button.addEventListener('click', deleteExam));
 
-// let filterButton = document.querySelectorAll('.filterButton');
-// filterButton.forEach(button => button.addEventListener('click', filterCategory));
+let filterButton = document.querySelectorAll('.filterButton');
+filterButton.forEach(button => button.addEventListener('click', filterCategory));

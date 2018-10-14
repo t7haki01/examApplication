@@ -3,15 +3,26 @@
 {% block css %}{% endblock %}
 {% block body %}
 <h1>Here is page for making questions</h1>
-<a href="{{ path('teacher_main', {'teacherId': teacherId}) }}"><button>Back</button></a>
-<div class="form-group">
-    {{ form_start(addNewQuestionForm) }}
-    {{ form_widget(addNewQuestionForm) }}
-    {{ form_end(addNewQuestionForm) }}
-</div>
+<a href="{{ path('teacher_main') }}"><button>Back</button></a>
+    <div class="row justify-content-md-center">
+        <div class="col-md-6">
+            <div class="form-group">
+                    {{ form_start(addNewQuestionForm) }}
+                    {{ form_widget(addNewQuestionForm) }}
+                    {{ form_end(addNewQuestionForm) }}
+            </div>
+        </div>
+    </div>
 
 
 <div class="container">
+    {% if app.session.flashBag.has('success')%}
+        <div class="alert alert-success">
+            {% for msg in app.session.flashBag.get('success') %}
+            {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
     <label>Filter option for category</label>
         <input id="filter" name="filter[]" type="checkbox" checked value="All">All
     {% set categoryArray =[] %}
@@ -22,77 +33,27 @@
     {% set categoryArray = categoryArray|merge([questions.category]) %}
     {% endif %}
     {% endfor %}
-    <button class="filterButton" onclick="filterCategory()">Filter</button>
-
-    <script>
-        function filterCategory(){
-            var categoryArraySelected = [];
-            var categoryArrayAll = [];
-            var checkboxChekced = document.querySelectorAll('input[id="filter"]:checked');
-            var checkboxAll = document.querySelectorAll('input[id="filter"]');
-            for (var i = 0; i < checkboxChekced.length; i++) {
-                categoryArraySelected.push(checkboxChekced[i].value);
-            }
-            for (var i = 0; i < checkboxAll.length; i++) {
-                categoryArrayAll.push(checkboxAll[i].value);
-            }
-
-
-            if(!categoryArraySelected.includes("All")){
-                for(k=0; k<categoryArrayAll.length; k++){
-                    if(!categoryArraySelected.includes(categoryArrayAll[k])){
-                        var categoryDiv = document.getElementsByName(categoryArrayAll[k]);
-                        for(j=0;j<categoryDiv.length;j++){
-                            categoryDiv[j].style.display = "none";
-                        }
-                    }
-                    else{
-                        var categoryDiv = document.getElementsByName(categoryArrayAll[k]);
-                        for(j=0;j<categoryDiv.length;j++){
-                            categoryDiv[j].style.display = "block";
-                        }
-                    }
-                }
-            }
-            else if(categoryArraySelected.length === 0){
-                for(i=0;i<categoryArrayAll.length;i++){
-                    var categoryDiv = document.getElementsByName(categoryArrayAll[i]);
-                    for(j=0;j<categoryDiv.length;j++){
-                        categoryDiv[j].style.display = "none";
-                    }
-                }
-            }
-            else{
-                for(i=0;i<categoryArrayAll.length;i++){
-                    var categoryDiv = document.getElementsByName(categoryArrayAll[i]);
-                    for(j=0;j<categoryDiv.length;j++){
-                        categoryDiv[j].style.display = "block";
-                    }
-                }
-            }
-        }
-    </script>
-
-    <table class="table">
+    <button class="filterButton">Filter</button>
+    <div class="row">
         {% for questions in question %}
-            <tr><td><div name="{{ questions.category }}">
+            <div name="{{ questions.category }}" class="col-md-6">{#<tr><td>#}
                 <table class="table table-striped">
                     <tr>
-                        <td class="text-right"><b>Category: </b></td>
-                        <td>{{ questions.category }}</td>
+                        <td class="text-right" style="width: 30%"><b>Category: </b></td>
+                        <td style="width: 70%">{{ questions.category }}</td>
                     </tr>
                     <tr>
                         <td class="text-right"><b>Question: </b></td>
-                        <td>{{ questions.question }}</td>
+                        <td class="">{{ questions.question }}</td>
                     </tr>
                     <tr>
-                        <td class="text-right"><b>Examples: </b></td>
-                        <td>
+                        <td class="text-right"><b>Answer Choices: </b></td>
+                        <td class="">
                             {#in here still need to figure out when example has only one 25.9#}
 
                             {%   set exampleArray = questions.examples|split(',') %}
                             {% for i in exampleArray %}
-                                {% if i|length == 0%} There is no example so it could be response question
+                                {% if i|length == 0%} Answer choices did not set for the answers
                                 {% else %}
                                     <input type="checkbox" value="{{ i }}"> {{ i }}
                                 {% endif %}
@@ -101,7 +62,7 @@
                     </tr>
                     <tr>
                         <td class="text-right"><b>Answers: </b></td>
-                        <td>
+                        <td class="">
                             {%   set answerArray = questions.answers|split(',') %}
                             {% for i in answerArray %}
                                 {{ i }},
@@ -109,12 +70,12 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-right"><a href="{{ path('teacher_edit_question', {'teacherId': teacherId, 'questionId': questions.id} ) }}"><button class="btn btn-info">Edit</button></a></td>
+                        <td class="text-right"><a href="{{ path('teacher_edit_question', {'questionId': questions.id} ) }}"><button class="btn btn-info">Edit</button></a></td>
                         <td><button class="btn btn-danger" id="deleteButton" data-id="{{ questions.id }}">Delete</button></td>
                     </tr>
-                </table></div>
-            </td></tr>
+                </table>
+            </div>
         {% endfor %}
-    </table>
+    </div>
 </div>
 {% endblock %}

@@ -7,13 +7,38 @@
     <div>
         <a href="{{ path('teacher_main') }}">back</a>
     </div>
+    <br><br>
+    <div class="container">
+        <div class="row">
     {% for result in resultData %}
-       student: {{ result.student.firstname }} {{ result.student.lastname }}<br>
-         score: {{ result.score }}<br>
-        <a href="{{ path('teacher_check_result', {'examId': result.exam.id, 'studentId':result.student.id}) }}">
-            <button>Check Details</button>
-        </a><br>
+        <div class="col-md-4">
+        <table class="table table-striped">
+           <tr>
+               <td style="width: 15%" class="text-right">
+                   <b>Student:</b>
+               </td>
+               <td style="width: 85%" class="text-left">
+                   {{ result.student.firstname }} {{ result.student.lastname }}
+               </td>
+           </tr>
+            <tr>
+                <td class="text-right">
+                    <b>Grade:</b>
+                </td>
+                <td class="text-left">
+                    {{ result.score }}
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center" colspan="2">
+                    <a href="{{ path('teacher_check_result', {'examId': result.exam.id, 'studentId':result.student.id}) }}">
+                        <button class="btn btn-info">Check Details</button>
+                    </a>
+                </td>
+            </tr>
+            </table>
+        </div>
     {% endfor %}
-
-
+        </div>
+    </div>
 {% endblock %}

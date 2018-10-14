@@ -17,7 +17,7 @@ class QuestionType extends AbstractType
         $builder
             ->add('question', TextType::class, array('attr' => array('class'=>'form-control')))
             ->add('category', TextType::class, array('attr' => array('class'=>'form-control')))
-            ->add('examples', TextType::class,array('attr' => array('placeholder' => 'Separate with comma(,) For the multiple examples'
+            ->add('examples', TextType::class,array('attr' => array('placeholder' => 'Separate with comma(,) For the multiple answer options, if there are no options, then can be blank'
                                                                               ,'class'=>'form-control'), 'required' => false ))
             ->add('answers', TextType::class, array('attr' => array('placeholder' => 'For the multiple answers separate with comma(,)',
                                                                                'class'=>'form-control')))

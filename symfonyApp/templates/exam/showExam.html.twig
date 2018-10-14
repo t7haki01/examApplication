@@ -1,37 +1,41 @@
 {% extends 'template.html.twig' %}
 {% block css %}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 {% endblock %}
 {% block body %}
-    <h1>Here is page for exam</h1>
-    <a href="{{ path('exam_main', {'studentId':studentId}) }}"><button>Back</button></a>
-<form action="{{ path('exam_result', {'studentId' : studentId, 'questionIds' : examData.questionIds, 'examId' : examData.id}) }}" method="POST">
-<h2>{{ examData.examTitle }}</h2>
+
+    <div class="container">
+    <a href="{{ path('exam_main') }}"><button>Back</button></a>
+    <h2>{{ examData.examTitle }}</h2>
+<form action="{{ path('exam_result', {'studentId' : studentId, 'examId' : examData.id}) }}" method="POST">
+{% set i = 1 %}
     {% if examData.isPublished == 1 %}
+    <input hidden type="text" name="questionIds" id="questionIds" value="{{ examData.questionIds }}">
     {% set questionIdArray = examData.questionIds|split(',') %}
     {% for j in questionIdArray %}
-    <div class="container">
+
         <table class="table">
             {% for questions in questions %}
                 {% if j == questions.id %}
                 <tr><td>
                         <table class="table table-striped">
                             <tr>
-                                <td class="text-right"><b>Category: </b></td>
-                                <td>{{ questions.category }}</td>
+                                <td class="text-right" style="width: 10%"><b>Category: </b></td>
+                                <td style="width: 90%"><span class="badge badge-pill badge-info">{{ questions.category }}</span></td>
                             </tr>
-                            <tr>
-                                <td class="text-right"><b>Question: </b></td>
+                            <tr class="">
+                                <td class="text-right"><b>Question{{ i }}: </b></td>
                                 <td id="{{ questions.id }}">{{ questions.question }}</td>
                             </tr>
+                            {% set i = i + 1 %}
                             <tr>
-                                <td class="text-right"><b>Answer: </b></td>
-                                <td>
+                                <td class="table-light text-right"><b>Answer: </b></td>
+                                <td class="table-light">
                                     {#in here still need to figure out when example has only one 25.9#}
                                     {%   set exampleArray = questions.examples|split(',') %}
                                     {% for i in exampleArray %}
                                         {% if i|length == 0%}
-                                            <input type="text" id="answer{{ questions.id }}[]" name="answer{{ questions.id }}[]">
+                                            <input class="form-control" type="text" id="answer{{ questions.id }}[]" name="answer{{ questions.id }}[]">
                                         {% else %}
                                             <input type="checkbox" id="answer{{ questions.id }}[]" name="answer{{ questions.id }}[]" value="{{i}}">{{ i }}
                                         {% endif %}
@@ -44,12 +48,11 @@
             {% endfor %}
     {% endfor %}
         <tr><td>
-                <button type="submit">submit</button>
+                <button class="btn btn-primary" type="submit">submit</button>
             </td></tr>
         </table>
     </div></form>
         {% else %}
         Sorry, This exam has not published yet.
     {% endif %}
-
 {% endblock %}

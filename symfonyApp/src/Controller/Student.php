@@ -25,7 +25,8 @@ class Student extends AbstractController
             ->findBy(array('student'=>$studentData));
 
         return  $this->render('student/student_main.html.twig',
-            array('studentId' => $studentId, 'examResult'=>$examResult
+            array('studentId' => $studentId, 'examResult'=>$examResult,
+                'studentData'=>$studentData
             ));
     }
 
@@ -46,12 +47,15 @@ class Student extends AbstractController
     $questions =[];
     $answers =[];
     $studentAnswer =[];
+    $isCorrect = [];
     foreach($examResult as $index => $result){
         array_push($studentAnswer,
             $examResult[$index]->getStudentAnswer());
+        array_push($isCorrect,
+            $examResult[$index]->getIsCorrect());
     }
 
-    ChromePhp::log($studentAnswer);
+    ChromePhp::log($isCorrect);
 
     foreach ($questionIdsArray as $id){
         if($id != " " && $id != null){
@@ -74,7 +78,8 @@ class Student extends AbstractController
      return $this->render('student/exam_result.html.twig',
          array('studentAnswer' => $studentAnswer, 'examData' => $examData,
                 'questionData' => $questions, 'score' => $score,
-             'answerData' => $answers, 'studentId'=> $studentId
+             'answerData' => $answers, 'studentId'=> $studentId,
+             'isCorrect'=>$isCorrect
              ));
     }
 

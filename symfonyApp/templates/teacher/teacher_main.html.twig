@@ -3,54 +3,56 @@
 {% block css %}{% endblock %}
 
 {% block body %}
-    <h1>Teacher Main Page</h1>
-    <div class="row">
-        <div class="row">
-            <div class="col-md-2 col-md-offset-2">
-                <a href="{{ path("teacher_make_question", {'teacherId': teacherId}) }}">
-                    <button>Make Question</button></a>
+    <div class="row justify-content-md-center">
+        <h2>
+        Hello, {{ teacherData.firstname }} {{ teacherData.lastname }}
+        </h2>
+    </div>
+    <br><br>
+        <div class="row justify-content-md-center">
+            <div class="col-md-2">
+                <a href="{{ path("teacher_make_question") }}">
+                    <button class="btn btn-info">Make Question</button></a>
             </div>
-            <div class="col-md-2 col-md-offset-2">
-                Making questions for the exam
+            <div class="col-md-2">
+                <a href="{{ path("teacher_make_exam") }}">
+                    <button class="btn btn-info">Make Exam with selection</button></a>
+            </div>
+            <div class="col-md-2">
+                <a href="{{ path("teacher_make_exam_random") }}">
+                    <button class="btn btn-info">Make Exam randomly</button></a>
             </div>
         </div>
-    </div>
-    <p>here could come for making exam with select</p>
-    <p>
-        <a href="{{ path("teacher_make_exam", {'teacherId': teacherId}) }}"><button>Make Exam with selection</button></a>
-    </p>
-    <p>here could come for making exam with random</p>
-    <p>
-        <a href="{{ path("teacher_make_exam_random", {'teacherId': teacherId}) }}"><button>Make Exam randomly</button></a>
-    </p>
-
-<table class="table">
-    <tr><th>Exams</th></tr>
+    <br><br>
+<div class="row justify-content-md-center">
+<table name="teacher_exam">
+    <tr><th><h2>Exams</h2></th></tr>
     <tr>
     {% for exam in exams %}
-        <td><table class="table table-condensed"><tr><th>
+        <td><table class="table table-striped"><tr><th>
                 {{ exam.examTitle }}
                     </th></tr>
                 <tr><td>
                         Created at: {{ exam.date | date('d.m.Y') }}
                     </td></tr>
                 <tr><td>
-                        <button class="publishButton" data-id="{{ exam.id }}">
+                        <button class="btn btn-primary" id="publishButton" data-id="{{ exam.id }}">
                             {% if exam.ispublished == false %}
-                            publish</button>
+                            Publish the exam</button>
                             {% else %}
-                            Unpublish</button>
+                            Hide the exam</button>
                             {% endif %}
                     </td></tr>
                 <tr><td>
-                        <button class="deleteExam" data-id="{{ exam.id }}">Delete Exam</button>
+                        <button class="btn btn-danger" id="deleteExam" data-id="{{ exam.id }}">Delete Exam</button>
                     </td></tr>
                 <tr><td>
                         <a href="{{ path('teacher_exam_result', {'examId':exam.id}) }}">
-                            <button>Check results</button>
+                            <button class="btn btn-success">Check results</button>
                         </a>
                     </td></tr>
         </table></td>
     {% endfor %}
         </tr></table>
+</div>
 {% endblock %}

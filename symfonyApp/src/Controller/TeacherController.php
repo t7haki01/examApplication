@@ -29,15 +29,23 @@ class TeacherController extends AbstractController
         $teacherId=$this->getUser()->getId();
         $exams = $this-> getDoctrine()->getRepository(Exam::class)->
         findBy(array('teacher' => $teacherId));
+        $teacherData = $this->getDoctrine()->getRepository(Teacher::class)
+            ->find($teacherId);
 
-        return  $this->render('teacher/teacher_main.html.twig', array('teacherId' => $teacherId, 'exams' =>$exams));
+        return  $this->render('teacher/teacher_main.html.twig',
+            array('teacherId' => $teacherId, 'exams' =>$exams,
+                   'teacherData' => $teacherData
+                ));
     }
 
-    public function makeQuestion(Request $request, $teacherId){
+    public function makeQuestion(Request $request){
 
+        $teacherId=$this->getUser()->getId();
 //        Here is used for form bundle
         $form = $this->createForm(QuestionType::class)
-            ->add('save', SubmitType::class, array('label'=>'Make Question'));
+            ->add('save', SubmitType::class,
+                array('label'=>'Make Question',
+                    'attr'=> array('class'=>'btn btn-primary')));
         $form->handleRequest($request);
 
         if($form->isSubmitted()){
@@ -49,7 +57,10 @@ class TeacherController extends AbstractController
 
             $em->persist($newQuestion);
             $em->flush();
-            $this->redirectToRoute('teacher_make_question',array('teacherId'=>$teacherId));
+            $request->getSession()
+                ->getFlashBag()
+                ->add('success','Question created!');
+            $this->redirectToRoute('teacher_make_question');
         }
 
         $questionData = $this->getDoctrine()->getRepository(Question::class)->findBy(array('teacher'=>$teacherId));
@@ -59,14 +70,20 @@ class TeacherController extends AbstractController
         );
     }
 
-    public function editQuestion(Request $request, $teacherId,$questionId){
+    public function editQuestion(Request $request, $questionId){
+        $teacherId=$this->getUser()->getId();
         $questionData = $this-> getDoctrine()->getRepository(Question::class)->find($questionId);
         $form = $this->createFormBuilder($questionData)
-            ->add('question', TextType::class)
-            ->add('category', TextType::class)
-            ->add('examples', TextType::class)
-            ->add('answers', TextType::class)
-            ->add('save', SubmitType::class, array('label'=> 'Save'))
+            ->add('question', TextType::class,
+                array('attr'=>array('class'=>'form-control')))
+            ->add('category', TextType::class,
+                array('attr'=>array('class'=>'form-control')))
+            ->add('examples', TextType::class,
+                array('attr'=>array('class'=>'form-control')))
+            ->add('answers', TextType::class,
+                array('attr'=>array('class'=>'form-control')))
+            ->add('save', SubmitType::class,
+                array('label'=> 'Save', 'attr'=>array('class'=>'btn btn-primary')))
             ->getForm();
         $form->handleRequest($request);
 
@@ -91,14 +108,16 @@ class TeacherController extends AbstractController
         return new Response();
     }
 
-    public function makeExam($teacherId){
+    public function makeExam(){
+        $teacherId=$this->getUser()->getId();
         $questions = $this-> getDoctrine()->getRepository(Question::class)->
             findBy(array('teacher' => $teacherId));
 
-        return $this->render('teacher/make_exam.html.twig', array("questions" =>$questions, "teacherId" => $teacherId));
+        return $this->render('teacher/make_exam.html.twig',
+            array("questions" =>$questions, 'teacherId'=>$teacherId));
     }
 
-    public function makeExamSelected($teacherId, $questionIds, $examTitle){
+    public function makeExamSelected($teacherId, $questionIds, $examTitle, Request $request){
 
         $em = $this->getDoctrine()->getManager();
         $teacherData =  $this->getDoctrine()->getRepository(Teacher::class)
@@ -114,17 +133,23 @@ class TeacherController extends AbstractController
         $em->persist($newExam);
         $em->flush();
 
-        return new Response();
+        $request->getSession()
+            ->getFlashBag()
+            ->add('success','Exam created!');
+        return $this->redirectToRoute('teacher_make_exam');
+
     }
 
-    public function makeExamRandom($teacherId){
+    public function makeExamRandom(){
+        $teacherId=$this->getUser()->getId();
         $questions = $this->getDoctrine()->getRepository(Question::class)->findBy(array('teacher' => $teacherId));
 
         return $this->render('teacher/make_exam_random_option.html.twig',
             array('teacherId' => $teacherId, 'question'=>$questions));
     }
 
-    public function  makeExamRandomSelected($teacherId, Request $request){
+    public function  makeExamRandomSelected(Request $request){
+        $teacherId=$this->getUser()->getId();
         //Here is used for advice 'request' get methods
         $category = $request->request->get('category');
         $numberOfQuestion = $request->request->get('numberOfQuestions');
@@ -160,11 +185,13 @@ class TeacherController extends AbstractController
 
         shuffle($questionIds);
 
-
         if($numberOfQuestion>count($questionIds))
         {
-            $msg = "You set number of question 
-            more than questions already exist";
+            $request->getSession()
+                ->getFlashBag()
+                ->add('msg',
+                    'You set number of question 
+                        more than questions already exist');
         }
         else
         {
@@ -176,11 +203,13 @@ class TeacherController extends AbstractController
 
             $em->persist($exam);
             $em->flush();
-            $msg ="Exam created successfully";
+            $request->getSession()
+                ->getFlashBag()
+                ->add('msg','Exam created successfully');
         }
 
+        return $this->redirectToRoute('teacher_make_exam_random');
 
-        return new Response($msg);
     }
     
     public function makeExamPublish($examId){
@@ -253,9 +282,12 @@ class TeacherController extends AbstractController
         $questions =[];
         $answers =[];
         $studentAnswer =[];
+        $isCorrect =[];
         foreach($examResult as $index => $result){
             array_push($studentAnswer,
                 $examResult[$index]->getStudentAnswer());
+            array_push($isCorrect,
+                $examResult[$index]->getIsCorrect());
         }
 
         foreach ($questionIdsArray as $id){
@@ -279,7 +311,8 @@ class TeacherController extends AbstractController
         return $this->render('teacher/exam_result_detail.html.twig',
             array('studentAnswer' => $studentAnswer, 'examData' => $examData,
                 'questionData' => $questions, 'score' => $score,
-                'answerData' => $answers, 'studentId'=> $studentId
+                'answerData' => $answers, 'studentId'=> $studentId,
+                'studentData' => $student, 'isCorrect'=>$isCorrect
             ));
     }
 

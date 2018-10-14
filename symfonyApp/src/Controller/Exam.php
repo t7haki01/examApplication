@@ -19,7 +19,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class Exam extends AbstractController
 {
-    public function examShow($examId, $studentId){
+    public function examShow($examId){
+        $studentId = $this->getUser()->getId();
         $questions = $this->getDoctrine()->getRepository(Question::class)->findAll();
         $examData = $this->getDoctrine()->getRepository(\App\Entity\Exam::class)->find($examId);
 
@@ -29,7 +30,8 @@ class Exam extends AbstractController
                 'studentId' => $studentId));
     }
 
-    public function examMain($studentId){
+    public function examMain(){
+        $studentId = $this->getUser()->getId();
         $exams = $this-> getDoctrine()->getRepository(\App\Entity\Exam::class)->
         findAll();
         $studentData = $this->getDoctrine()->getRepository(\App\Entity\Student::class)
@@ -42,12 +44,13 @@ class Exam extends AbstractController
                 'result'=>$result));
     }
 
-    public function examResult($studentId, $examId, $questionIds, Request $request){
+    public function examResult($studentId, $examId, Request $request){
         //This is for test
         $correctAnswerArraytest = [];
         $studentAnswertest = [];
 
-
+            $questionIds = $request->request->get('questionIds');
+            ChromePhp::log($questionIds);
             $examResult = new ExamResult();
             $student = $this->getDoctrine()->getRepository(\App\Entity\Student::class)
                 ->find($studentId);
@@ -80,6 +83,14 @@ class Exam extends AbstractController
                 //here for test
                     array_push($studentAnswertest, $studentAnswer);
 
+
+                    if(is_array($studentAnswer)){
+                        $newResult -> setStudentAnswer(implode(',',$studentAnswer));
+                    }
+                    else{
+                        $newResult -> setStudentAnswer($studentAnswer);
+                    }
+
                     if(is_array($studentAnswer)){
                         if(count($studentAnswer)==1){
                             $studentAnswerString = $studentAnswer[0];
@@ -92,10 +103,6 @@ class Exam extends AbstractController
                     else{
                         $studentAnswerString = $studentAnswer;
                     }
-
-
-
-                $newResult -> setStudentAnswer($studentAnswerString);
 
                 $newResult ->setExam($examData);
 
@@ -123,7 +130,6 @@ class Exam extends AbstractController
                     else{
                         $newResult->setIsCorrect(false);
                         $totalQuestion++;
-                        $score++;
                     }
                 }
                 else{
@@ -158,6 +164,11 @@ class Exam extends AbstractController
             $em->persist($examResult);
             $em->flush();
 
-            return $this->redirectToRoute('student_main',array('studentId'=>$studentId));
+        $request->getSession()
+            ->getFlashBag()
+            ->add('msg',
+                'Exam Submitted!');
+
+            return $this->redirectToRoute('student_main');
     }
 }

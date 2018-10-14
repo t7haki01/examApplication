@@ -29,11 +29,11 @@ student_login:
 
 
 teacher_make_question:
-    path: /teacher/make_question/{teacherId}
+    path: /teacher/make_question
     controller: App\Controller\TeacherController::makeQuestion
 
 teacher_edit_question:
-    path: /teacher/edit_question/{teacherId}/{questionId}
+    path: /teacher/edit_question/{questionId}
     controller: App\Controller\TeacherController::editQuestion
 
 teacher_delete_question:
@@ -54,7 +54,7 @@ teacher_check_result:
     controller: App\Controller\TeacherController::checkExamResult
 
 teacher_make_exam:
-    path: /teacher/make_exam/{teacherId}
+    path: /teacher/make_exam
     controller: App\Controller\TeacherController::makeExam
 
 make_exam_selected:
@@ -63,11 +63,11 @@ make_exam_selected:
     methods: [POST]
 
 teacher_make_exam_random:
-    path: /teacher/make_exam/random/{teacherId}
+    path: /teacher/make_exam/random
     controller: App\Controller\TeacherController::makeExamRandom
 
 teacher_make_exam_random_selected:
-    path: /teacher/make_exam/randomSelected/{teacherId}
+    path: /teacher/make_exam/randomSelected
     controller: App\Controller\TeacherController::makeExamRandomSelected
 
 teacher_exam_publish_set:
@@ -81,15 +81,15 @@ teacher_exam_delete:
     methods: [DELETE]
 
 exam_show:
-    path: /exam/{examId}/student/{studentId}
+    path: /student/exam/{examId}
     controller: App\Controller\Exam::examShow
 
 exam_main:
-    path: /student/exam/{studentId}
+    path: /student/exam
     controller: App\Controller\Exam::examMain
 
 exam_result:
-    path: /student/exam/{studentId}/examResult/{examId}/{questionIds}
+    path: /student/exam/{studentId}/examResult/{examId}
     controller: App\Controller\Exam::examResult
 
 student_check_result:
