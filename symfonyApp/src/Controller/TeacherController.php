@@ -276,7 +276,9 @@ class TeacherController extends AbstractController
     public function checkExamResult($examId, $studentId){
         $examData = $this->getDoctrine()->getRepository(\App\Entity\Exam::class)
             ->find($examId);
-
+        $randomCheck = $examData->getQuestionIds();
+        $randomCheckArray = explode(',',$randomCheck);
+    if($randomCheckArray[0]!=="random") {
         $questionIds = $examData->getQuestionIds();
         $questionIdsArray = explode(',', $questionIds);
 
@@ -284,21 +286,21 @@ class TeacherController extends AbstractController
             ->find($studentId);
 
         $examResult = $this->getDoctrine()->getRepository(Result::class)
-            ->findBy(array('exam'=>$examData,
+            ->findBy(array('exam' => $examData,
                 'student' => $student));
-        $questions =[];
-        $answers =[];
-        $studentAnswer =[];
-        $isCorrect =[];
-        foreach($examResult as $index => $result){
+        $questions = [];
+        $answers = [];
+        $studentAnswer = [];
+        $isCorrect = [];
+        foreach ($examResult as $index => $result) {
             array_push($studentAnswer,
                 $examResult[$index]->getStudentAnswer());
             array_push($isCorrect,
                 $examResult[$index]->getIsCorrect());
         }
 
-        foreach ($questionIdsArray as $id){
-            if($id != " " && $id != null){
+        foreach ($questionIdsArray as $id) {
+            if ($id != " " && $id != null) {
                 str_replace(" ", "", $id);
                 $questionById = $this->getDoctrine()->getRepository(Question::class)
                     ->find($id);
@@ -310,9 +312,56 @@ class TeacherController extends AbstractController
         }
 
         $score = $this->getDoctrine()->getRepository(ExamResult::class)
-            ->findBy(array('exam'=>$examData,
-                'student'=>$student
+            ->findBy(array('exam' => $examData,
+                'student' => $student
             ));
+    }
+    //Here is case that if exam type were random
+        else{
+            $student = $this->getDoctrine()->getRepository(\App\Entity\Student::class)
+                ->find($studentId);
+
+            $examResult = $this->getDoctrine()->getRepository(Result::class)
+                ->findBy(array('exam'=>$examData,
+                    'student' => $student));
+            $questionIdsArray =[];
+
+            foreach ($examResult as $result){
+                array_push($questionIdsArray, $result->getQuestion()->getId());
+            }
+
+//        $questionIds = $examData->getQuestionIds();
+//        $questionIdsArray = explode(',', $questionIds);
+
+
+            $questions =[];
+            $answers =[];
+            $studentAnswer =[];
+            $isCorrect = [];
+            foreach($examResult as $index => $result){
+                array_push($studentAnswer,
+                    $examResult[$index]->getStudentAnswer());
+                array_push($isCorrect,
+                    $examResult[$index]->getIsCorrect());
+            }
+
+            foreach ($questionIdsArray as $id){
+                if($id != " " && $id != null){
+                    str_replace(" ", "", $id);
+                    $questionById = $this->getDoctrine()->getRepository(Question::class)
+                        ->find($id);
+                    $questionData = $questionById->getQuestion();
+                    $questionAnswers = $questionById->getAnswers();
+                    array_push($questions, $questionData);
+                    array_push($answers, $questionAnswers);
+                }
+            }
+
+            $score = $this->getDoctrine()->getRepository(ExamResult::class)
+                ->findBy(array('exam'=>$examData,
+                    'student'=>$student
+                ));
+        }
 
 
         return $this->render('teacher/exam_result_detail.html.twig',

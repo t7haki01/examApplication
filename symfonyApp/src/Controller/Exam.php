@@ -31,10 +31,12 @@ class Exam extends AbstractController
             if($randomCheck[2]!=='All'){
                 $questions = $this->getDoctrine()->getRepository(Question::class)
                     ->findBy(array('category'=> $randomCheck[2]));
+                $questionsAll = $this->getDoctrine()->getRepository(Question::class)->findAll();
                 $isRandom=true;
             }
             else{
                 $questions = $this->getDoctrine()->getRepository(Question::class)->findAll();
+                $questionsAll = $this->getDoctrine()->getRepository(Question::class)->findAll();
                 $isRandom = true;
             }
         }
@@ -45,7 +47,8 @@ class Exam extends AbstractController
                 'questions' => $questions,
                 'studentId' => $studentId,
                 'isRandom' =>$isRandom,
-                'questionNumber' =>$questionNumbers));
+                'questionNumber' =>$questionNumbers,
+                'questionsAll' => $questionsAll));
     }
 
     public function examMain(){
