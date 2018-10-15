@@ -165,6 +165,7 @@ class TeacherController extends AbstractController
         $exam->setTeacher($teacherData);
         $exam->setIsPublished(false);
 //From here for the question Ids
+        //here was the making random exam when i misunderstood
         if($category == 'all'){
         $questionData = $this->getDoctrine()->getRepository(Question::class)
             ->findBy(array('teacher' => $teacherData));
@@ -180,11 +181,11 @@ class TeacherController extends AbstractController
         foreach ($questionData as $question){
             array_push($questionIds,$question->getId());
         }
-
-        $finalQuestion = [];
-
-        shuffle($questionIds);
-
+//
+//        $finalQuestion = [];
+//
+//        shuffle($questionIds);
+//
         if($numberOfQuestion>count($questionIds))
         {
             $request->getSession()
@@ -195,12 +196,18 @@ class TeacherController extends AbstractController
         }
         else
         {
-            for($i=0; $i<$numberOfQuestion; $i++){
-                array_push($finalQuestion, $questionIds[$i]);
-            }
-
-            $exam->setQuestionIds(implode(",",$finalQuestion));
-
+//            for($i=0; $i<$numberOfQuestion; $i++){
+//                array_push($finalQuestion, $questionIds[$i]);
+//            }
+//
+//            $exam->setQuestionIds(implode(",",$finalQuestion));
+////until here misunderstood
+//
+            $randomSetting = [];
+            array_push($randomSetting, 'random');
+            array_push($randomSetting, $numberOfQuestion);
+            array_push($randomSetting, $category);
+            $exam->setQuestionIds(implode(',',$randomSetting));
             $em->persist($exam);
             $em->flush();
             $request->getSession()

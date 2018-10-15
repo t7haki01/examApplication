@@ -21,13 +21,31 @@ class Exam extends AbstractController
 {
     public function examShow($examId){
         $studentId = $this->getUser()->getId();
-        $questions = $this->getDoctrine()->getRepository(Question::class)->findAll();
         $examData = $this->getDoctrine()->getRepository(\App\Entity\Exam::class)->find($examId);
+        $randomCheck = explode(',',$examData->getQuestionIds());
+        if($randomCheck[0]!=='random'){
+            $questions = $this->getDoctrine()->getRepository(Question::class)->findAll();
+            $isRandom = false;
+        }
+        else{
+            if($randomCheck[2]!=='All'){
+                $questions = $this->getDoctrine()->getRepository(Question::class)
+                    ->findBy(array('category'=> $randomCheck[2]));
+                $isRandom=true;
+            }
+            else{
+                $questions = $this->getDoctrine()->getRepository(Question::class)->findAll();
+                $isRandom = true;
+            }
+        }
+        $questionNumbers = $randomCheck[1];
 
         return $this->render('exam/showExam.html.twig',
             array('examData' => $examData,
                 'questions' => $questions,
-                'studentId' => $studentId));
+                'studentId' => $studentId,
+                'isRandom' =>$isRandom,
+                'questionNumber' =>$questionNumbers));
     }
 
     public function examMain(){

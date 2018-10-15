@@ -10,6 +10,7 @@
 <form action="{{ path('exam_result', {'studentId' : studentId, 'examId' : examData.id}) }}" method="POST">
 {% set i = 1 %}
     {% if examData.isPublished == 1 %}
+    {% if isRandom == false %}
     <input hidden type="text" name="questionIds" id="questionIds" value="{{ examData.questionIds }}">
     {% set questionIdArray = examData.questionIds|split(',') %}
     {% for j in questionIdArray %}
@@ -52,6 +53,63 @@
             </td></tr>
         </table>
     </div></form>
+    {% else %}
+    {#Here is for the when exam type is random#}
+    {% set randomArray = [] %}
+    {% set j = 0 %}
+{% for question in questions | shuffle %}
+        {% set randomArray = randomArray|merge([question]) %}
+ {% endfor %}
+
+ {% for test in randomArray if j < questionNumber %}
+ {{ test }}
+ {% set j = j + 1 %}
+ {% endfor %}
+
+    {#<input hidden type="text" name="questionIds" id="questionIds" value="{{ examData.questionIds }}">#}
+    {#{% set questionIdArray = examData.questionIds|split(',') %}#}
+    {#{% for j in questionIdArray %}#}
+
+        {#<table class="table">#}
+            {#{% for questions in questions %}#}
+                {#{% if j == questions.id %}#}
+                {#<tr><td>#}
+                        {#<table class="table table-striped">#}
+                            {#<tr>#}
+                                {#<td class="text-right" style="width: 10%"><b>Category: </b></td>#}
+                                {#<td style="width: 90%"><span class="badge badge-pill badge-info">{{ questions.category }}</span></td>#}
+                            {#</tr>#}
+                            {#<tr class="">#}
+                                {#<td class="text-right"><b>Question{{ i }}: </b></td>#}
+                                {#<td id="{{ questions.id }}">{{ questions.question }}</td>#}
+                            {#</tr>#}
+                            {#{% set i = i + 1 %}#}
+                            {#<tr>#}
+                                {#<td class="table-light text-right"><b>Answer: </b></td>#}
+                                {#<td class="table-light">#}
+                                    {#in here still need to figure out when example has only one 25.9#}
+                                    {#{%   set exampleArray = questions.examples|split(',') %}#}
+                                    {#{% for i in exampleArray %}#}
+                                        {#{% if i|length == 0%}#}
+                                            {#<input class="form-control" type="text" id="answer{{ questions.id }}[]" name="answer{{ questions.id }}[]">#}
+                                        {#{% else %}#}
+                                            {#<input type="checkbox" id="answer{{ questions.id }}[]" name="answer{{ questions.id }}[]" value="{{i}}">{{ i }}#}
+                                        {#{% endif %}#}
+                                    {#{% endfor %}#}
+                                {#</td>#}
+                            {#</tr>#}
+                        {#</table>#}
+                    {#</td></tr>#}
+                {#{% endif %}#}
+            {#{% endfor %}#}
+    {#{% endfor %}#}
+        {#<tr><td>#}
+                {#<button class="btn btn-primary" type="submit">submit</button>#}
+            {#</td></tr>#}
+        {#</table>#}
+    {#</div></form>#}
+    {#until here exam random type#}
+    {% endif %}
         {% else %}
         Sorry, This exam has not published yet.
     {% endif %}
