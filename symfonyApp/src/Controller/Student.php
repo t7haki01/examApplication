@@ -17,11 +17,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class Student extends AbstractController
 {
     public function studentMain(){
-        $studentId = $this->getUser()->getStudent()->getId();
+
+        $student=$this->getUser()->getStudent();
+        $studentId = $student->getId();
         $studentData = $this->getUser();
 
         $examResult = $this->getDoctrine()->getRepository(ExamResult::class)
-            ->findBy(array('student'=>$studentData));
+            ->findBy(array('student'=>$student));
 
         return  $this->render('student/student_main.html.twig',
             array('studentId' => $studentId, 'examResult'=>$examResult,

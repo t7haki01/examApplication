@@ -2,9 +2,11 @@
 
 {% block css %}{% endblock %}
 {% block body %}
-<h1>Here is page for making questions</h1>
-<a href="{{ path('teacher_main') }}"><button>Back</button></a>
+
     <div class="row justify-content-md-center">
+        <div>
+            <a href="{{ path('teacher_main') }}"><button class="btn btn-info">Back</button></a>
+        </div>
         <div class="col-md-6">
             <div class="form-group">
                     {{ form_start(addNewQuestionForm) }}

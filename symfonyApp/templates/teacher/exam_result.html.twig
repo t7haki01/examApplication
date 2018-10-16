@@ -3,8 +3,7 @@
 {% block css %}{% endblock %}
 
 {% block body %}
-    <h1>Here comes exam result </h1>
-    <div>
+    <div class="container">
         <a href="{{ path('teacher_main') }}">back</a>
     </div>
     <br><br>
@@ -18,7 +17,7 @@
                    <b>Student:</b>
                </td>
                <td style="width: 85%" class="text-left">
-                   {{ result.student.firstname }} {{ result.student.lastname }}
+                   {{ result.student.user.firstname }} {{ result.student.user.lastname }}
                </td>
            </tr>
             <tr>

@@ -30,27 +30,28 @@ class TeacherController extends AbstractController
     protected $teacher;
     protected $isTeacher;
 
-    public function __construct(RequestStack $requestStack, TokenStorageInterface $tokenStorage){
+    public function __construct(TokenStorageInterface $tokenStorage){
         $this->teacher = $tokenStorage->getToken()->getUser();
         $teacherCheck=$tokenStorage->getToken()->getUser()->getIsTeacher();
 
-        if(!$teacherCheck){
-            $this-> isTeacher = false;
-         }
-        else{
-            $this-> isTeacher = true;
-        }
+//        if(!$teacherCheck){
+//            $this-> isTeacher = false;
+//         }
+//        else{
+//            $this-> isTeacher = true;
+//        }
     }
 
     public function teacherMain(Request $request){
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        if(!($this->isTeacher)){
-            $request->getSession()
-                ->getFlashBag()
-                ->add('msg','You are not allowed to access');
-
-            return $this->redirectToRoute('index');
-        }
+//        if(!($this->isTeacher)){
+//            $request->getSession()
+//                ->getFlashBag()
+//                ->add('msg','You are not allowed to access');
+//
+//            return $this->redirectToRoute('index');
+//        }
         $teacherId=$this->getUser()->getTeacher()->getId();
         $exams = $this-> getDoctrine()->getRepository(Exam::class)->
         findBy(array('teacher' => $teacherId));
@@ -205,11 +206,7 @@ class TeacherController extends AbstractController
         foreach ($questionData as $question){
             array_push($questionIds,$question->getId());
         }
-//
-//        $finalQuestion = [];
-//
-//        shuffle($questionIds);
-//
+
         if($numberOfQuestion>count($questionIds))
         {
             $request->getSession()
@@ -220,13 +217,9 @@ class TeacherController extends AbstractController
         }
         else
         {
-//            for($i=0; $i<$numberOfQuestion; $i++){
-//                array_push($finalQuestion, $questionIds[$i]);
-//            }
-//
-//            $exam->setQuestionIds(implode(",",$finalQuestion));
+
 ////until here misunderstood
-//
+
             $randomSetting = [];
             array_push($randomSetting, 'random');
             array_push($randomSetting, $numberOfQuestion);
@@ -252,31 +245,6 @@ class TeacherController extends AbstractController
 
         return new Response();
     }
-
-//    public function editExam(Request $request, $teacherId, $examId){
-//        $examData = $this-> getDoctrine()->getRepository(Exam::class)->find($examId);
-//
-//        $form = $this->createFormBuilder($examData)
-//            ->add('question', TextType::class)
-//            ->add('category', TextType::class)
-//            ->add('examples', TextType::class)
-//            ->add('answers', TextType::class)
-//            ->add('save', SubmitType::class, array('label'=> 'Save'))
-//            ->getForm();
-//        $form->handleRequest($request);
-//
-//        if($form->isSubmitted() && $form->isValid()){
-//            $questionData = $form->getData();
-//            $questionData-> setDate(new \DateTime());
-//            $em = $this->getDoctrine()->getManager();
-//            $em->persist($questionData);
-//            $em->flush();
-//        }
-//
-//        return $this->render('teacher/edit_question.html.twig',array('question' => $questionData,
-//            'teacherId' => $teacherId,
-//            'editForm'=> $form->createView()));
-//    }
 
     public function examDelete($examId){
         $examData = $this->getDoctrine()->getRepository(Exam::class)->find($examId);
@@ -353,10 +321,6 @@ class TeacherController extends AbstractController
             foreach ($examResult as $result){
                 array_push($questionIdsArray, $result->getQuestion()->getId());
             }
-
-//        $questionIds = $examData->getQuestionIds();
-//        $questionIdsArray = explode(',', $questionIds);
-
 
             $questions =[];
             $answers =[];

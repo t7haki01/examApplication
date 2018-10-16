@@ -20,12 +20,13 @@ use Symfony\Component\HttpFoundation\Response;
 class Exam extends AbstractController
 {
     public function examShow($examId){
-        $studentId = $this->getUser()->getId();
+        $studentId = $this->getUser()->getStudent()->getId();
         $examData = $this->getDoctrine()->getRepository(\App\Entity\Exam::class)->find($examId);
         $randomCheck = explode(',',$examData->getQuestionIds());
         if($randomCheck[0]!=='random'){
             $questions = $this->getDoctrine()->getRepository(Question::class)->findAll();
             $isRandom = false;
+            $questionsAll='';
         }
         else{
             if($randomCheck[2]!=='All'){
@@ -52,7 +53,7 @@ class Exam extends AbstractController
     }
 
     public function examMain(){
-        $studentId = $this->getUser()->getId();
+        $studentId = $this->getUser()->getStudent()->getId();
         $exams = $this-> getDoctrine()->getRepository(\App\Entity\Exam::class)->
         findAll();
         $studentData = $this->getDoctrine()->getRepository(\App\Entity\Student::class)
@@ -66,12 +67,8 @@ class Exam extends AbstractController
     }
 
     public function examResult($studentId, $examId, Request $request){
-        //This is for test
-        $correctAnswerArraytest = [];
-        $studentAnswertest = [];
 
             $questionIds = $request->request->get('questionIds');
-            ChromePhp::log($questionIds);
             $examResult = new ExamResult();
             $student = $this->getDoctrine()->getRepository(\App\Entity\Student::class)
                 ->find($studentId);
@@ -101,10 +98,6 @@ class Exam extends AbstractController
 
                 $studentAnswer = $request->request->get($answerIndex);
 
-                //here for test
-                    array_push($studentAnswertest, $studentAnswer);
-
-
                     if(is_array($studentAnswer)){
                         $newResult -> setStudentAnswer(implode(',',$studentAnswer));
                     }
@@ -132,9 +125,6 @@ class Exam extends AbstractController
 
                 $correctAnswer = str_replace(' ', '',$correctAnswer);
                 $correctAnswerArray = explode(',', $correctAnswer);
-
-                //here also for test
-                    array_push($correctAnswerArraytest, $correctAnswerArray);
 
                 if(count($studentAnswer) != count($correctAnswerArray)){
                     $newResult->setIsCorrect(false);

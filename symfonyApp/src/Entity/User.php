@@ -165,7 +165,12 @@ class User implements UserInterface
 
     public function getRoles()
     {
-        return array('ROLE_USER');
+        if($this->isTeacher==true){
+            return array('ROLE_TEACHER', 'ROLE_STUDENT');
+        }
+        else{
+            return array('ROLE_STUDENT');
+        }
     }
 
     public function getSalt()

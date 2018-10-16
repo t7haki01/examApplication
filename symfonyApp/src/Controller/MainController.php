@@ -10,19 +10,12 @@ namespace App\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 
 class MainController extends AbstractController
 {
     public function index(){
         return $this->render('main/index.html.twig');
-    }
-
-    public function teacherLogin(){
-        return $this->render('main/teacher_login.html.twig');
-    }
-
-    public function studentLogin(){
-        return $this->render('main/student_login.html.twig');
     }
 
     public function loginCheck(){
@@ -34,5 +27,13 @@ class MainController extends AbstractController
         else{
             return $this->redirectToRoute('student_main');
         }
+    }
+
+    public function loginFail(Request $request){
+        $request->getSession()
+            ->getFlashBag()
+            ->add('msg',
+                'Username or Password is not correct please check again');
+        return $this->redirectToRoute('index');
     }
 }

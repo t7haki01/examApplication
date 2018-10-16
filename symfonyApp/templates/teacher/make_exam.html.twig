@@ -3,9 +3,12 @@
 {% block css %}{% endblock %}
 
 {% block body %}
-<h1>Here is for the making exam</h1>
-    <a href="{{ path('teacher_main') }}"><button>Back</button></a>
+
+
     <div class="container">
+        <div>
+            <a href="{{ path('teacher_main') }}"><button class="btn btn-info">Back</button></a>
+        </div>
         {% if app.session.flashBag.has('success')%}
             <div class="alert alert-success">
                 {% for msg in app.session.flashBag.get('success') %}

@@ -15,6 +15,14 @@
             </div>
         {% endif %}
 
+        {% if app.session.flashBag.has('warn')%}
+            <div class="alert alert-danger">
+                {% for msg in app.session.flashBag.get('warn') %}
+                    {{ msg }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
     <div><a href="{{ path('exam_main') }}">
             <button class="btn btn-success">Click Here to go taking Exam</button>
         </a></div>
