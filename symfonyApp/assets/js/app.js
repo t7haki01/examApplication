@@ -26,48 +26,28 @@ function deleteQuestion(event){
     }
 }
 
-function filterCategory(event){
-    var categories = document.querySelector('#filter').checked.value;
-    console.log(categories[0]);
-}
-
 function makeExam(event){
         var examTitle = document.getElementById('examTitle').value;
         var questionIds = " ";
+        var studentsAvailable =" " ;
         var checkBox = document.querySelectorAll('input[name="question[]"]:checked');
+
+        var students = document.querySelectorAll('input[name="student[]"]:checked');
 
         for(var i=0; i<checkBox.length; i++){
             questionIds += checkBox[i].value + ',';
         }
+
+        for(var i=0; i<students.length; i++){
+            studentsAvailable += students[i].value + ',';
+        }
         const teacherId = event.target.getAttribute('data-id');
 
-        axios.post('/teacher/make_exam/' + teacherId + '/make_exam_selected/' + questionIds + '/' + examTitle )
+        axios.post('/teacher/make_exam/' + teacherId
+            + '/make_exam_selected/' + questionIds + '/'
+            + examTitle + '/' + studentsAvailable )
         .then(response => location.reload());
 }
-
-// function submitAnswer(event){
-//     var studentAnswers = {
-//         answer1:1,
-//         answer2:2
-//     };
-//
-//     const studentId = event.target.getAttribute('data-id');
-//     const examId = event.target.getAttribute('name');
-//     const questionIds = event.target.getAttribute('class');
-//
-//     axios.post('/student/exam/' + studentId + '/examResult/' + examId + '/' + questionIds + '/' + studentAnswers )
-//         .then(response => location.reload());
-// }
-
-// let submitAnswerButton = document.querySelectorAll('#submitAnswer');
-// submitAnswerButton.forEach(button => button.addEventListener('click', submitAnswer));
-
-
-// function makeExamRandom(event){
-//     const teacherId = event.target.getAttribute('data-id');
-//     axios.post('/teacher/make_exam/randomSelected/' + teacherId)
-//     .then(response => location.reload());
-// }
 
 function publishExam(event){
     const examId = event.target.getAttribute('data-id');
@@ -133,9 +113,6 @@ deleteButtons.forEach(button => button.addEventListener('click', deleteQuestion)
 
 let makeExamButton = document.querySelectorAll('#makeExamButton');
 makeExamButton.forEach(button => button.addEventListener('click', makeExam));
-
-// let makeExamRandomButton = document.querySelectorAll('#makeExamRandomButton');
-// makeExamRandomButton.forEach(button => button.addEventListener('click', makeExamRandom));
 
 let publishButton = document.querySelectorAll('#publishButton');
 publishButton.forEach(button => button.addEventListener('click', publishExam));

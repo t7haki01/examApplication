@@ -54,12 +54,15 @@
         </table>
     </div></form>
     {% else %}
+
     {#Here is for the when exam type is random#}
     {% set randomArray = [] %}
+
     {% set j = 0 %}
-{% for question in questions | shuffle %}
-        {% set randomArray = randomArray|merge([question]) %}
- {% endfor %}
+
+    {% for question in questions | shuffle %}
+            {% set randomArray = randomArray|merge([question]) %}
+    {% endfor %}
 
 {% set randomIdArray = [] %}
 

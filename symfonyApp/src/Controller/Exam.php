@@ -31,7 +31,7 @@ class Exam extends AbstractController
         else{
             if($randomCheck[2]!=='All'){
                 $questions = $this->getDoctrine()->getRepository(Question::class)
-                    ->findBy(array('category'=> $randomCheck[2]));
+                    ->findAll();
                 $questionsAll = $this->getDoctrine()->getRepository(Question::class)->findAll();
                 $isRandom=true;
             }

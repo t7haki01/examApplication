@@ -15,34 +15,38 @@
 
 {#for checking that does student already applied exam or not,#}
     {#push exam id from examResult entity filtered by student #}
+
     {% set checkArray = [] %}
     {% for checkData in result %}
     {% set checkArray = checkArray|merge([checkData.exam.id]) %}
     {% endfor %}
     <table>
     {% for exam in exams %}
-        {% if exam.ispublished == true %}
-            <tr><td><table class="table table-bordered table-striped">
-                        <tr>
-                            <th colspan="2" class="text-center">{{ exam.examTitle }}</th>
-                        </tr>
-                        <tr>
-                            <th>Created Date</th>
-                            <td>{{ exam.date | date('d.m.Y') }}</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" class="text-center">
-                                    {% if exam.id in checkArray %}
-                                        <span class="badge badge-pill badge-danger">
-                                            You already applied
-                                        </span>
-                                    {% else %}
-                                        <a href="{{ path('exam_show', {'examId': exam.id, 'studentId':studentId}) }}">
-                                            <button class="btn btn-success">Take Exam</button></a>
-                                    {% endif %}
-                            </td>
-                        </tr>
-                    </table></td></tr>
+        {% set studentCheck = exam.availableStudents | split(',')%}
+        {% if studentId in studentCheck %}
+            {% if exam.ispublished == true %}
+                <tr><td><table class="table table-bordered table-striped">
+                            <tr>
+                                <th colspan="2" class="text-center">{{ exam.examTitle }}</th>
+                            </tr>
+                            <tr>
+                                <th>Created Date</th>
+                                <td>{{ exam.date | date('d.m.Y') }}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="text-center">
+                                        {% if exam.id in checkArray %}
+                                            <span class="badge badge-pill badge-danger">
+                                                You already applied
+                                            </span>
+                                        {% else %}
+                                            <a href="{{ path('exam_show', {'examId': exam.id, 'studentId':studentId}) }}">
+                                                <button class="btn btn-success">Take Exam</button></a>
+                                        {% endif %}
+                                </td>
+                            </tr>
+                        </table></td></tr>
+            {% endif %}
         {% endif %}
     {% endfor %}
     </table>

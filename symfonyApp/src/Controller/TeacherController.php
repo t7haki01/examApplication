@@ -137,12 +137,16 @@ class TeacherController extends AbstractController
         $teacherId=$this->getUser()->getTeacher()->getId();
         $questions = $this-> getDoctrine()->getRepository(Question::class)->
             findBy(array('teacher' => $teacherId));
+        $students = $this->getDoctrine()->getRepository(User::class)
+            ->findBy(array('isTeacher'=>false));
 
         return $this->render('teacher/make_exam.html.twig',
-            array("questions" =>$questions, 'teacherId'=>$teacherId));
+            array("questions" =>$questions, 'teacherId'=>$teacherId,
+                  "students"=>$students
+                ));
     }
 
-    public function makeExamSelected($teacherId, $questionIds, $examTitle, Request $request){
+    public function makeExamSelected($teacherId, $questionIds, $examTitle, $students,Request $request){
 
         $em = $this->getDoctrine()->getManager();
         $teacherData =  $this->getDoctrine()->getRepository(Teacher::class)
@@ -151,6 +155,7 @@ class TeacherController extends AbstractController
 
         $newExam->setDate(new \DateTime());
         $newExam->setQuestionIds($questionIds);
+        $newExam->setAvailableStudents($students);
         $newExam->setIsPublished(false);
         $newExam->setTeacher($teacherData);
         $newExam->setExamTitle($examTitle);
@@ -175,6 +180,7 @@ class TeacherController extends AbstractController
 
     public function  makeExamRandomSelected(Request $request){
         $teacherId=$this->getUser()->getTeacher()->getId();
+
         //Here is used for advice 'request' get methods
         $category = $request->request->get('category');
         $numberOfQuestion = $request->request->get('numberOfQuestions');

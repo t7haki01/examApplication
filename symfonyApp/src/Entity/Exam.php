@@ -54,6 +54,11 @@ class Exam
      */
     private $examResults;
 
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $availableStudents;
+
     public function __construct()
     {
         $this->results = new ArrayCollection();
@@ -183,6 +188,18 @@ class Exam
                 $examResult->setExam(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAvailableStudents(): ?string
+    {
+        return $this->availableStudents;
+    }
+
+    public function setAvailableStudents(string $availableStudents): self
+    {
+        $this->availableStudents = $availableStudents;
 
         return $this;
     }

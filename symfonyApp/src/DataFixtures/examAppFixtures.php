@@ -32,7 +32,6 @@ class examAppFixtures extends Fixture
         $dummyUser1->setPassword(password_hash('test1',PASSWORD_BCRYPT));
         $dummyUser1->setEmail('test1@test.com');
         $dummyUser1->setIsTeacher(true);
-        $dummyUser1->setIsStudent(false);
 
         $dummyUser1->setTeacher($teacher1);
         $manager->persist($dummyUser1);
@@ -45,7 +44,6 @@ class examAppFixtures extends Fixture
         $dummyUser2->setPassword(password_hash('test2',PASSWORD_BCRYPT));
         $dummyUser2->setEmail('test2@test.com');
         $dummyUser2->setIsTeacher(true);
-        $dummyUser2->setIsStudent(false);
         $dummyUser2->setTeacher($teacher2);
         $manager->persist($dummyUser2);
 
@@ -56,13 +54,25 @@ class examAppFixtures extends Fixture
         $student2 = new Student();
         $manager->persist($student2);
 
+        $student3 = new Student();
+        $manager->persist($student3);
+
+        $testUser = new User();
+        $testUser->setFirstname('Test');
+        $testUser->setLastname('Student');
+        $testUser->setEmail('noemail');
+        $testUser->setIsTeacher(false);
+        $testUser->setUsername('test');
+        $testUser->setPassword(password_hash('student', PASSWORD_BCRYPT));
+        $testUser->setStudent($student3);
+        $manager->persist($testUser);
+
         $dummyStudent1 = new User();
         $dummyStudent1->setFirstname('Lionel');
         $dummyStudent1->setLastname('Messi');
         $dummyStudent1->setUsername('student1');
         $dummyStudent1->setPassword(password_hash('test1', PASSWORD_BCRYPT));
         $dummyStudent1->setEmail('student1@test.com');
-        $dummyStudent1->setIsStudent(true);
         $dummyStudent1->setIsTeacher(false);
         $dummyStudent1->setStudent($student1);
         $manager->persist($dummyStudent1);
@@ -74,7 +84,6 @@ class examAppFixtures extends Fixture
         $dummyStudent2->setPassword(password_hash('test2', PASSWORD_BCRYPT));
         $dummyStudent2->setEmail('student2@test.com');
         $dummyStudent2->setIsTeacher(false);
-        $dummyStudent2 ->setIsStudent(true);
         $dummyStudent2->setStudent($student2);
         $manager->persist($dummyStudent2);
 

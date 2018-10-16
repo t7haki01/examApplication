@@ -17,17 +17,41 @@
             </div>
         {% endif %}
 
-    <label>Filter option for category</label>
-    <input id="filter" name="filter[]" type="checkbox" checked value="All">All
-    {% set categoryArray =[] %}
-    {% for question in questions %}
-        {% if question.category not in categoryArray %}
-            <input id="filter" name="filter[]" type="checkbox" value="{{ question.category }}">
-            {{ question.category }}
-            {% set categoryArray = categoryArray|merge([question.category]) %}
-        {% endif %}
-    {% endfor %}
-    <button class="filterButton">Filter</button>
+        <div class="container">
+            <label>Filter option for category</label>
+            <input id="filter" name="filter[]" type="checkbox" checked value="All">All
+            {% set categoryArray =[] %}
+            {% for question in questions %}
+                {% if question.category not in categoryArray %}
+                    <input id="filter" name="filter[]" type="checkbox" value="{{ question.category }}">
+                    {{ question.category }}
+                    {% set categoryArray = categoryArray|merge([question.category]) %}
+                {% endif %}
+            {% endfor %}
+            <button class="filterButton">Filter</button>
+        </div>
+
+        {#Here comes for the selecting available students#}
+        <div class="container">
+            <label>Select the students whose can take exam</label>
+            <input onchange="studentCheck()" id="studentAll" name="student[]" type="checkbox" value="All">All
+
+            {% for student in students %}
+                    <input id="student" name="student[]" type="checkbox" value="{{ student.student.id }}">
+                    {{ student.firstname }} {{ student.lastname }}
+            {% endfor %}
+        </div>
+        <script>
+            function studentCheck() {
+                var allBtn = document.getElementById('studentAll');
+                if(allBtn.checked){
+                    document.querySelectorAll('input[name="student[]"]').checked = true;
+                }
+                else{
+                    document.querySelectorAll('input[name="student[]"]').checked = false;
+                }
+            }
+        </script>
 
     <form {#action="{{ path( 'make_exam_selected', {'teacherId':teacherId}) }}" method="post"#}>
 

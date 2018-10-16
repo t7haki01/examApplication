@@ -53,11 +53,6 @@ class User implements UserInterface
     private $isTeacher;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $isStudent;
-
-    /**
      * @ORM\OneToOne(targetEntity="App\Entity\Teacher", inversedBy="user", cascade={"persist", "remove"})
      */
     private $teacher;
@@ -147,18 +142,6 @@ class User implements UserInterface
     public function setIsTeacher(bool $isTeacher): self
     {
         $this->isTeacher = $isTeacher;
-
-        return $this;
-    }
-
-    public function getIsStudent(): ?bool
-    {
-        return $this->isStudent;
-    }
-
-    public function setIsStudent(bool $isStudent): self
-    {
-        $this->isStudent = $isStudent;
 
         return $this;
     }
