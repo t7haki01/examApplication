@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TeacherRepository")
  */
-class Teacher implements UserInterface
+class Teacher
 {
     /**
      * @ORM\Id()
@@ -20,34 +20,14 @@ class Teacher implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=50)
-     */
-    private $firstname;
-
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
-    private $lastname;
-
-    /**
-     * @ORM\Column(type="string", length=100)
-     */
-    private $username;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $password;
-
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
-    private $email;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Question", mappedBy="teacher")
      */
     private $questions;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\User", mappedBy="teacher", cascade={"persist", "remove"})
+     */
+    private $user;
 
     public function __construct()
     {
@@ -59,78 +39,9 @@ class Teacher implements UserInterface
         return $this->id;
     }
 
-    public function getFirstname(): ?string
-    {
-        return $this->firstname;
-    }
-
-    public function setFirstname(string $firstname): self
-    {
-        $this->firstname = $firstname;
-
-        return $this;
-    }
-
-    public function getLastname(): ?string
-    {
-        return $this->lastname;
-    }
-
-    public function setLastname(string $lastname): self
-    {
-        $this->lastname = $lastname;
-
-        return $this;
-    }
-
-    public function getUsername(): ?string
-    {
-        return $this->username;
-    }
-
-    public function setUsername(string $username): self
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
     public function getRoles()
     {
         return array('ROLE_USER');
-    }
-
-    public function getSalt()
-    {
-        return null;
-    }
-
-    public function eraseCredentials()
-    {
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
     }
 
     /**
@@ -159,6 +70,24 @@ class Teacher implements UserInterface
             if ($question->getTeacher() === $this) {
                 $question->setTeacher(null);
             }
+        }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newTeacher = $user === null ? null : $this;
+        if ($newTeacher !== $user->getTeacher()) {
+            $user->setTeacher($newTeacher);
         }
 
         return $this;

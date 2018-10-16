@@ -15,22 +15,47 @@ use App\Entity\ExamResult;
 use App\Entity\Question;
 use App\Entity\Result;
 use App\Entity\Teacher;
+use App\Entity\User;
 use App\Form\QuestionType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class TeacherController extends AbstractController
 {
+    protected $teacher;
+    protected $isTeacher;
 
-    public function teacherMain(){
-        $teacherId=$this->getUser()->getId();
+    public function __construct(RequestStack $requestStack, TokenStorageInterface $tokenStorage){
+        $this->teacher = $tokenStorage->getToken()->getUser();
+        $teacherCheck=$tokenStorage->getToken()->getUser()->getIsTeacher();
+
+        if(!$teacherCheck){
+            $this-> isTeacher = false;
+         }
+        else{
+            $this-> isTeacher = true;
+        }
+    }
+
+    public function teacherMain(Request $request){
+
+        if(!($this->isTeacher)){
+            $request->getSession()
+                ->getFlashBag()
+                ->add('msg','You are not allowed to access');
+
+            return $this->redirectToRoute('index');
+        }
+        $teacherId=$this->getUser()->getTeacher()->getId();
         $exams = $this-> getDoctrine()->getRepository(Exam::class)->
         findBy(array('teacher' => $teacherId));
-        $teacherData = $this->getDoctrine()->getRepository(Teacher::class)
-            ->find($teacherId);
+
+        $teacherData = $this->getUser();
 
         return  $this->render('teacher/teacher_main.html.twig',
             array('teacherId' => $teacherId, 'exams' =>$exams,
@@ -39,8 +64,7 @@ class TeacherController extends AbstractController
     }
 
     public function makeQuestion(Request $request){
-
-        $teacherId=$this->getUser()->getId();
+        $teacherId=$this->getUser()->getTeacher()->getId();
 //        Here is used for form bundle
         $form = $this->createForm(QuestionType::class)
             ->add('save', SubmitType::class,
@@ -71,7 +95,7 @@ class TeacherController extends AbstractController
     }
 
     public function editQuestion(Request $request, $questionId){
-        $teacherId=$this->getUser()->getId();
+        $teacherId=$this->getUser()->getTeacher()->getId();
         $questionData = $this-> getDoctrine()->getRepository(Question::class)->find($questionId);
         $form = $this->createFormBuilder($questionData)
             ->add('question', TextType::class,
@@ -109,7 +133,7 @@ class TeacherController extends AbstractController
     }
 
     public function makeExam(){
-        $teacherId=$this->getUser()->getId();
+        $teacherId=$this->getUser()->getTeacher()->getId();
         $questions = $this-> getDoctrine()->getRepository(Question::class)->
             findBy(array('teacher' => $teacherId));
 
@@ -141,7 +165,7 @@ class TeacherController extends AbstractController
     }
 
     public function makeExamRandom(){
-        $teacherId=$this->getUser()->getId();
+        $teacherId=$this->getUser()->getTeacher()->getId();
         $questions = $this->getDoctrine()->getRepository(Question::class)->findBy(array('teacher' => $teacherId));
 
         return $this->render('teacher/make_exam_random_option.html.twig',
@@ -149,7 +173,7 @@ class TeacherController extends AbstractController
     }
 
     public function  makeExamRandomSelected(Request $request){
-        $teacherId=$this->getUser()->getId();
+        $teacherId=$this->getUser()->getTeacher()->getId();
         //Here is used for advice 'request' get methods
         $category = $request->request->get('category');
         $numberOfQuestion = $request->request->get('numberOfQuestions');

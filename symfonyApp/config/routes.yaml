@@ -6,27 +6,35 @@ index:
     path: /
     controller: App\Controller\MainController::index
 
-teacher_logout:
-    path: /teacher/logout
+#teacher_logout:
+#    path: /teacher/logout
+#
+#student_logout:
+#    path: /student/logout
+#
+#teacher_login_check:
+#    path: /teacher/login/check
+#
+#teacher_login:
+#    path: /teacher/login
+#    controller: App\Controller\MainController::teacherLogin
+#
+#student_login_check:
+#    path: /student/login/check
+#
+#student_login:
+#    path: /student/login
+#    controller: App\Controller\MainController::studentLogin
 
-student_logout:
-    path: /student/logout
+login:
+    path: /login
 
-teacher_login_check:
-    path: /teacher/login/check
+logout:
+    path: /logout
 
-teacher_login:
-    path: /teacher/login
-    controller: App\Controller\MainController::teacherLogin
-
-student_login_check:
-    path: /student/login/check
-
-student_login:
-    path: /student/login
-    controller: App\Controller\MainController::studentLogin
-
-
+login_check:
+    path: /loginCheck
+    controller: App\Controller\MainController::loginCheck
 
 teacher_make_question:
     path: /teacher/make_question

@@ -17,9 +17,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class Student extends AbstractController
 {
     public function studentMain(){
-        $studentId = $this->getUser()->getId();
-        $studentData = $this->getDoctrine()->getRepository(\App\Entity\Student::class)
-            ->find($studentId);
+        $studentId = $this->getUser()->getStudent()->getId();
+        $studentData = $this->getUser();
 
         $examResult = $this->getDoctrine()->getRepository(ExamResult::class)
             ->findBy(array('student'=>$studentData));

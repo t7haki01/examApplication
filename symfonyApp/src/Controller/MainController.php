@@ -24,4 +24,15 @@ class MainController extends AbstractController
     public function studentLogin(){
         return $this->render('main/student_login.html.twig');
     }
+
+    public function loginCheck(){
+        $user=$this->getUser();
+        $role = $user->getIsTeacher();
+        if($role == true){
+            return $this->redirectToRoute('teacher_main');
+        }
+        else{
+            return $this->redirectToRoute('student_main');
+        }
+    }
 }

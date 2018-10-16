@@ -1,67 +1,67 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        teacher:
-            entity: { class: App\Entity\Teacher, property: username }
-        student:
-            entity: { class: App\Entity\Student, property: username }
-#        my_db_user_provider:
-#            entity:
-#                class: App\Entity\Teacher
-#                property: username
+#        teacher:
+#            entity: { class: App\Entity\Teacher, property: username }
+#        student:
+#            entity: { class: App\Entity\Student, property: username }
+        user:
+            entity:
+                class: App\Entity\User
+                property: username
 
     encoders:
-        App\Entity\Teacher:
-            algorithm: bcrypt
-        APP\Entity\Student:
+#        App\Entity\Teacher:
+#            algorithm: bcrypt
+#        APP\Entity\Student:
+#            algorithm: bcrypt
+        App\Entity\User:
             algorithm: bcrypt
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-#        main:
-#            anonymous: ~
-#            provider: my_db_user_provider
+        main:
+            anonymous: ~
+            provider: user
 
+            form_login:
+                login_path: /
+                check_path: /login
+                default_target_path: login_check
+            logout:
+                path: /logout
+                target: index
             # activate different ways to authenticate
 
             # http_basic: true
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
 
-        teacher:
-            provider: teacher
-            pattern: ^/teacher/
-            security: true
-            anonymous: true
-            form_login:
-                login_path: /teacher/login
-                check_path: /teacher/login/check
-                default_target_path: teacher_main
-            logout:
-                path: /teacher/logout
-                target: index
-        student:
-            provider: student
-            pattern: ^/student/
-            anonymous: true
-            security: true
-            form_login:
-                login_path: /student/login
-                check_path: /student/login/check
-                failure_path: /test
-                default_target_path: student_main
-            logout:
-                path: /student/logout
-                target: index
-#            logout:
-#                path: /
-#                target: index
-#
+#        teacher:
+#            provider: teacher
+#            pattern: ^/teacher/
+#            security: true
+#            anonymous: true
 #            form_login:
-#                login_path: /
-#                check_path: /login
+#                login_path: /teacher/login
+#                check_path: /teacher/login/check
 #                default_target_path: teacher_main
-#                failure_path: test
+#            logout:
+#                path: /teacher/logout
+#                target: index
+#        student:
+#            provider: student
+#            pattern: ^/student/
+#            anonymous: true
+#            security: true
+#            form_login:
+#                login_path: /student/login
+#                check_path: /student/login/check
+#                failure_path: /test
+#                default_target_path: student_main
+#            logout:
+#                path: /student/logout
+#                target: index
 
 
             # https://symfony.com/doc/current/security/form_login_setup.html
@@ -69,14 +69,16 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
+    - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/loginCheck, role: ROLE_USER }
         # - { path: ^/admin, roles: ROLE_ADMIN }
 #         - { path: ^/profile, roles: ROLE_USER }
-        - { path: ^/teacher/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/teacher/main/^, role: ROLE_USER }
-        - { path: ^/teacher/make_exam/^, role: ROLE_USER }
-        - { path: ^/teacher/exam/^, role: ROLE_USER }
-
-        - { path: ^/student/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/student/main/^, role: ROLE_USER }
-        - { path: ^/student/exam/^, role: ROLE_USER }
-        - { path: ^/exam/^, role: ROLE_USER }
+#        - { path: ^/teacher/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/teacher/main/^, role: ROLE_USER }
+#        - { path: ^/teacher/make_exam/^, role: ROLE_USER }
+#        - { path: ^/teacher/exam/^, role: ROLE_USER }
+#
+#        - { path: ^/student/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/student/main/^, role: ROLE_USER }
+#        - { path: ^/student/exam/^, role: ROLE_USER }
+#        - { path: ^/exam/^, role: ROLE_USER }
