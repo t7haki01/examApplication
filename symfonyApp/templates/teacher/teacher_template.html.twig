@@ -5,14 +5,37 @@
     {% block css %}{% endblock %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
-{% block logout %}{% endblock %}
-<div class="container">
-    <a href="{{ path('logout') }}">
-        <button class="btn btn-primary">Logout</button>
-    </a>
-</div>
+
 
 <body>
+{% block logout %}{% endblock %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8"></div>
+        <div class="col-md-4">
+            <a href="{{ path('logout') }}">
+                <button class="btn btn-primary">Logout</button>
+            </a>
+        </div>
+    </div>
+</div>
+{% block msg %}{% endblock %}
+{% if app.session.flashBag.has('msg')%}
+    <br>
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 text-center">
+                <div class="alert alert-success">
+                    {% for msg in app.session.flashBag.get('msg') %}
+                        {{ msg }}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+{% endif %}
 {% block body %}{% endblock %}
 
 {% block javascript %}{% endblock %}

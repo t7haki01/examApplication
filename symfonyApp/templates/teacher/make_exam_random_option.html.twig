@@ -4,8 +4,7 @@
 
 {% block body %}
     <div class="container">
-<h1>Make Exam with Random options</h1>
-    <a href="{{ path('teacher_main') }}"><button>Back</button></a>
+    <a href="{{ path('teacher_main') }}"><button class="btn btn-info">Back</button></a>
 
         {% if app.session.flashBag.has('msg')%}
             <div class="alert alert-success">
@@ -16,8 +15,8 @@
         {% endif %}
 
     <br><br>
-<form method="post" action="{{ path('teacher_make_exam_random_selected', {'teacherId':teacherId}) }}">
-<table>
+<form method="post" action="{{ path('teacher_make_exam_random_selected') }}">
+<table class="">
     <tr>
         <td class="text-right"><label for="examTitle"><span class="badge badge-pill badge-success">Exam Title:</span></label></td>
         <td><input class="form-control" id="examTitle" name="examTitle" type="text"></td>
@@ -52,9 +51,28 @@
         </td>
     </tr>
     <tr>
+        <td class="text-right"><label>
+            <span class="badge badge-pill badge-warning">
+                Target Students</span></label>
+        </td>
+        <td><div class="row">
+                <div class="col-md-6">
+                    <input id="student" name="student[]" type="checkbox" value="All">
+                    All
+                </div>
+            {% for user in users %}
+                <div class="col-md-6">
+                <input id="student" name="student[]" type="checkbox" value="{{ user.student.id }}">
+                {{ user.firstname }} {{ user.lastname }}
+                </div>
+            {% endfor %}
+            </div></td>
+    </tr>
+
+    <tr>
         <td></td>
         <td>
-            <button class="btn btn-success" id="makeExamRandomButton" data-id="{{ teacherId }}" type="">Make Exam</button>
+            <button class="btn btn-success" id="makeExamRandomButton" data-id="{{ teacherId }}" type="submit">Make Exam</button>
         </td>
     </tr>
 </table>

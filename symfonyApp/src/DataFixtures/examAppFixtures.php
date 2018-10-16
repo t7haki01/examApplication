@@ -114,6 +114,19 @@ class examAppFixtures extends Fixture
         $dummyData3->setTeacher($teacher1);
         $manager->persist($dummyData3);
 
+        //from here tanja
+        $dummyData1 = new Question();
+        $dummyData1->setQuestion('');
+        $dummyData1->setCategory('Finnish');
+        $dummyData1->setExamples('1, 2, 3, 4');
+        $dummyData1->setAnswers('2');
+        $dummyData1->setDate(new \DateTime());
+        $dummyData1->setTeacher($teacher1);
+        $manager->persist($dummyData1);
+
+
+        //until here
+
         $manager->flush();
     }
 }

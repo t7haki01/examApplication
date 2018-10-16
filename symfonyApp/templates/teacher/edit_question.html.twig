@@ -5,7 +5,8 @@
 {% block body %}
     <div class="container">
 <div>
-    <a href="{{ path('teacher_make_question', {'teacherId': teacherId}) }}">back</a>
+    <a href="{{ path('teacher_make_question') }}">
+        <button class="btn btn-info">back</button></a>
 </div>
         <h2>Question: {{ question.question }}</h2>
         <table class="table table-bordered table-condensed">

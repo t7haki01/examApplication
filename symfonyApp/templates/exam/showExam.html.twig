@@ -5,7 +5,7 @@
 {% block body %}
 
     <div class="container">
-    <a href="{{ path('exam_main') }}"><button>Back</button></a>
+    <a href="{{ path('exam_main') }}"><button class="btn btn-danger">Back</button></a>
     <h2>{{ examData.examTitle }}</h2>
 <form action="{{ path('exam_result', {'studentId' : studentId, 'examId' : examData.id}) }}" method="POST">
 {% set i = 1 %}

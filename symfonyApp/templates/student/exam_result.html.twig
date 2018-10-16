@@ -1,10 +1,10 @@
 {% extends 'student/student_template.html.twig' %}
 
 {% block css %}{% endblock %}
-
+{% block logout %}{% endblock %}
 {% block body %}
     <div class="container">
-    <a href="{{ path('student_main', {'studentId':studentId}) }}"><button>Back</button></a>
+    <a href="{{ path('student_main', {'studentId':studentId}) }}"><button class="btn btn-info">Back</button></a>
     <h2>{{ examData.examTitle }}</h2>
 
     <table class="table"><tr>

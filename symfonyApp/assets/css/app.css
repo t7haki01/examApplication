@@ -31,3 +31,7 @@ html, body{
 table #result_table tr{
     height: 80px;
 }
+
+table #teacher_exam tr{
+    height: 80px;
+}

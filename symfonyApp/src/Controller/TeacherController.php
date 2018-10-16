@@ -28,31 +28,13 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 class TeacherController extends AbstractController
 {
     protected $teacher;
-    protected $isTeacher;
 
     public function __construct(TokenStorageInterface $tokenStorage){
-        $this->teacher = $tokenStorage->getToken()->getUser();
-        $teacherCheck=$tokenStorage->getToken()->getUser()->getIsTeacher();
-
-//        if(!$teacherCheck){
-//            $this-> isTeacher = false;
-//         }
-//        else{
-//            $this-> isTeacher = true;
-//        }
+        $this->teacher = $tokenStorage->getToken()->getUser()->getTeacher()->getId();
     }
 
-    public function teacherMain(Request $request){
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-
-//        if(!($this->isTeacher)){
-//            $request->getSession()
-//                ->getFlashBag()
-//                ->add('msg','You are not allowed to access');
-//
-//            return $this->redirectToRoute('index');
-//        }
-        $teacherId=$this->getUser()->getTeacher()->getId();
+    public function teacherMain(){
+        $teacherId=$this->teacher;
         $exams = $this-> getDoctrine()->getRepository(Exam::class)->
         findBy(array('teacher' => $teacherId));
 
@@ -65,7 +47,7 @@ class TeacherController extends AbstractController
     }
 
     public function makeQuestion(Request $request){
-        $teacherId=$this->getUser()->getTeacher()->getId();
+        $teacherId=$this->teacher;
 //        Here is used for form bundle
         $form = $this->createForm(QuestionType::class)
             ->add('save', SubmitType::class,
@@ -96,7 +78,7 @@ class TeacherController extends AbstractController
     }
 
     public function editQuestion(Request $request, $questionId){
-        $teacherId=$this->getUser()->getTeacher()->getId();
+        $teacherId=$this->teacher;
         $questionData = $this-> getDoctrine()->getRepository(Question::class)->find($questionId);
         $form = $this->createFormBuilder($questionData)
             ->add('question', TextType::class,
@@ -118,6 +100,9 @@ class TeacherController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($questionData);
             $em->flush();
+            $request->getSession()
+                ->getFlashBag()
+                ->add('msg','Question edited!');
         }
 
         return $this->render('teacher/edit_question.html.twig',array('question' => $questionData,
@@ -125,16 +110,19 @@ class TeacherController extends AbstractController
                                                                 'editForm'=> $form->createView()));
     }
 
-    public function deleteQuestion($questionId){
+    public function deleteQuestion($questionId, Request $request){
         $questionData = $this->getDoctrine()->getRepository(Question::class)->find($questionId);
         $em = $this->getDoctrine()->getManager();
         $em->remove($questionData);
         $em->flush();
+        $request->getSession()
+            ->getFlashBag()
+            ->add('msg','Question deleted!');
         return new Response();
     }
 
     public function makeExam(){
-        $teacherId=$this->getUser()->getTeacher()->getId();
+        $teacherId=$this->teacher;
         $questions = $this-> getDoctrine()->getRepository(Question::class)->
             findBy(array('teacher' => $teacherId));
         $students = $this->getDoctrine()->getRepository(User::class)
@@ -171,17 +159,23 @@ class TeacherController extends AbstractController
     }
 
     public function makeExamRandom(){
-        $teacherId=$this->getUser()->getTeacher()->getId();
-        $questions = $this->getDoctrine()->getRepository(Question::class)->findBy(array('teacher' => $teacherId));
+        $teacherId=$this->teacher;
+        $users = $this->getDoctrine()->getRepository(User::class)
+            ->findBy(array('isTeacher'=>false));
+
+        $questions = $this->getDoctrine()->getRepository(Question::class)
+            ->findBy(array('teacher' => $teacherId));
 
         return $this->render('teacher/make_exam_random_option.html.twig',
-            array('teacherId' => $teacherId, 'question'=>$questions));
+            array('teacherId' => $teacherId, 'question'=>$questions,
+                'users' => $users));
     }
 
     public function  makeExamRandomSelected(Request $request){
-        $teacherId=$this->getUser()->getTeacher()->getId();
+        $teacherId=$this->teacher;
 
         //Here is used for advice 'request' get methods
+        $availableStudents=$request->request->get('student');
         $category = $request->request->get('category');
         $numberOfQuestion = $request->request->get('numberOfQuestions');
         $examTitle = $request->request->get('examTitle');
@@ -195,8 +189,9 @@ class TeacherController extends AbstractController
         $exam->setExamTitle($examTitle);
         $exam->setTeacher($teacherData);
         $exam->setIsPublished(false);
-//From here for the question Ids
-        //here was the making random exam when i misunderstood
+        $exam->setAvailableStudents(implode(',',$availableStudents));
+
+        //From here for the question Ids
         if($category == 'all'){
         $questionData = $this->getDoctrine()->getRepository(Question::class)
             ->findBy(array('teacher' => $teacherData));
@@ -223,9 +218,6 @@ class TeacherController extends AbstractController
         }
         else
         {
-
-////until here misunderstood
-
             $randomSetting = [];
             array_push($randomSetting, 'random');
             array_push($randomSetting, $numberOfQuestion);
@@ -233,6 +225,7 @@ class TeacherController extends AbstractController
             $exam->setQuestionIds(implode(',',$randomSetting));
             $em->persist($exam);
             $em->flush();
+
             $request->getSession()
                 ->getFlashBag()
                 ->add('msg','Exam created successfully');
@@ -274,8 +267,11 @@ class TeacherController extends AbstractController
     public function checkExamResult($examId, $studentId){
         $examData = $this->getDoctrine()->getRepository(\App\Entity\Exam::class)
             ->find($examId);
+        //First get the questionIds for checking exam type that is it random type or not
         $randomCheck = $examData->getQuestionIds();
         $randomCheckArray = explode(',',$randomCheck);
+
+//when exam type is random, taking first string as "random" so when explode first elements of array is "random"
     if($randomCheckArray[0]!=="random") {
         $questionIds = $examData->getQuestionIds();
         $questionIdsArray = explode(',', $questionIds);

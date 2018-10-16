@@ -1,10 +1,9 @@
-{% extends 'template.html.twig' %}
+{% extends 'teacher/teacher_template.html.twig' %}
 
-{% block css %}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-{% endblock %}
-
+{% block css %}{% endblock %}
+{% block logout %}{% endblock %}
 {% block body %}
+
 
 <div class="container">
 
@@ -22,7 +21,20 @@
     {% endfor %}
     <table>
     {% for exam in exams %}
-        {% set studentCheck = exam.availableStudents | split(',')%}
+        {#first checking available students if it were including "All",#}
+        {#if it were then put available students as all users/students#}
+        {% set availableStudents = exam.availableStudents | split(',') %}
+
+        {% if 'All' ==  availableStudents[0]|replace({' ':''})%}
+            {% set studentCheck = [] %}
+                {% for user in allUsers %}
+                    {% set studentCheck = studentCheck|merge([user.student.id]) %}
+                {% endfor %}
+        {% else %}
+            {% set studentCheck = exam.availableStudents | split(',')%}
+        {#Here is for the checking available students#}
+        {% endif %}
+
         {% if studentId in studentCheck %}
             {% if exam.ispublished == true %}
                 <tr><td><table class="table table-bordered table-striped">
