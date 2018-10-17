@@ -41,19 +41,7 @@
                     {{ student.firstname }} {{ student.lastname }}
             {% endfor %}
         </div>
-        <script>
-            function studentCheck() {
-                var allBtn = document.getElementById('studentAll');
-                if(allBtn.checked){
-                    document.querySelectorAll('input[name="student[]"]').checked = true;
-                }
-                else{
-                    document.querySelectorAll('input[name="student[]"]').checked = false;
-                }
-            }
-        </script>
-
-    <form {#action="{{ path( 'make_exam_selected', {'teacherId':teacherId}) }}" method="post"#}>
+    <form>
 
             <div class="row justify-content-md-center">
                 <div class="col-md-1">
@@ -83,8 +71,6 @@
                             <tr>
                                 <td class="text-right"><b>Choices: </b></td>
                                 <td>
-                                    {#in here still need to figure out when example has only one 26.9#}
-
                                     {%   set exampleArray = question.examples|split(',') %}
                                     {% for i in exampleArray %}
                                         {% if i|length == 0%} There is no example so it could be response question
