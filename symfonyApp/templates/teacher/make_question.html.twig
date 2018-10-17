@@ -18,24 +18,26 @@
 
 
 <div class="container">
-    {% if app.session.flashBag.has('success')%}
-        <div class="alert alert-success">
-            {% for msg in app.session.flashBag.get('success') %}
-            {{ msg }}
-            {% endfor %}
-        </div>
-    {% endif %}
-    <label>Filter option for category</label>
-        <input id="filter" name="filter[]" type="checkbox" checked value="All">All
-    {% set categoryArray =[] %}
-    {% for questions in question %}
-    {% if questions.category not in categoryArray %}
-        <input id="filter" name="filter[]" type="checkbox" value="{{ questions.category }}">
-    {{ questions.category }}
-    {% set categoryArray = categoryArray|merge([questions.category]) %}
-    {% endif %}
-    {% endfor %}
-    <button class="filterButton">Filter</button>
+    <div class="text-center">
+        {% if app.session.flashBag.has('success')%}
+            <div class="alert alert-success">
+                {% for msg in app.session.flashBag.get('success') %}
+                {{ msg }}
+                {% endfor %}
+            </div>
+        {% endif %}
+        <label>Filter option for category</label>
+            <input id="filter" name="filter[]" type="checkbox" checked value="All">All
+        {% set categoryArray =[] %}
+        {% for questions in question %}
+        {% if questions.category not in categoryArray %}
+            <input id="filter" name="filter[]" type="checkbox" value="{{ questions.category }}">
+        {{ questions.category }}
+        {% set categoryArray = categoryArray|merge([questions.category]) %}
+        {% endif %}
+        {% endfor %}
+        <button class="filterButton">Filter</button>
+    </div>
     <div class="row">
         {% for questions in question %}
             <div name="{{ questions.category }}" class="col-md-6">{#<tr><td>#}

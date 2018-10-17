@@ -8,6 +8,9 @@
 
 {% block body %}
 <div class="container">
+    <div>
+        <a href="{{ path('student_main') }}"><button class="btn btn-warning">Test Student Mode</button></a>
+    </div>
     <div class="row justify-content-md-center">
         <h2>
         Hello, {{ teacherData.firstname }} {{ teacherData.lastname }}

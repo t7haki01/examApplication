@@ -27,11 +27,18 @@ class Exam extends AbstractController
     protected $student;
 
     public function __construct(TokenStorageInterface $tokenStorage){
+        if(!($tokenStorage->getToken()->getUser()->getIsTeacher()))
         $this->student=$tokenStorage->getToken()->getUser()->getStudent()->getId();
     }
 
     public function examShow($examId){
-        $studentId = $this->student;
+        if($this->getUser()->getIsTeacher()){
+            $studentId=$this->getDoctrine()->getRepository(User::class)->findOneBy(array('firstname'=>'Test'))
+            ->getStudent()->getId();
+        }
+        else{
+            $studentId=$this->student;
+        }
 
         $examData = $this->getDoctrine()->getRepository(\App\Entity\Exam::class)->find($examId);
 
@@ -82,7 +89,13 @@ class Exam extends AbstractController
     }
 
     public function examMain(){
-        $studentId = $this->student;
+        if($this->getUser()->getIsTeacher()){
+            $studentId=$this->getDoctrine()->getRepository(User::class)->findOneBy(array('firstname'=>'Test'))
+                ->getStudent()->getId();
+        }
+        else{
+            $studentId=$this->student;
+        }
         $exams = $this-> getDoctrine()->getRepository(\App\Entity\Exam::class)->
         findAll();
         $studentData = $this->getDoctrine()->getRepository(\App\Entity\Student::class)

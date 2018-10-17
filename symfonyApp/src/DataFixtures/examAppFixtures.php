@@ -114,15 +114,25 @@ class examAppFixtures extends Fixture
         $dummyData3->setTeacher($teacher1);
         $manager->persist($dummyData3);
 
-        //from here tanja
-        $dummyData1 = new Question();
-        $dummyData1->setQuestion('');
-        $dummyData1->setCategory('Finnish');
-        $dummyData1->setExamples('1, 2, 3, 4');
-        $dummyData1->setAnswers('2');
-        $dummyData1->setDate(new \DateTime());
-        $dummyData1->setTeacher($teacher1);
-        $manager->persist($dummyData1);
+        //from here many questions
+
+        $dummyData11 = new Question();
+        $dummyData11->setQuestion('Choose the city from South Korea');
+        $dummyData11->setCategory('Geography');
+        $dummyData11->setExamples('Seoul, Beijing, Tokyo, Busan, Oulu');
+        $dummyData11->setAnswers('Seoul, Busan');
+        $dummyData11->setDate(new \DateTime());
+        $dummyData11->setTeacher($teacher1);
+        $manager->persist($dummyData11);
+
+        $dummyData12 = new Question();
+        $dummyData12->setQuestion('Choose the city from Europe');
+        $dummyData12->setCategory('Geography');
+        $dummyData12->setExamples('Seoul, Beijing, Tokyo, Berlin, Moscow');
+        $dummyData12->setAnswers('Berlin');
+        $dummyData12->setDate(new \DateTime());
+        $dummyData12->setTeacher($teacher1);
+        $manager->persist($dummyData12);
 
 
         //until here

@@ -22,12 +22,19 @@ class Student extends AbstractController
     protected $student;
 
     public function __construct(TokenStorageInterface $tokenStorage){
+            if(!($tokenStorage->getToken()->getUser()->getIsTeacher()))
             $this->student = $tokenStorage-> getToken()->getUser()->getStudent()->getId();
     }
 
     public function studentMain(){
 
-        $studentId=$this->student;
+        if($this->getUser()->getIsTeacher()){
+            $studentId=$this->getDoctrine()->getRepository(User::class)->findOneBy(array('firstname'=>'Test'))
+                ->getStudent()->getId();
+        }
+        else{
+            $studentId=$this->student;
+        }
 
         $student=$this->getUser()->getStudent();
 
