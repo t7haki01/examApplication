@@ -25,5 +25,5 @@ APP_SECRET=6922e42857e9e54d3b021254fe998c99
 # For an SQLite database, use: "sqlite:///%kernel.project_dir%/var/data.db"
 # For a PostgreSQL database, use: "postgresql://db_user:db_password@127.0.0.1:5432/db_name?serverVersion=11"
 # IMPORTANT: You MUST also configure your db driver and server_version in config/packages/doctrine.yaml
-DATABASE_URL=mysql://root:test@127.0.0.1:3306/symfony
+DATABASE_URL=mysql://user:password@127.0.0.1:3306/db
 ###< doctrine/doctrine-bundle ###
