@@ -1,0 +1,43 @@
+{% extends 'teacher/teacher_template.html.twig' %}
+
+{% block css %}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <a href="{{ path('teacher_main') }}"><button class="btn btn-info">back</button></a>
+    </div>
+    <br><br>
+    <div class="container">
+        <div class="row">
+    {% for result in resultData %}
+        <div class="col-md-4">
+        <table class="table table-striped">
+           <tr>
+               <td style="width: 15%" class="text-right">
+                   <b>Student:</b>
+               </td>
+               <td style="width: 85%" class="text-left">
+                   {{ result.student.user.firstname }} {{ result.student.user.lastname }}
+               </td>
+           </tr>
+            <tr>
+                <td class="text-right">
+                    <b>Grade:</b>
+                </td>
+                <td class="text-left">
+                    {{ result.score }}
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center" colspan="2">
+                    <a href="{{ path('teacher_check_result', {'examId': result.exam.id, 'studentId':result.student.id}) }}">
+                        <button class="btn btn-info">Check Details</button>
+                    </a>
+                </td>
+            </tr>
+            </table>
+        </div>
+    {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,103 @@
+{% extends 'teacher/teacher_template.html.twig' %}
+
+{% block css %}{% endblock %}
+
+{% block body %}
+
+
+    <div class="container">
+        <div>
+            <a href="{{ path('teacher_main') }}"><button class="btn btn-info">Back</button></a>
+        </div>
+        {% if app.session.flashBag.has('success')%}
+            <div class="alert alert-success">
+                {% for msg in app.session.flashBag.get('success') %}
+                    {{ msg }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div class="container">
+            <label>Filter option for category</label>
+            <input id="filter" name="filter[]" type="checkbox" checked value="All">All
+            {% set categoryArray =[] %}
+            {% for question in questions %}
+                {% if question.category not in categoryArray %}
+                    <input id="filter" name="filter[]" type="checkbox" value="{{ question.category }}">
+                    {{ question.category }}
+                    {% set categoryArray = categoryArray|merge([question.category]) %}
+                {% endif %}
+            {% endfor %}
+            <button class="filterButton">Filter</button>
+        </div>
+
+        {#Here comes for the selecting available students#}
+        <div class="container">
+            <label>Select the students whose can take exam</label>
+            <input onchange="studentCheck()" id="studentAll" name="student[]" type="checkbox" value="All">All
+
+            {% for student in students %}
+                    <input id="student" name="student[]" type="checkbox" value="{{ student.student.id }}">
+                    {{ student.firstname }} {{ student.lastname }}
+            {% endfor %}
+        </div>
+    <form>
+
+            <div class="row justify-content-md-center">
+                <div class="col-md-1">
+                <label for="examTitle"><span class="badge badge-pill badge-primary">
+                        Exam Title
+                    </span></label></div>
+                <div class="col-md-6">
+                    <input required class="form-control" type="text" name="examTitle" id="examTitle">
+                </div>
+            </div>
+<br>
+        <div class="row">
+            {% for question in questions %}
+                <div class="col-md-6" name="{{ question.category }}">
+                        <table class="table table-striped">
+                            <tr><td style="" colspan="2">
+                                    <input type="checkbox" name="question[]" value="{{ question.id }}"> Check here for selecting question as exam
+                                </td></tr>
+                            <tr>
+                                <td style="width: 30%" class="text-right"><b>Category: </b></td>
+                                <td style="width: 70%">{{ question.category }}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right"><b>Question: </b></td>
+                                <td>{{ question.question }}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right"><b>Choices: </b></td>
+                                <td>
+                                    {%   set exampleArray = question.examples|split(',') %}
+                                    {% for i in exampleArray %}
+                                        {% if i|length == 0%} There is no example so it could be response question
+                                        {% else %}
+                                            <input type="radio" value="{{ i }}"> {{ i }}
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right"><b>Answers: </b></td>
+                                <td>
+                                    {%   set answerArray = question.answers|split(',') %}
+                                    {% for i in answerArray %}
+                                        {{ i }},
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                        </table>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div>
+            <button class="btn btn-success" type="submit" id="makeExamButton" data-id="{{ teacherId }}">Click Here to Make Exam</button>
+        </div>
+
+    </form>
+    </div>
+{% endblock %}
