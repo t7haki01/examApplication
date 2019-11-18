@@ -1,0 +1,81 @@
+{% extends 'teacher/teacher_template.html.twig' %}
+
+{% block css %}{% endblock %}
+
+{% block body %}
+    <div class="container">
+    <a href="{{ path('teacher_main') }}"><button class="btn btn-info">Back</button></a>
+
+        {% if app.session.flashBag.has('msg')%}
+            <div class="alert alert-success">
+                {% for msg in app.session.flashBag.get('msg') %}
+                    {{ msg }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+    <br><br>
+<form method="post" action="{{ path('teacher_make_exam_random_selected') }}">
+<table class="">
+    <tr>
+        <td class="text-right"><label for="examTitle"><span class="badge badge-pill badge-success">Exam Title:</span></label></td>
+        <td><input class="form-control" id="examTitle" name="examTitle" type="text"></td>
+    </tr>
+    <tr>
+        <td class="text-right"><label for="numberOfQuestions">
+                <span class="badge badge-pill badge-primary">
+                    Number of Questions:</span></label></td>
+        <td>
+            <input class="form-control" name="numberOfQuestions" id="numberOfQuestions" type="number">
+        </td>
+    </tr>
+    <tr>
+        <td class="text-right">
+            <label for="category">
+                <span class="badge badge-pill badge-info">
+                    Range of Category:
+                </span>
+            </label>
+        </td>
+        <td>
+            <select class="form-control" id="category" name="category">
+            <option value="all" selected>all the category
+                {% set categoryArray = [] %}
+            {% for questions in question %}
+                {% if questions.category not in categoryArray %}
+                    <option value="{{ questions.category }}">{{ questions.category }}</option>
+                {% set categoryArray =categoryArray|merge([questions.category]) %}
+                {% endif %}
+            {% endfor %}
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td class="text-right"><label>
+            <span class="badge badge-pill badge-warning">
+                Target Students</span></label>
+        </td>
+        <td><div class="row">
+                <div class="col-md-6">
+                    <input id="student" name="student[]" type="checkbox" value="All">
+                    All
+                </div>
+            {% for user in users %}
+                <div class="col-md-6">
+                <input id="student" name="student[]" type="checkbox" value="{{ user.student.id }}">
+                {{ user.firstname }} {{ user.lastname }}
+                </div>
+            {% endfor %}
+            </div></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td>
+            <button class="btn btn-success" id="makeExamRandomButton" data-id="{{ teacherId }}" type="submit">Make Exam</button>
+        </td>
+    </tr>
+</table>
+</form>
+    </div>
+{% endblock %}

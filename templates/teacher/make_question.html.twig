@@ -1,0 +1,85 @@
+{% extends 'teacher/teacher_template.html.twig' %}
+
+{% block css %}{% endblock %}
+{% block body %}
+
+    <div class="row justify-content-md-center">
+        <div>
+            <a href="{{ path('teacher_main') }}"><button class="btn btn-info">Back</button></a>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                    {{ form_start(addNewQuestionForm) }}
+                    {{ form_widget(addNewQuestionForm) }}
+                    {{ form_end(addNewQuestionForm) }}
+            </div>
+        </div>
+    </div>
+
+
+<div class="container">
+    <div class="text-center">
+        {% if app.session.flashBag.has('success')%}
+            <div class="alert alert-success">
+                {% for msg in app.session.flashBag.get('success') %}
+                {{ msg }}
+                {% endfor %}
+            </div>
+        {% endif %}
+        <label>Filter option for category</label>
+            <input id="filter" name="filter[]" type="checkbox" checked value="All">All
+        {% set categoryArray =[] %}
+        {% for questions in question %}
+        {% if questions.category not in categoryArray %}
+            <input id="filter" name="filter[]" type="checkbox" value="{{ questions.category }}">
+        {{ questions.category }}
+        {% set categoryArray = categoryArray|merge([questions.category]) %}
+        {% endif %}
+        {% endfor %}
+        <button class="filterButton">Filter</button>
+    </div>
+    <div class="row">
+        {% for questions in question %}
+            <div name="{{ questions.category }}" class="col-md-6">{#<tr><td>#}
+                <table class="table table-striped">
+                    <tr>
+                        <td class="text-right" style="width: 30%"><b>Category: </b></td>
+                        <td style="width: 70%">{{ questions.category }}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-right"><b>Question: </b></td>
+                        <td class="">{{ questions.question }}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-right"><b>Answer Choices: </b></td>
+                        <td class="">
+                            {#in here still need to figure out when example has only one 25.9#}
+
+                            {%   set exampleArray = questions.examples|split(',') %}
+                            {% for i in exampleArray %}
+                                {% if i|length == 0%} Answer choices did not set for the answers
+                                {% else %}
+                                    <input type="checkbox" value="{{ i }}"> {{ i }}
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-right"><b>Answers: </b></td>
+                        <td class="">
+                            {%   set answerArray = questions.answers|split(',') %}
+                            {% for i in answerArray %}
+                                {{ i }},
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-right"><a href="{{ path('teacher_edit_question', {'questionId': questions.id} ) }}"><button class="btn btn-info">Edit</button></a></td>
+                        <td><button class="btn btn-danger" id="deleteButton" data-id="{{ questions.id }}">Delete</button></td>
+                    </tr>
+                </table>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

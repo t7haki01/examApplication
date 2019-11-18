@@ -1,0 +1,97 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+index:
+    path: /
+    controller: App\Controller\MainController::index
+
+login:
+    path: /login
+
+logout:
+    path: /logout
+
+login_check:
+    path: /loginCheck
+    controller: App\Controller\MainController::loginCheck
+
+login_fail:
+    path: /loginFail
+    controller: App\Controller\MainController::loginFail
+
+teacher_make_question:
+    path: /teacher/make_question
+    controller: App\Controller\TeacherController::makeQuestion
+
+teacher_edit_question:
+    path: /teacher/edit_question/{questionId}
+    controller: App\Controller\TeacherController::editQuestion
+
+teacher_delete_question:
+    path: /teacher/delete_question/{questionId}
+    controller: App\Controller\TeacherController::deleteQuestion
+    methods: [DELETE]
+
+teacher_main:
+    path: /teacher/main
+    controller: App\Controller\TeacherController::teacherMain
+
+teacher_exam_result:
+    path: /teacher/exam_result/{examId}
+    controller: App\Controller\TeacherController::showExamResult
+
+teacher_check_result:
+    path: /teacher/exam/{examId}/result/{studentId}
+    controller: App\Controller\TeacherController::checkExamResult
+
+teacher_make_exam:
+    path: /teacher/make_exam
+    controller: App\Controller\TeacherController::makeExam
+
+make_exam_selected:
+    path: /teacher/make_exam/{teacherId}/make_exam_selected/{questionIds}/{examTitle}/{students}
+    controller: App\Controller\TeacherController::makeExamSelected
+    methods: [POST]
+
+teacher_make_exam_random:
+    path: /teacher/make_exam/random
+    controller: App\Controller\TeacherController::makeExamRandom
+
+teacher_make_exam_random_selected:
+    path: /teacher/make_exam/randomSelected
+    controller: App\Controller\TeacherController::makeExamRandomSelected
+
+teacher_exam_publish_set:
+    path: /teacher/exam/publish/{examId}/set
+    controller: App\Controller\TeacherController::makeExamPublish
+    methods: [POST]
+
+teacher_exam_delete:
+    path: /teacher/exam/delete/{examId}
+    controller: App\Controller\TeacherController::examDelete
+    methods: [DELETE]
+
+exam_show:
+    path: /student/exam/{examId}
+    controller: App\Controller\Exam::examShow
+
+exam_main:
+    path: /student/exam
+    controller: App\Controller\Exam::examMain
+
+exam_result:
+    path: /student/exam/{studentId}/examResult/{examId}
+    controller: App\Controller\Exam::examResult
+
+student_check_result:
+    path: /student/exam/{examId}/result/{studentId}
+    controller: App\Controller\Student::showResult
+
+student_main:
+  path: /student/main
+  controller: App\Controller\Student::studentMain
+
+test:
+    path: /test
+    controller: App\Controller\Test::test
