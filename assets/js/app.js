@@ -15,10 +15,13 @@ import axios from 'axios';
 
 console.log('Hello from app.js without entry tag');
 
+//In case prefix for domain required
+var mainDomain = "";
+
 function deleteQuestion(event){
     if(confirm("Are you sure delete question?")){
     const questionId = event.target.getAttribute('data-id');
-    axios.delete('/teacher/delete_question/' + questionId)
+    axios.delete(mainDomain + '/teacher/delete_question/' + questionId)
         .then(response => location.reload());
     }
     else{
@@ -43,7 +46,7 @@ function makeExam(event){
         }
         const teacherId = event.target.getAttribute('data-id');
 
-        axios.post('/teacher/make_exam/' + teacherId
+        axios.post(mainDomain + '/teacher/make_exam/' + teacherId
             + '/make_exam_selected/' + questionIds + '/'
             + examTitle + '/' + studentsAvailable )
         .then(response => location.reload());
@@ -53,13 +56,13 @@ function publishExam(event){
 
     console.log("Publish function called")
     const examId = event.target.getAttribute('data-id');
-    axios.post('/teacher/exam/publish/' + examId + '/set')
+    axios.post(mainDomain + '/teacher/exam/publish/' + examId + '/set')
         .then(response => location.reload());
 }
 
 function deleteExam(event){
     const examId = event.target.getAttribute('data-id');
-    axios.delete('/teacher/exam/delete/' + examId )
+    axios.delete(mainDomain + '/teacher/exam/delete/' + examId )
         .then(response => location.reload());
 }
 

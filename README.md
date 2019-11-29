@@ -21,6 +21,11 @@
 2. User B can check exam results (taken)
 3. User B can sign in/out
 
+# Deploy
+https://shielded-oasis-74766.herokuapp.com/
+ex) teacher1:test1, student1:test1
+
+
 # TODO
 1. Make sure that Required Symfony, PHP, Composer, Nodejs and NPM installed corresponding version.
 2. "composer install" and "npm install" required to install dependencies
